@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@6.1.0">
+  <actions>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+  </actions>
+  <description></description>
+  <properties>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig plugin="pipeline-model-definition@1.1.8">
+      <dockerLabel></dockerLabel>
+      <registry plugin="docker-commons@1.8"/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig>
+    <com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider_-FolderCredentialsProperty>
+      <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash">
+        <entry>
+          <com.cloudbees.plugins.credentials.domains.Domain plugin="credentials@2.1.14">
+            <specifications/>
+          </com.cloudbees.plugins.credentials.domains.Domain>
+          <java.util.concurrent.CopyOnWriteArrayList>
+            <com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey plugin="ssh-credentials@1.13">
+              <id>jenkins</id>
+              <description></description>
+              <username>jenkins</username>
+              <privateKeySource class="com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey$DirectEntryPrivateKeySource">
+                <privateKey>{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}</privateKey>
+              </privateKeySource>
+            </com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey>
+          </java.util.concurrent.CopyOnWriteArrayList>
+        </entry>
+      </domainCredentialsMap>
+    </com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider_-FolderCredentialsProperty>
+  </properties>
+  <folderViews class="com.cloudbees.hudson.plugins.folder.views.DefaultFolderViewHolder">
+    <views>
+      <hudson.model.AllView>
+        <owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../../.."/>
+        <name>All</name>
+        <filterExecutors>false</filterExecutors>
+        <filterQueue>false</filterQueue>
+        <properties class="hudson.model.View$PropertyList"/>
+      </hudson.model.AllView>
+    </views>
+    <tabBar class="hudson.views.DefaultViewsTabBar"/>
+  </folderViews>
+  <healthMetrics>
+    <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+      <nonRecursive>false</nonRecursive>
+    </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+  </healthMetrics>
+  <icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/>
+</com.cloudbees.hudson.plugins.folder.Folder>

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.stashNotifier.StashNotifier_-DescriptorImpl plugin="stashNotifier@1.11.6">
+  <credentialsId>bitbucket-admin</credentialsId>
+  <stashRootUrl>http://bitbucket:7990/</stashRootUrl>
+  <ignoreUnverifiedSsl>false</ignoreUnverifiedSsl>
+  <includeBuildNumberInKey>false</includeBuildNumberInKey>
+  <prependParentProjectKey>false</prependParentProjectKey>
+  <disableInprogressNotification>false</disableInprogressNotification>
+</org.jenkinsci.plugins.stashNotifier.StashNotifier_-DescriptorImpl>

@@ -1,0 +1,37 @@
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-build:requiredBuildsMergeCheck-config-form', location = '/web-fragment-placeholder.config' */
+WebFragments.addWebPanelDescriptor({'pluginKey':'com.atlassian.bitbucket.server.bitbucket-build','key':'requiredBuildsMergeCheck-config-form','moduleKey':'requiredBuildsMergeCheck-config-form','completeModuleKey':'com.atlassian.bitbucket.server.bitbucket-build:requiredBuildsMergeCheck-config-form','name':'Merge-check Config','params':{},'location':'com.atlassian.bitbucket.server.bitbucket-build:requiredBuildsMergeCheck-config-form','view':function(ctx) { return WebFragments._getValue((bitbucket.internal.build.required.count.config), ctx); }});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-build:requiredBuildsMergeCheck-config-form', location = '/bitbucket/internal/feature/build/merge-check/builds-required-merge-check-settings.soy' */
+// This file was automatically generated from builds-required-merge-check-settings.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.build.required.count.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.build == 'undefined') { bitbucket.internal.build = {}; }
+if (typeof bitbucket.internal.build.required == 'undefined') { bitbucket.internal.build.required = {}; }
+if (typeof bitbucket.internal.build.required.count == 'undefined') { bitbucket.internal.build.required.count = {}; }
+
+
+bitbucket.internal.build.required.count.config = function(opt_data, opt_ignored) {
+  var param3 = '' + aui.form.label({forField: 'requiredCount', content: '' + soy.$$escapeHtml('Number of builds')}) + aui.form.input({id: 'requiredCount', name: 'requiredCount', type: 'number', value: opt_data.config['requiredCount'], extraAttributes: {min: 1, max: 999}, extraClasses: 'text'});
+  if (opt_data.errors && opt_data.errors['requiredCount']) {
+    var errorList17 = opt_data.errors['requiredCount'];
+    var errorListLen17 = errorList17.length;
+    for (var errorIndex17 = 0; errorIndex17 < errorListLen17; errorIndex17++) {
+      var errorData17 = errorList17[errorIndex17];
+      param3 += aui.form.fieldError({message: errorData17});
+    }
+  }
+  var output = '' + aui.form.fieldGroup({content: param3});
+  output += '<div class="description">' + soy.$$escapeHtml('If there are more builds than specified above, they are all required to be successful in order to merge the pull request.') + '</div>';
+  return output;
+};
+if (goog.DEBUG) {
+  bitbucket.internal.build.required.count.config.soyTemplateName = 'bitbucket.internal.build.required.count.config';
+}
+;

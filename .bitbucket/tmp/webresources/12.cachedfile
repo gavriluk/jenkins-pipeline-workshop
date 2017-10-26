@@ -1,0 +1,396 @@
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:welcome-mat', location = '/static/bitbucket/internal/widget/welcome-mat/welcome-mat.less' */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.project-banners,
+.project-banners > .aui-item {
+  display: block;
+}
+.project-banners > .aui-item {
+  text-align: center;
+  padding: 15px 0;
+}
+.project-banners > .aui-item:first-child a {
+  margin-top: 40px;
+}
+.project-banners > .aui-item + .aui-item {
+  padding-left: 0;
+}
+.project-banners .aui-item > a {
+  background-clip: padding-box;
+  border-radius: 5px;
+  box-shadow: inset 1px 1px 1px #FCFCFC;
+  text-align: left;
+  display: inline-block;
+  width: 240px;
+  position: relative;
+  background: #F3F3F3;
+  border: 1px solid #ccc;
+  padding: 15px 15px 15px 95px;
+  margin: 0 auto;
+  text-decoration: none;
+}
+.project-banners .aui-item > a > .icon {
+  width: 65px;
+  height: 65px;
+  display: block;
+  position: absolute;
+  left: 15px;
+  background: transparent url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:welcome-mat/../com.atlassian.bitbucket.server.bitbucket-web:images-icons-banners/icons/icons-banners.png') no-repeat 0 0;
+}
+.project-banners .aui-item .icon {
+  display: block;
+  position: absolute;
+  left: 35px;
+  top: 25px;
+}
+.project-banners .aui-item .create-project-link .icon {
+  background-position: 0 -90px;
+}
+.project-banners .aui-item .create-project-link:hover .icon {
+  background-position: -85px -90px;
+}
+.project-welcome-mat:hover svg g {
+  fill: #707070;
+}
+.project-welcome-mat svg {
+  display: block;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  width: 32px;
+  height: 32px;
+}
+.project-banners .aui-item .administration-link .icon {
+  background-position: 0 -5px;
+}
+.project-banners .aui-item .administration-link:hover .icon {
+  background-position: -85px -5px;
+}
+.project-banners .entity-empty-desc {
+  white-space: pre-line;
+}
+.bitbucket-theme .project-banners .aui-item > a {
+  color: #555;
+}
+.bitbucket-theme .project-banners .aui-item > a:hover,
+.bitbucket-theme .project-banners .aui-item > a:active,
+.bitbucket-theme .project-banners .aui-item > a:focus {
+  box-shadow: inset 1px 1px 2px #C9C9C9;
+  background: #DDD;
+  border-color: #bbb;
+  text-decoration: none;
+}
+.bitbucket-theme .project-banners h3 {
+  font-size: 14px;
+  color: #333;
+  margin: 0 0 0.5em 0;
+}
+.bitbucket-theme .project-banners p {
+  color: #555;
+  margin: 0;
+}
+.welcome-mat {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  margin: 20px 0;
+}
+.welcome-mat h3 {
+  text-align: left;
+  padding: 0;
+  color: #333;
+  font-weight: normal;
+}
+.welcome-mat h3 + .aui-button,
+.welcome-mat p + .aui-button {
+  margin-top: 20px;
+}
+.welcome-mat p {
+  padding: 0;
+  color: #333;
+}
+.welcome-mat.stash-logo {
+  background-image: url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:welcome-mat/bitbucket-logo-grey.svg);
+  background-position: 97% 50%;
+  background-size: 256px 256px;
+}
+.welcome-mat.private-repository {
+  background-image: url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:welcome-mat/bitbucket-account-private.svg);
+  background-position: 93% 10px;
+  background-size: 180px 220px;
+}
+.welcome-mat-large {
+  background-clip: padding-box;
+  border-radius: 5px;
+  padding: 40px;
+  width: 980px;
+  min-height: 200px;
+}
+.welcome-mat-large h3 {
+  font-size: 24px;
+}
+.welcome-mat-large p {
+  margin-top: 20px;
+}
+.welcome-mat-small {
+  background-clip: padding-box;
+  border-radius: 3px;
+  padding: 20px;
+  width: 300px;
+  min-height: 120px;
+}
+.welcome-mat-small h3 {
+  font-size: 16px;
+}
+.aui-page-hybrid .welcome-mat-large {
+  width: auto;
+}
+
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:paged-table', location = '/static/bitbucket/internal/widget/paged-table/paged-table.less' */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.paged-table-filter {
+  background-color: #f5f5f5;
+  border: solid #ccc;
+  border-width: 1px 0;
+}
+.paged-table-filter > .aui-item {
+  padding: 5px 10px;
+}
+.paged-table-filter-input {
+  box-sizing: border-box;
+  background-clip: padding-box;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px #ccc;
+  background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAAb0lEQVR42p2RMQ7AIAhFWXsG1h7Gtffo6urqyJGpwyetomnwJ38BH/wgfZSaS7PABbVOqkqm3Fzx6IQTatlDb5PJi21YBy1iuNgjJIgzFXqyCcXj1Z1DXNGTiw01aP252DCCgH7Fk41h8KaAGMDxADnaOPucd/m3AAAAAElFTkSuQmCC) no-repeat 7px 7px;
+  border: 1px solid #bbb;
+  font-family: Arial, FreeSans, Helvetica, sans-serif;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  padding-left: 25px;
+  width: 300px;
+}
+.paged-table-message {
+  color: #999;
+  padding: 10px;
+  text-align: center;
+}
+.paged-table.no-rows {
+  display: none;
+}
+.paged-table ~ .spinner {
+  width: 48px;
+  height: 48px;
+  margin: 20px auto;
+}
+.paged-table tr td:first-child {
+  border-left: 2px solid transparent;
+}
+.paged-table tr.focused {
+  background-color: #f5f5f5;
+}
+.paged-table tr.focused td:first-child {
+  border-left-color: #3b73af;
+}
+.paged-table tr.focused a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-table', location = '/static/bitbucket/internal/feature/repository/repository-table/repository-table.less' */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+table.aui.repository-table {
+  margin-top: 0;
+}
+.repository-table .aui-icon {
+  color: #707070;
+  margin-right: 10px;
+}
+.repository-table + .spinner {
+  display: block;
+  height: 44px;
+}
+.repository-table .public-lozenge {
+  float: right;
+}
+.repository-table .aui-avatar {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+}
+.repository-table .project-name + .repository-name:before {
+  content: " / ";
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+.repository-table .project-name > a,
+.repository-table .repository-name > a {
+  display: inline-block;
+  max-width: 400px;
+  vertical-align: text-bottom;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.repository-table .repository-name > a {
+  line-height: 1.23077;
+}
+.repository-table .project-name > a,
+.repository-table .project-name + .repository-name:before,
+.repository-table .project-name + .repository-name > a {
+  line-height: 1.71429;
+}
+.repository-table .project-name .aui-avatar {
+  vertical-align: text-bottom;
+}
+.repository-table-message p {
+  padding: 7px 10px;
+}
+
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:markup-resources', location = '/static/bitbucket/internal/widget/markup/markup.less' */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.markup pre code {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  overflow: auto;
+  padding: 6px 10px;
+}
+.markup code {
+  background-clip: padding-box;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  display: inline-block;
+  margin: 0 2px -1px;
+  padding: 0px 3px;
+  text-decoration: inherit;
+  vertical-align: baseline;
+}
+.markup h1,
+.markup h2,
+.markup h3,
+.markup h4,
+.markup h5,
+.markup h6 {
+  display: block;
+  /* Stash default is inline block */
+}
+.markup h3,
+.markup h4,
+.markup h5,
+.markup h6 {
+  font-weight: bold;
+}
+.markup h1,
+.markup h2 {
+  margin: 10px 0 20px 0;
+}
+.markup h3,
+.markup h4,
+.markup h5,
+.markup h6 {
+  margin: 10px 0;
+}
+.markup ul,
+.markup ol {
+  margin: 10px 30px;
+  padding: 0;
+}
+.markup img {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.markup table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: auto;
+}
+.markup table > tbody > tr,
+.markup table > tfoot > tr {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.markup table > tbody > tr > td,
+.markup table > tfoot > tr > td {
+  padding: 7px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.markup table > tbody > tr:first-child,
+.markup table > tfoot > tr:first-child {
+  border-top: 1px solid #ccc;
+}
+.markup table > thead > tr {
+  border-bottom: 1px solid #ccc;
+}
+.markup table > thead > tr > td,
+.markup table > thead > tr > th {
+  padding: 7px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.markup table table {
+  margin: 0;
+}
+.markup .commitid {
+  font-family: monospace;
+}
+.markup .user-mention {
+  background-clip: padding-box;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  display: inline-block;
+  margin: 0 2px -1px;
+  padding: 0px 3px;
+  text-decoration: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  vertical-align: bottom;
+  word-wrap: normal;
+}
+.markup .user-mention.current-user {
+  background-color: #4a6785;
+  color: #fff;
+  border: 1px solid #4a6785;
+}
+.markup > ul {
+  list-style-type: disc;
+}
+.markup > ul > li > ul {
+  list-style-type: circle;
+}
+.markup > ul > li > ul > li > ul {
+  list-style-type: square;
+}

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.plugins.git.GitStatus_-CommitHookCause plugin="git@3.4.1">
+            <sha1>ae831caa6a4df67cd087ae6912f0cac4b358b8d2</sha1>
+          </hudson.plugins.git.GitStatus_-CommitHookCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.plugins.git.RevisionParameterAction plugin="git@3.4.1">
+      <commit>ae831caa6a4df67cd087ae6912f0cac4b358b8d2</commit>
+      <combineCommits>false</combineCommits>
+      <repoURL plugin="git-client@2.4.6">
+        <scheme>ssh</scheme>
+        <path>/math/math.git</path>
+        <rawPath>/math/math.git</rawPath>
+        <user>git</user>
+        <port>7999</port>
+        <host>localhost</host>
+      </repoURL>
+    </hudson.plugins.git.RevisionParameterAction>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters/>
+      <parameterDefinitionNames class="empty-list"/>
+    </hudson.model.ParametersAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>7743</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FPR-Master/detail/PR-Master/2</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <hudson.plugins.git.util.MergeRecord plugin="git@3.4.1">
+      <branch>origin/master</branch>
+      <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+    </hudson.plugins.git.util.MergeRecord>
+    <hudson.plugins.git.util.BuildData plugin="git@3.4.1">
+      <buildsByBranchName>
+        <entry>
+          <string>origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>ae831caa6a4df67cd087ae6912f0cac4b358b8d2</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>ae831caa6a4df67cd087ae6912f0cac4b358b8d2</sha1>
+                  <name>origin/feature/test</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>13ebd199f6bba7a12f7d44c0b60530b0a12e2ae7</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>2</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/feature/test</string>
+          <hudson.plugins.git.util.Build reference="../../entry/hudson.plugins.git.util.Build"/>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>ssh://git@localhost:7999/math/math.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.plugins.git.GitTagAction plugin="git@3.4.1">
+      <tags class="hudson.util.CopyOnWriteMap$Tree">
+        <entry>
+          <string>origin/master</string>
+          <list/>
+        </entry>
+      </tags>
+      <ws>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Master</ws>
+    </hudson.plugins.git.GitTagAction>
+    <hudson.scm.SCMRevisionState_-None/>
+  </actions>
+  <queueId>6</queueId>
+  <timestamp>1509012175499</timestamp>
+  <startTime>1509012175513</startTime>
+  <result>FAILURE</result>
+  <duration>2624</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn>self</builtOn>
+  <workspace>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Master</workspace>
+  <hudsonVersion>2.60.2</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@3.4.1">
+    <authorOrCommitter>false</authorOrCommitter>
+  </scm>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

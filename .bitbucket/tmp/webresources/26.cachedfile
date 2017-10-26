@@ -1,0 +1,7 @@
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:settings-page-analytics', location = '/static/bitbucket/internal/widget/analytics/settings-page-analytics.js' */
+define("bitbucket/internal/widget/analytics/settings-page-analytics",["module","exports","jquery","bitbucket/util/state","bitbucket/internal/util/events"],function(b,a,d,e,f){Object.defineProperty(a,"__esModule",{value:!0});var c=babelHelpers.interopRequireDefault(d),g=babelHelpers.interopRequireDefault(e),h=babelHelpers.interopRequireDefault(f);a.default={init:function(){(0,c.default)(".content-body \x3e .aui-page-panel-inner \x3e .aui-page-panel-nav").on("click","li \x3e a[data-web-item-key]",function(a){var b=
+null!=g.default.getRepository()?"repository":"project";h.default.trigger("bitbucket.internal.ui."+b+".settings.sidebar.clicked",null,{webItemKey:(0,c.default)(a.target).attr("data-web-item-key")})})}};b.exports=a["default"]});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:settings-page-analytics', location = '/static/bitbucket/internal/widget/analytics/settings-page-analytics-init.js' */
+jQuery(function(){require("bitbucket/internal/widget/analytics/settings-page-analytics").init()});;
