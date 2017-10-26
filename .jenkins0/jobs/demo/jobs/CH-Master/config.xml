@@ -36,6 +36,7 @@
   <builders>
     <hudson.tasks.Maven>
       <targets>test</targets>
+      <mavenName>3.5.0</mavenName>
       <usePrivateRepository>false</usePrivateRepository>
       <settings class="jenkins.mvn.DefaultSettingsProvider"/>
       <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
