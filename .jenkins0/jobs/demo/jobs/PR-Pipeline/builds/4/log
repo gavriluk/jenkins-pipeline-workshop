@@ -1,0 +1,61 @@
+Started by user [8mha:////4Kcqq1X9AUwBNxiW4MMpZ42pTQFvQJP0oJUt/okNfiMJAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] node
+Running on self in /Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] {
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] checkout
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url ssh://git@localhost:7999/math/math.git # timeout=10
+Fetching upstream changes from ssh://git@localhost:7999/math/math.git
+ > git --version # timeout=10
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress ssh://git@localhost:7999/math/math.git +refs/heads/*:refs/remotes/origin/*
+Seen branch in repository origin/feature/test
+Seen branch in repository origin/master
+Seen branch in repository origin/pull-requests/test
+Seen 3 remote branches
+ > git tag -l # timeout=10
+Merging Revision 6017f4912fda111e20985786eb2fdffe9eb5b977 (origin/pull-requests/test) to origin/master, UserMergeOptions{mergeRemote='origin', mergeTarget='master', mergeStrategy='null', fastForwardMode='--ff'}
+ > git rev-parse origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f origin/master
+ > git merge --ff 6017f4912fda111e20985786eb2fdffe9eb5b977 # timeout=10
+ > git rev-parse HEAD^{commit} # timeout=10
+Seen branch in repository origin/feature/test
+Seen branch in repository origin/master
+Seen branch in repository origin/pull-requests/test
+Seen 3 remote branches
+ > git tag -l # timeout=10
+Checking out Revision 6017f4912fda111e20985786eb2fdffe9eb5b977 (origin/pull-requests/test, origin/master, origin/master)
+Commit message: "Merge pull request #1 in MATH/math from feature/test to master"
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6017f4912fda111e20985786eb2fdffe9eb5b977
+ > git rev-list 6017f4912fda111e20985786eb2fdffe9eb5b977 # timeout=10
+ > git rev-list 6017f4912fda111e20985786eb2fdffe9eb5b977 # timeout=10
+ > git rev-list 6017f4912fda111e20985786eb2fdffe9eb5b977 # timeout=10
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] sh
+[PR-Pipeline] Running shell script
++ mvn compile
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building math 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ math ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ math ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.562 s
+[INFO] Finished at: 2017-11-01T12:51:14+03:00
+[INFO] Final Memory: 11M/309M
+[INFO] ------------------------------------------------------------------------
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] }
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] // node
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] End of Pipeline
+Finished: SUCCESS

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@2.12.1">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>14</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FPR-Pipeline/detail/PR-Pipeline/2</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <org.jenkinsci.plugins.workflow.libs.LibrariesAction plugin="workflow-cps-global-lib@2.8">
+      <libraries/>
+    </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
+  </actions>
+  <queueId>10</queueId>
+  <timestamp>1509529710536</timestamp>
+  <startTime>1509529710542</startTime>
+  <result>FAILURE</result>
+  <duration>9333</duration>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>FAILURE</result>
+    <script>node(&apos;self&apos;) {
+    checkout changelog: true, poll: true, scm: [$class: &apos;GitSCM&apos;, branches: [[name: &apos;origin/pull-requests/*&apos;]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: &apos;PreBuildMerge&apos;, options: [fastForwardMode: &apos;FF&apos;, mergeRemote: &apos;origin&apos;,  mergeTarget: &apos;master&apos;]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: &apos;jenkins&apos;, url: &apos;ssh://git@localhost:7999/math/math.git&apos;]]]
+    sh &apos;mvn compile&apos;
+}</script>
+    <loadedScripts class="map"/>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>194500605</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>144656412</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>1075346128</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>463795424</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>371242200</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>8</iota>
+    <head>1:8</head>
+  </execution>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>

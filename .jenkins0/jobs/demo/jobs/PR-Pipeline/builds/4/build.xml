@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@2.12.1">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>4</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FPR-Pipeline/detail/PR-Pipeline/4</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <org.jenkinsci.plugins.workflow.libs.LibrariesAction plugin="workflow-cps-global-lib@2.8">
+      <libraries/>
+    </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
+    <hudson.plugins.git.util.MergeRecord plugin="git@3.4.1">
+      <branch>origin/master</branch>
+      <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+    </hudson.plugins.git.util.MergeRecord>
+    <hudson.plugins.git.util.BuildData plugin="git@3.4.1">
+      <buildsByBranchName>
+        <entry>
+          <string>origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+                  <name>origin/pull-requests/test</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/pull-requests/test</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>6017f4912fda111e20985786eb2fdffe9eb5b977</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>4</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/pull-requests/test</string>
+          <hudson.plugins.git.util.Build reference="../../entry/hudson.plugins.git.util.Build"/>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>ssh://git@localhost:7999/math/math.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.plugins.git.GitTagAction plugin="git@3.4.1">
+      <tags class="hudson.util.CopyOnWriteMap$Tree">
+        <entry>
+          <string>origin/master</string>
+          <list/>
+        </entry>
+        <entry>
+          <string>origin/pull-requests/test</string>
+          <list/>
+        </entry>
+      </tags>
+      <ws>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline</ws>
+    </hudson.plugins.git.GitTagAction>
+    <org.jenkinsci.plugins.workflow.steps.scm.MultiSCMRevisionState plugin="workflow-scm-step@2.6">
+      <revisionStates>
+        <entry>
+          <string>git ssh://git@localhost:7999/math/math.git</string>
+          <hudson.scm.SCMRevisionState_-None/>
+        </entry>
+      </revisionStates>
+    </org.jenkinsci.plugins.workflow.steps.scm.MultiSCMRevisionState>
+  </actions>
+  <queueId>15</queueId>
+  <timestamp>1509529872484</timestamp>
+  <startTime>1509529872491</startTime>
+  <result>SUCCESS</result>
+  <duration>2408</duration>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>SUCCESS</result>
+    <script>node(&apos;self&apos;) {
+    checkout changelog: true, poll: true, scm: [$class: &apos;GitSCM&apos;, branches: [[name: &apos;origin/pull-requests/*&apos;]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: &apos;PreBuildMerge&apos;, options: [fastForwardMode: &apos;FF&apos;, mergeRemote: &apos;origin&apos;,  mergeTarget: &apos;master&apos;]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: &apos;jenkins&apos;, url: &apos;ssh://git@localhost:7999/math/math.git&apos;]]]
+    sh &apos;mvn compile&apos;
+}</script>
+    <loadedScripts class="map"/>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>107368753</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>17394015</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>327445102</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>24567973</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>66107586</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>9</iota>
+    <head>1:9</head>
+  </execution>
+  <checkouts class="hudson.util.PersistedList">
+    <org.jenkinsci.plugins.workflow.job.WorkflowRun_-SCMCheckout>
+      <scm class="hudson.plugins.git.GitSCM" plugin="git@3.4.1">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+          <hudson.plugins.git.UserRemoteConfig>
+            <url>ssh://git@localhost:7999/math/math.git</url>
+            <credentialsId>jenkins</credentialsId>
+          </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+          <hudson.plugins.git.BranchSpec>
+            <name>origin/pull-requests/*</name>
+          </hudson.plugins.git.BranchSpec>
+        </branches>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <submoduleCfg class="list"/>
+        <extensions>
+          <hudson.plugins.git.extensions.impl.PreBuildMerge>
+            <options>
+              <mergeRemote>origin</mergeRemote>
+              <mergeTarget>master</mergeTarget>
+              <fastForwardMode>FF</fastForwardMode>
+            </options>
+          </hudson.plugins.git.extensions.impl.PreBuildMerge>
+        </extensions>
+      </scm>
+      <node>self</node>
+      <workspace>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline</workspace>
+      <changelogFile>/var/jenkins_home/jobs/demo/jobs/PR-Pipeline/builds/4/changelog0.xml</changelogFile>
+      <pollingBaseline class="hudson.scm.SCMRevisionState$None" reference="../../../actions/org.jenkinsci.plugins.workflow.steps.scm.MultiSCMRevisionState/revisionStates/entry/hudson.scm.SCMRevisionState_-None"/>
+    </org.jenkinsci.plugins.workflow.job.WorkflowRun_-SCMCheckout>
+  </checkouts>
+</flow-build>

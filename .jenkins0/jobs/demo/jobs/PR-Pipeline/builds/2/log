@@ -1,0 +1,27 @@
+Started by user [8mha:////4Kcqq1X9AUwBNxiW4MMpZ42pTQFvQJP0oJUt/okNfiMJAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] node
+Running on self in /Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] {
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] checkout
+Cloning the remote Git repository
+Cloning repository ssh://git@localhost:7999/math/math.git
+ > git init /Users/bool/Downloads/jenkins_home/workspace/demo/PR-Pipeline # timeout=10
+Fetching upstream changes from ssh://git@localhost:7999/math/math.git
+ > git --version # timeout=10
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress ssh://git@localhost:7999/math/math.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url ssh://git@localhost:7999/math/math.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url ssh://git@localhost:7999/math/math.git # timeout=10
+Fetching upstream changes from ssh://git@localhost:7999/math/math.git
+using GIT_SSH to set credentials 
+ > git fetch --tags --progress ssh://git@localhost:7999/math/math.git +refs/heads/*:refs/remotes/origin/*
+Seen branch in repository origin/feature/test
+Seen branch in repository origin/master
+Seen 2 remote branches
+ > git tag -l # timeout=10
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] }
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] // node
+[8mha:////4HL4QLFkKSocATKc9nUr0HS7hzu4noDyX1Ci2x/30VqoAAAAaB+LCAAAAAAAAP9b85aBtbiIwTG/KF0vKzUvOzOvODlTryCnNB3I0ivPL8pOy8kv18vKT9JLzs8rzs9J1QuHCgaV5jlDhPzyS1IZIICRiYGhoohBKqM0pTg/D64Hh8ICAFt0h+h/AAAA[0m[Pipeline] End of Pipeline
+ERROR: Couldn't find any revision to build. Verify the repository and branch configuration for this job.
+[8mha:////4DC65Jq36QIKvb11/7I+DEu1O2k4K8B1mkIvkxiOAR+fAAAAVx+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P08vOT+vOD8nVc8DzHWtSE4tKMnMz/PLL0mV3NWzufebKBsTA0NFEYMUmgZnCA1SyAABjCCFBQC2xNaiYAAAAA==[0mFinished: FAILURE
