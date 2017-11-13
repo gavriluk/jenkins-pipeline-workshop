@@ -3,7 +3,30 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>PULL_REQUEST_ID</name>
+          <description></description>
+          <defaultValue>NULL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PULL_REQUEST_TO_BRANCH</name>
+          <description></description>
+          <defaultValue>NULL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.4.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -47,6 +70,9 @@
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;test: $pr2branch or ${PULL_REQUEST_ID}&quot;</command>
+    </hudson.tasks.Shell>
     <hudson.tasks.Maven>
       <targets>test</targets>
       <mavenName>3.5.0</mavenName>

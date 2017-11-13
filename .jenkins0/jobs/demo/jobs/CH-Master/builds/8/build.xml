@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>4</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FCH-Master/detail/CH-Master/8</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+  </actions>
+  <queueId>34</queueId>
+  <timestamp>1510575570283</timestamp>
+  <startTime>1510575570291</startTime>
+  <result>FAILURE</result>
+  <duration>130</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn>self</builtOn>
+  <workspace>/Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master</workspace>
+  <hudsonVersion>2.60.2</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

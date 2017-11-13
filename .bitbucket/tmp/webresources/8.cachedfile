@@ -1,431 +1,280 @@
 ;
-/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/store-1.3.1.js' */
-(function(){var l={},h=window,k=h.document,c="localStorage",n="globalStorage",d="__storejs__",g;l.disabled=false;l.set=function(e,o){};l.get=function(e){};l.remove=function(e){};l.clear=function(){};l.transact=function(e,o){var p=l.get(e);if(typeof p=="undefined"){p={}}o(p);l.set(e,p)};l.serialize=function(e){return JSON.stringify(e)};l.deserialize=function(e){if(typeof e!="string"){return undefined}return JSON.parse(e)};function b(){try{return(c in h&&h[c])}catch(e){return false}}function m(){try{return(n in h&&h[n]&&h[n][h.location.hostname])}catch(e){return false}}if(b()){g=h[c];l.set=function(e,o){if(o===undefined){return l.remove(e)}g.setItem(e,l.serialize(o))};l.get=function(e){return l.deserialize(g.getItem(e))};l.remove=function(e){g.removeItem(e)};l.clear=function(){g.clear()}}else{if(m()){g=h[n][h.location.hostname];l.set=function(e,o){if(o===undefined){return l.remove(e)}g[e]=l.serialize(o)};l.get=function(e){return l.deserialize(g[e]&&g[e].value)};l.remove=function(e){delete g[e]};l.clear=function(){for(var e in g){delete g[e]}}}else{if(k.documentElement.addBehavior){var j,f;try{f=new ActiveXObject("htmlfile");f.open();f.write('<script>document.w=window<\/script><iframe src="/favicon.ico"></frame>');f.close();j=f.w.frames[0].document;g=j.createElement("div")}catch(i){g=k.createElement("div");j=k.body}function a(e){return function(){var p=Array.prototype.slice.call(arguments,0);p.unshift(g);j.appendChild(g);g.addBehavior("#default#userData");g.load(c);var o=e.apply(l,p);j.removeChild(g);return o}}l.set=a(function(p,e,o){if(o===undefined){return l.remove(e)}p.setAttribute(e,l.serialize(o));p.save(c)});l.get=a(function(o,e){return l.deserialize(o.getAttribute(e))});l.remove=a(function(o,e){o.removeAttribute(e);o.save(c)});l.clear=a(function(q){var o=q.XMLDocument.documentElement.attributes;q.load(c);for(var p=0,e;e=o[p];p++){q.removeAttribute(e.name)}q.save(c)})}}}try{l.set(d,d);if(l.get(d)!=d){l.disabled=true}l.remove(d)}catch(i){l.disabled=true}if(typeof module!="undefined"){module.exports=l}else{if(typeof define==="function"&&define.amd){define(l)}else{this.store=l}}})();;
-;
-/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/page-visibility.js' */
-define("atlassian/analytics/page-visibility",function(){var a=(document.hidden!==undefined);var b={supported:a,isHidden:function(){return a?document.hidden:false}};return b});;
-;
-/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/user-activity-xhr-header.js' */
-define("atlassian/analytics/user-activity-xhr-header",["atlassian/analytics/page-visibility"],function(c){var e="x-atlassian-mau-ignore";var d=XMLHttpRequest.prototype.send;var a=window.fetch;var b=false;return{install:function(){if(!b&&c.supported){XMLHttpRequest.prototype.send=function(){if(c.isHidden()){this.setRequestHeader(e,c.isHidden())}d.apply(this,arguments)};if(a){window.fetch=function(f,i){var g=i||{};var h=g.headers;if(c.isHidden()){g.headers=(h)?new Headers(h):new Headers();g.headers.append(e,c.isHidden())}return a.call(this,f,g)}}b=true}},uninstall:function(){if(b){XMLHttpRequest.prototype.send=d;if(a){window.fetch=a}}b=false}}});require("atlassian/analytics/user-activity-xhr-header").install();;
-;
-/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/atlassian-analytics.js' */
-(function(d){var p=AJS.$.ajax;var k="atlassian-analytics";var i=typeof AJS.contextPath=="function"?AJS.contextPath():typeof AJS.Confluence!="undefined"?AJS.Confluence.getContextPath():window.contextPath!=null?window.contextPath:"";var o=null;var l=null;var f=null;var q="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(y){var x=Math.random()*16|0,w=y=="x"?x:(x&3|8);return w.toString(16)});var s=function(){var w="unknown";if(document.body.id=="jira"){w="jira"}else{if(document.body.id=="com-atlassian-confluence"){w="confluence"}}l=k+"."+w;f=l+".lock"};var e=function(){if(store.get(f)){return false}store.set(f,q);return(store.get(f)===q)};var t=function(){store.set(f,null)};var h=function(){var x=[],z,A,w,y;if(AJS.EventQueue.length==0){return}x=store.get(l)||x;for(w=0,y=AJS.EventQueue.length;w<y;++w){A=AJS.EventQueue[w];if(A.name){z={name:A.name,properties:A.properties,time:A.time||0};x.push(z)}}AJS.EventQueue.length=0;store.set(l,x)};var u=0;var a=function(w){return Math.min(5000*Math.pow(2,w),5*60*1000)};var g=function(){var z;function x(){setTimeout(g,a(u=0))}function w(){setTimeout(g,a(++u))}if(!e()){return x()}h();z=store.get(l);if(!z||!z.length){t();return x()}store.remove(l);t();if(!n(z)){return x()}var A=new Date().getTime();for(var y=0;y<z.length;y++){if(z[y].time>0){z[y].timeDelta=z[y].time-A}else{z[y].timeDelta=y-z.length}delete z[y].time}o=p({type:"POST",url:i+"/rest/analytics/1.0/publish/bulk",data:JSON.stringify(z),contentType:"application/json",dataType:"json"});o.fail(function(){AJS.EventQueue.concat(z);h();w()});o.done(function(){x()})};var n=function(y){for(var x=y.length-1;x>=0;x--){var A="";var z=y[x];var w=z.properties;if(typeof z.name==="undefined"){A="you must provide a name for the event."}else{if(typeof w!=="undefined"&&w!==null){if(w.constructor!==Object){A="properties must be an object with key value pairs."}else{b(w)}}}if(A!==""){AJS.log("WARN: Invalid analytics event detected and ignored, "+A+"\nEvent: "+JSON.stringify(z));y.splice(x,1)}}return y.length};var b=function(y){for(var x in y){if(y.hasOwnProperty(x)){var w=y[x];if(c(w)&&j(w)){}else{if(c(w)&&w.toString){y[x]=w.toString()}else{y[x]=""}}}}};function c(w){return typeof w!=="undefined"&&w!==null}function j(w){return typeof w==="number"||typeof w==="string"||typeof w==="boolean"}var m=function(){if(o&&!(o.state()==="resolved"||o.state()==="rejected")){o.abort()}};AJS.EventQueue=AJS.EventQueue||[];var r=Array.prototype.push;AJS.EventQueue.push=function(w){w.time=new Date().getTime();r.call(AJS.EventQueue,w)};AJS.toInit(function(){s();setTimeout(g,500);v()});d(window).unload(function(){m();h()});AJS.Analytics={triggerPrivacyPolicySafeEvent:function(w,x){AJS.log("WARN: 'triggerPrivacyPolicySafeEvent' has been deprecated");AJS.EventQueue.push({name:w,properties:x})}};AJS.bind("analytics",function(w,x){AJS.EventQueue.push({name:x.name,properties:x.data})});AJS.bind("analyticsEvent",function(w,x){AJS.EventQueue.push({name:x.name,properties:x.data})});var v=function(){if(window.location.pathname.indexOf("/secure/admin/ViewApplicationProperties")>-1){AJS.$("[data-property-id='analytics-enabled']").remove()}else{if(window.location.pathname.indexOf("/secure/admin/EditApplicationProperties")>-1){var x=AJS.$(":contains(Enable Atlassian analytics)");if(x.size()>0){var w=x[x.size()-2];if(w){w.remove()}}}}}}(AJS.$));;
-;
-/* module-key = 'com.atlassian.analytics.analytics-client:policy-update-init', location = 'js/policy-update-init.js' */
-AJS.toInit(function(){var a=WRM.data.claim("com.atlassian.analytics.analytics-client:policy-update-init.policy-update-data-provider");if(a){WRM.require("wrc!com.atlassian.analytics.analytics-client:policy-update")}});;
-;
-/* module-key = 'com.atlassian.analytics.analytics-client:programmatic-analytics-init', location = 'js/programmatic-analytics-init.js' */
-(function(){var a=WRM.data.claim("com.atlassian.analytics.analytics-client:programmatic-analytics-init.programmatic-analytics-data-provider");if(a){WRM.require("wrc!com.atlassian.analytics.analytics-client:programmatic-analytics")}}());;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:application-header-administration-cog-resource', location = 'header/cog.js' */
-var NavLinks=(function(a){a.ApplicationHeader=function(b){b.Cog=(function(){var c=function(){var d=AJS.$("#system-admin-menu-content");if(d.length>0){return d}var e=AJS.$("#admin-menu-link-content");if(e.length>0){return e}return AJS.$("#bamboo\\.global\\.header-admin\\.menu")};return{getDropdown:c}}());return b}(a.ApplicationHeader||{});return a}(NavLinks||{}));;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:administration-shortcuts-resources', location = 'adminshortcuts/adminshortcuts.soy' */
-// This file was automatically generated from adminshortcuts.soy.
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:welcome-mat', location = '/static/bitbucket/internal/widget/welcome-mat/welcome-mat.soy' */
+// This file was automatically generated from welcome-mat.soy.
 // Please don't edit this file by hand.
 
 /**
- * @fileoverview Templates in namespace navlinks.templates.adminshortcuts.
- */
-
-if (typeof navlinks == 'undefined') { var navlinks = {}; }
-if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
-if (typeof navlinks.templates.adminshortcuts == 'undefined') { navlinks.templates.adminshortcuts = {}; }
-
-
-navlinks.templates.adminshortcuts.section = function(opt_data, opt_ignored) {
-  var param5 = '<ul class="aui-list-truncate">';
-  var linkList7 = opt_data.links;
-  var linkListLen7 = linkList7.length;
-  for (var linkIndex7 = 0; linkIndex7 < linkListLen7; linkIndex7++) {
-    var linkData7 = linkList7[linkIndex7];
-    param5 += '<li><a href="' + soy.$$escapeHtml(linkData7.link) + '">' + soy.$$escapeHtml(linkData7.label) + '</a></li>';
-  }
-  param5 += '</ul>';
-  var output = '' + aui.dropdown2.section({id: 'nl-remote-admin-section', label: 'Other applications', content: param5});
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.adminshortcuts.section.soyTemplateName = 'navlinks.templates.adminshortcuts.section';
-}
-;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:administration-shortcuts-resources', location = 'adminshortcuts/adminnavlinks.js' */
-var NavLinks=(function(a){a.AdminShortcuts=(function(){var c=function(){return AJS.$.ajax({url:AJS.contextPath()+"/rest/menu/latest/admin",cache:false,dataType:"json"})};var b=function(){AJS.$("#nl-remote-admin-section").on("click","a",function(){NL.trackEvent("remoteAdminItemSelected",NL.getCurrentApplication(),$(this).attr("href"))})};return{render:function(){c().done(function(e){e=_.reject(e,function(f){return f.local===true});if(e.length){var d=navlinks.templates.adminshortcuts.section({links:e});a.ApplicationHeader.Cog.getDropdown().append(d);b()}})}}}());return a}(NavLinks||{}));;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-projectshortcuts', location = 'projectshortcuts/projectshortcuts.soy' */
-// This file was automatically generated from projectshortcuts.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace navlinks.templates.projectshortcuts.
- */
-
-if (typeof navlinks == 'undefined') { var navlinks = {}; }
-if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
-if (typeof navlinks.templates.projectshortcuts == 'undefined') { navlinks.templates.projectshortcuts = {}; }
-
-
-navlinks.templates.projectshortcuts.dialogContent = function(opt_data, opt_ignored) {
-  return '' + ((opt_data.localShortcuts && opt_data.localShortcuts.length > 0) ? navlinks.templates.projectshortcuts.dialogContentShortcuts({shortcuts: opt_data.localShortcuts, listClass: 'projectshortcut-links'}) : '') + ((opt_data.remoteShortcuts != null) ? (opt_data.remoteShortcuts.length > 0) ? '<h2 class="projectshortcuts-heading">Related Links</h2>' + navlinks.templates.projectshortcuts.dialogContentShortcuts(soy.$$augmentMap(opt_data.remoteShortcuts, {shortcuts: opt_data.remoteShortcuts, listClass: 'projectshortcut-links'})) : '' : navlinks.templates.projectshortcuts.dialogLoading(null));
-};
-if (goog.DEBUG) {
-  navlinks.templates.projectshortcuts.dialogContent.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContent';
-}
-
-
-navlinks.templates.projectshortcuts.headingWrapper = function(opt_data, opt_ignored) {
-  return '<div class="project-dialog-header-wrapper"><div class="project-header"><img class="project-img" src="' + soy.$$escapeHtml(opt_data.logoUrl) + '"><h2 class="dialog-title">' + soy.$$escapeHtml(opt_data.title) + '</h2></div><div class="project-content-wrapper">' + soy.$$filterNoAutoescape(opt_data.contentHtml) + '</div></div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.projectshortcuts.headingWrapper.soyTemplateName = 'navlinks.templates.projectshortcuts.headingWrapper';
-}
-
-
-navlinks.templates.projectshortcuts.dialogContentShortcuts = function(opt_data, opt_ignored) {
-  opt_data = opt_data || {};
-  var output = '<ul' + ((opt_data.listClass) ? ' class="' + soy.$$escapeHtml(opt_data.listClass) + '"' : '') + '>';
-  var shortcutList35 = opt_data.shortcuts;
-  var shortcutListLen35 = shortcutList35.length;
-  for (var shortcutIndex35 = 0; shortcutIndex35 < shortcutListLen35; shortcutIndex35++) {
-    var shortcutData35 = shortcutList35[shortcutIndex35];
-    output += '<li' + ((shortcutIndex35 == shortcutListLen35 - 1) ? ' class="last"' : '') + '>' + navlinks.templates.projectshortcuts.dialogContentShortcut(shortcutData35) + '</li>';
-  }
-  output += '</ul>';
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.projectshortcuts.dialogContentShortcuts.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContentShortcuts';
-}
-
-
-navlinks.templates.projectshortcuts.dialogContentShortcut = function(opt_data, opt_ignored) {
-  return '<a href="' + soy.$$escapeHtml(opt_data.link) + '"' + ((opt_data.tooltip) ? ' title="' + soy.$$escapeHtml(opt_data.tooltip) + '"' : '') + '>' + soy.$$escapeHtml(opt_data.label) + '</a>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.projectshortcuts.dialogContentShortcut.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContentShortcut';
-}
-
-
-navlinks.templates.projectshortcuts.dialogLoading = function(opt_data, opt_ignored) {
-  opt_data = opt_data || {};
-  return '<div class="projectshortcuts-loading">' + ((opt_data.text) ? soy.$$escapeHtml(opt_data.text) : '') + '</div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.projectshortcuts.dialogLoading.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogLoading';
-}
-;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-projectshortcuts', location = 'projectshortcuts/projectshortcuts.js' */
-(function(e,g){var i,k={},m="key",b="name",j="entity-type";function f(s){var n=e(this),o=n.data(m),q=n.data(b),p=n.data(j);if(typeof o==="undefined"){return}s.preventDefault();i=new AJS.Dialog({width:600,keypressListener:function(u){if(u.which==jQuery.ui.keyCode.ESCAPE){i.remove()}},id:"project-shortcuts-dialog"}).addCancel("Close",function(){i.remove()}).addPanel("",navlinks.templates.projectshortcuts.headingWrapper({title:q,logoUrl:h(),contentHtml:navlinks.templates.projectshortcuts.dialogLoading({text:"Retrieving links…"})})).show();c(i);if(!k[o]){k[o]={entity:{title:q},localShortcuts:null,remoteShortcuts:null};d(AJS.contextPath()+"/rest/project-shortcuts/1.0/local/"+o,{entityType:p}).done(t);d(AJS.contextPath()+"/rest/project-shortcuts/1.0/remote/"+o,{entityType:p}).done(r).fail(function(){var u=i.getCurrentPanel().body.find(".project-content-wrapper");u.find(".projectshortcuts-loading").remove();AJS.messages.error(u,{body:"Could not retrieve remote project shortcuts",closeable:false});c(i)})}else{l(k[o])}function t(u){k[o].localShortcuts=u.shortcuts;l(k[o])}function r(u){k[o].remoteShortcuts=u.shortcuts;l(k[o])}}function h(){return e(".project-shortcut-dialog-trigger img").attr("src")}function l(n){if(n.localShortcuts){i.getCurrentPanel().html(navlinks.templates.projectshortcuts.headingWrapper({title:n.entity.title,logoUrl:h(),contentHtml:navlinks.templates.projectshortcuts.dialogContent(n)}));c(i)}}function a(p){var o=210;if(!p||p.length<=o){return p}var n=o;while(n>0&&p.charAt(n)!=" "){n--}if(n==0){n=o}p=p.substring(0,n);if(p.length>=n){p=p+"..."}return p}function c(n){var q=n.popup.element,p=q.find(".dialog-panel-body"),o=q.find(".dialog-components");p.height("auto");q.height(o.outerHeight()-1);e(".aui-shadow").remove()}function d(n,o){return e.ajax({url:n,cache:false,data:o,dataType:"json"})}e(document).on("click",".project-shortcut-dialog-trigger",f)}(jQuery,window.NL=(window.NL||{})));;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:atlassian-ui-popup-display-controller', location = 'popups/DisplayController.js' */
-AJS.Popups=AJS.Popups||{};AJS.Popups.DisplayController=function(){var c=[];var a=false;var b=false;AJS.toInit(function(){setTimeout(function(){AJS.Popups.DisplayController.render()},0)});return{request:function(d){c.push(d);if(a&&b===false){this.render()}},render:function(){c.sort(function(e,d){return e.weight-d.weight});a=true;if(c.length!==0){b=true;c[0].show()}}}}();;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher.soy' */
-// This file was automatically generated from appswitcher.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace navlinks.templates.appswitcher.
- */
-
-if (typeof navlinks == 'undefined') { var navlinks = {}; }
-if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
-if (typeof navlinks.templates.appswitcher == 'undefined') { navlinks.templates.appswitcher = {}; }
-
-
-navlinks.templates.appswitcher.linkSection = function(opt_data, opt_ignored) {
-  var output = '';
-  if (opt_data.list.length > 0) {
-    output += '<div class="aui-nav-heading sidebar-section-header">' + soy.$$escapeHtml(opt_data.title) + '</div><ul class="aui-nav nav-links">';
-    var linkList8 = opt_data.list;
-    var linkListLen8 = linkList8.length;
-    for (var linkIndex8 = 0; linkIndex8 < linkListLen8; linkIndex8++) {
-      var linkData8 = linkList8[linkIndex8];
-      output += navlinks.templates.appswitcher.applicationsItem(linkData8);
-    }
-    output += '</ul>';
-  }
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.linkSection.soyTemplateName = 'navlinks.templates.appswitcher.linkSection';
-}
-
-
-navlinks.templates.appswitcher.applicationsItem = function(opt_data, opt_ignored) {
-  return '<li class="nav-link"><a href="' + soy.$$escapeHtml(opt_data.link) + '" ' + ((opt_data.self) ? 'class="checked"' : '') + ' title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span></a></li>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.applicationsItem.soyTemplateName = 'navlinks.templates.appswitcher.applicationsItem';
-}
-
-
-navlinks.templates.appswitcher.shortcutsItem = function(opt_data, opt_ignored) {
-  return '<li class="nav-link"><a href="' + soy.$$escapeHtml(opt_data.link) + '" ' + ((opt_data.self) ? 'class="checked"' : '') + ' title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span>' + ((opt_data.showDescription && opt_data.description) ? '<span class="nav-link-description">' + soy.$$escapeHtml(opt_data.description) + '</span>' : '') + '</a></li>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.shortcutsItem.soyTemplateName = 'navlinks.templates.appswitcher.shortcutsItem';
-}
-
-
-navlinks.templates.appswitcher.error = function(opt_data, opt_ignored) {
-  return '<div class="app-switcher-error">' + soy.$$filterNoAutoescape('Something went wrong, please \x3cspan class\x3d\x22app-switcher-retry\x22\x3etry again\x3c/span\x3e.') + '</div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.error.soyTemplateName = 'navlinks.templates.appswitcher.error';
-}
-
-
-navlinks.templates.appswitcher.sidebarContents = function(opt_data, opt_ignored) {
-  return '<div class="aui-page-panel-nav"><nav class="aui-navgroup aui-navgroup-vertical"><div class="app-switcher-section app-switcher-applications"><div class="aui-nav-heading">' + soy.$$escapeHtml('Application Links') + '</div><div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div></div><div class="app-switcher-section app-switcher-shortcuts"><div class="aui-nav-heading">' + soy.$$escapeHtml('Shortcuts') + '</div><div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div></div></nav></div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.sidebarContents.soyTemplateName = 'navlinks.templates.appswitcher.sidebarContents';
-}
-
-
-navlinks.templates.appswitcher.trigger = function(opt_data, opt_ignored) {
-  return '<span class="aui-icon aui-icon-small aui-iconfont-appswitcher">' + soy.$$escapeHtml('Linked Applications') + '</span>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.trigger.soyTemplateName = 'navlinks.templates.appswitcher.trigger';
-}
-
-
-navlinks.templates.appswitcher.projectHeaderSection = function(opt_data, opt_ignored) {
-  return '<div class="app-switcher-title">' + aui.avatar.avatar({size: 'large', avatarImageUrl: opt_data.avatarUrl, isProject: true, title: opt_data.name}) + '<div class="sidebar-project-name">' + soy.$$escapeHtml(opt_data.name) + '</div></div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.projectHeaderSection.soyTemplateName = 'navlinks.templates.appswitcher.projectHeaderSection';
-}
-
-
-navlinks.templates.appswitcher.cogDropdown = function(opt_data, opt_ignored) {
-  var output = '';
-  var dropdownList__soy74 = '' + navlinks.templates.appswitcher.dropdownList({list: opt_data.links});
-  output += aui.dropdown2.dropdown2({menu: {id: opt_data.id, content: dropdownList__soy74, extraClasses: 'aui-style-default sidebar-customize-section'}, trigger: {showIcon: false, content: '<span class="aui-icon aui-icon-small aui-iconfont-configure"></span>', container: '#app-switcher'}});
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.cogDropdown.soyTemplateName = 'navlinks.templates.appswitcher.cogDropdown';
-}
-
-
-navlinks.templates.appswitcher.dropdownList = function(opt_data, opt_ignored) {
-  var output = '<ul class="sidebar-admin-links">';
-  var linkList82 = opt_data.list;
-  var linkListLen82 = linkList82.length;
-  for (var linkIndex82 = 0; linkIndex82 < linkListLen82; linkIndex82++) {
-    var linkData82 = linkList82[linkIndex82];
-    output += '<li class="nav-link"><a href="' + soy.$$escapeHtml(linkData82.href) + '" title="' + soy.$$escapeHtml(linkData82.title) + '"><span class="nav-link-label">' + soy.$$escapeHtml(linkData82.label) + '</span></a></li>';
-  }
-  output += '</ul>';
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.dropdownList.soyTemplateName = 'navlinks.templates.appswitcher.dropdownList';
-}
-
-
-navlinks.templates.appswitcher.switcher = function(opt_data, opt_ignored) {
-  var output = '';
-  if (true) {
-    if (AJS.DarkFeatures.isEnabled('rotp.sidebar')) {
-      var sidebarContents__soy97 = '' + navlinks.templates.appswitcher.sidebarContents(null);
-      var triggerContent__soy99 = '' + navlinks.templates.appswitcher.trigger(null);
-      output += navlinks.templates.appswitcher.sidebar({sidebar: {id: 'app-switcher', content: sidebarContents__soy97}, trigger: {showIcon: false, content: triggerContent__soy99}});
-    } else {
-      output += navlinks.templates.appswitcher_old.switcher(null);
-    }
-  }
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.switcher.soyTemplateName = 'navlinks.templates.appswitcher.switcher';
-}
-
-
-navlinks.templates.appswitcher.sidebar = function(opt_data, opt_ignored) {
-  return '<a href="' + soy.$$escapeHtml(opt_data.sidebar.id) + '" class="sidebar-trigger app-switcher-trigger" aria-owns="' + soy.$$escapeHtml(opt_data.sidebar.id) + '" aria-haspopup="true" data-is-user-admin="' + soy.$$escapeHtml(false) + '" data-is-sidebar="true" >' + soy.$$filterNoAutoescape(opt_data.trigger.content) + '</a><div id=' + soy.$$escapeHtml(opt_data.sidebar.id) + ' class="app-switcher-sidebar aui-style-default sidebar-offscreen">' + soy.$$filterNoAutoescape(opt_data.sidebar.content) + '</div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher.sidebar.soyTemplateName = 'navlinks.templates.appswitcher.sidebar';
-}
-;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher.js' */
-(function(e,a){var d="is-user-admin";var c="#app-switcher";a.SideBar=function(f){var g=this;this.$sidebar=null;f=e.extend({sidebarContents:null},f);this.getLinks=function(){return e.ajax({url:AJS.contextPath()+"/rest/menu/latest/appswitcher",cache:false,dataType:"json"}).done(this.updateAppLinks).fail(this.showAppSwitcherError)};this.populateProjectHeader=function(i,h){g.getSidebar().find(".app-switcher-shortcuts .aui-nav-heading").after(navlinks.templates.appswitcher.projectHeaderSection({avatarUrl:h,name:i}))};this.getProjectData=function(){var h=e(".project-shortcut-dialog-trigger"),i=h.data("key"),j=h.data("entity-type");if(h.size()==0||!i||!j){e(".app-switcher-shortcuts").remove();return}var l,k;k=e.ajax({url:AJS.contextPath()+"/rest/project-shortcuts/1.0/local/"+i,cache:false,data:{entityType:j},dataType:"json"});l=e.ajax({url:AJS.contextPath()+"/rest/project-shortcuts/1.0/remote/"+i,cache:false,data:{entityType:j},dataType:"json"});e.when(k,l).then(function(n,m){g.updateProjectShortcuts(n,m,{key:i,entityType:j,name:h.data("name"),avatarUrl:h.find("img").prop("src")})},g.showProjectShortcutsError)};this.getSidebar=function(){if(!this.$sidebar){this.$sidebar=e(f.sidebarContents)}return this.$sidebar};this.addApplicationsCog=function(){e(".app-switcher-applications .aui-nav-heading").before(navlinks.templates.appswitcher.cogDropdown({id:"sidebar-applications-admin-dropdown",links:[{href:AJS.contextPath()+"/plugins/servlet/customize-application-navigator",label:"Customize navigator",title:"Add new entries, hide existing or restrict who sees what"},{href:AJS.contextPath()+"/plugins/servlet/applinks/listApplicationLinks",label:"Manage application links",title:"Link to more Atlassian applications"}]}))};this.addProjectShortcutsCog=function(h,j){var i=[{href:AJS.contextPath()+"/plugins/servlet/custom-content-links-admin?entityKey="+h,label:"Customize shortcuts",title:""}];if(g.entityMappings[j]){i.push({href:g.generateEntityLinksUrl(h,g.entityMappings[j]),label:"Manage product links",title:""})}g.getSidebar().find(".app-switcher-shortcuts .aui-nav-heading").before(navlinks.templates.appswitcher.cogDropdown({id:"sidebar-project-shortcuts-admin-dropdown",links:i}))};this.updateAppLinks=function(h){e(function(){g.getSidebar().find(".app-switcher-applications").html(navlinks.templates.appswitcher.linkSection({title:"Application Links",list:h}));if(g.getSidebar().data(d)){g.addApplicationsCog()}g.bindAnalyticsHandlers(g.getSidebar(),h)})};this.updateProjectShortcuts=function(k,i,j){var l=k[0].shortcuts,h=i[0].shortcuts;g.getSidebar().find(".app-switcher-shortcuts").html(navlinks.templates.appswitcher.linkSection({title:"Shortcuts",list:l.concat(h)}));if(g.getSidebar().data(d)){g.addProjectShortcutsCog(j.key,j.entityType)}g.populateProjectHeader(j.name,j.avatarUrl);g.bindAnalyticsHandlers(g.getSidebar(),data)};this.entityMappings={"confluence.space":"com.atlassian.applinks.api.application.confluence.ConfluenceSpaceEntityType","jira.project":"com.atlassian.applinks.api.application.jira.JiraProjectEntityType","bamboo.project":"com.atlassian.applinks.api.application.bamboo.BambooProjectEntityType","stash.project":"com.atlassian.applinks.api.application.stash.StashProjectEntityType"};this.generateEntityLinksUrl=function(h,i){if(i===g.entityMappings["confluence.space"]){return AJS.contextPath()+"/spaces/listentitylinks.action?typeId="+i+"&key="+h}else{return AJS.contextPath()+"/plugins/servlet/applinks/listEntityLinks/"+i+"/"+h}};this.showAppSwitcherError=function(){e(function(){var h=g.getSidebar();h.find(".app-switcher-applications .app-switcher-loading").replaceWith(navlinks.templates.appswitcher.error());h.off(".appswitcher").on("click.appswitcher",".app-switcher-retry",e.proxy(g.retryLoading,g))})};this.showProjectShortcutsError=function(){e(function(){var h=g.getSidebar();h.find(".app-switcher-shortcuts .app-switcher-loading").replaceWith(navlinks.templates.appswitcher.error());h.off(".appswitcher").on("click.appswitcher",".app-switcher-retry",e.proxy(g.retryLoading,g))})};this.retryLoading=function(h){this.getSidebar().html(navlinks.templates.appswitcher.sidebarContents());this.getLinks();this.getProjectData();h&&h.stopPropagation()};this.bindAnalyticsHandlers=function(h,i){};this.getLinks();e(this.getProjectData);this.toggleSidebar=function(j){var k=g.getSidebar(),i=e("body"),h=e(window.document);if(!i.hasClass("app-switcher-open")){var m=e("#header");k.css("left",-k.width());k.parent("body").length||k.appendTo("body");b({data:k});k.animate({left:0},300);function l(n){var p=n.target&&e(n.target),o=n.keyCode;if(n.originalEvent===j.originalEvent){return}if(p&&!o&&!(p.closest(k).length||p.closest(m).length)&&j.which==1&&!(n.shiftKey||n.ctrlKey||n.metaKey)){g.toggleSidebar()}else{if(o===27){g.toggleSidebar()}}}h.on("click.appSwitcher",l);h.on("keydown.appSwitcher",l);h.on("scroll.appSwitcher",k,b)}else{h.off(".appSwitcher")}i.toggleClass("app-switcher-open")};e("#header").on("click",".app-switcher-trigger",this.toggleSidebar)};function b(h){var f=e(document).scrollTop(),i=e("#header"),g=(i.height()+i.offset().top)-f;if(g>=0){h.data.css({top:g,position:"fixed"})}else{h.data.css({top:0,left:0,position:"fixed"})}}e(function(){if(e(c).data("is-sidebar")===true){new a.SideBar({sidebarContents:c})}})}(jQuery,window.NL=(window.NL||{})));;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher_old.js' */
-var APPSWITCHER_TRIGGER_CLICK="appswitcher.trigger.click";var APPSWITCHER_DROPDOWN_SHOW="appswitcher.dropdown.show";var APPSWITCHER_DROPDOWN_DISPLAY_ERROR="appswitcher.dropdown.display.error";var APPSWITCHER_APP_LINK_CLICK="appswitcher.app.link.click";var APPSWITCHER_CONFIGURE_LINK_CLICK="appswitcher.configure.link.click";(function(c,f){var b="isAppSuggestionAvailable";var d="isSiteAdminUser";var e="isUserAdmin";var a="#app-switcher";f.AppSwitcher=function(j){var l=AJS.contextPath()+"/plugins/servlet/customize-application-navigator";var k="unified.usermanagement";var m=this;this.$dropdown=null;j=c.extend({dropdownContents:null},j);this.getLinks=function(){return c.ajax({url:AJS.contextPath()+"/rest/menu/latest/appswitcher",cache:false,dataType:"json"}).done(this.updateDropdown).fail(this.showError)};this.getDropdown=function(){if(!this.$dropdown){this.$dropdown=c(j.dropdownContents);this.envData=this.$dropdown.data("environment")}return this.$dropdown};this.updateDropdown=function(n){c(function(){m.getDropdown().html(navlinks.templates.appswitcher_old.applications({apps:n,showAdminLink:m.envData[e],adminLink:l}));m.bindAnalyticsHandlers();if(m.envData[b]===true){m.handleSuggestionApps(n)}})};this.bindAnalyticsHandlers=function(){c(".app-switcher-trigger").on("click",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_TRIGGER_CLICK})});c("#app-switcher").on("aui-dropdown2-show",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_DROPDOWN_SHOW})});c("#app-switcher .nav-link").on("click",function(){var p="custom";var q=c(this).find("a");var o=q.attr("href");var n=window.location.hostname;if(o&&o.indexOf("bitbucket.org")>-1){p="bitbucket-cloud"}else{if(o.indexOf(n+"/wiki")>-1){p="confluence"}else{if(o.indexOf(n+"/build")>-1){p="bamboo"}else{if(o.indexOf(n)>-1){p="jira"}}}}AJS.trigger("analyticsEvent",{name:APPSWITCHER_APP_LINK_CLICK,data:{product:p}})});c(".nav-link-edit-wrapper").on("click",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_CONFIGURE_LINK_CLICK})})};this.isBillingSystemEnabled=function(){return(this.envData[d]===true)&&AJS.DarkFeatures.isEnabled(k)};this.handleSuggestionApps=function(q){var r=_.map(q,function(s){return s.applicationType.toLowerCase()});var o=c("<div id='app-switcher-suggestion-apps' class='aui-dropdown2-section'/>");o.html(navlinks.templates.appswitcher_old.suggestionApps);var p=o.find(".suggestion-apps");var n=false;_.each(g,function(s){if(!_.contains(r,s.appName)){n=true;p.append(navlinks.templates.appswitcher_old.suggestionApp({suggestionApp:s,isBillingSystemEnabled:m.isBillingSystemEnabled()}))}});if(!n){return}c("#app-switcher").append(o);c(".app-discovery-suggestion-app").click(function(){var t=c(this).find("a");var s;if(m.envData[d]===true){s="appswitcher.discovery.siteadmin.select.inproduct."}else{s="appswitcher.discovery.user.select."}s=s+t.attr("id").toLowerCase();AJS.trigger("analytics",{name:s})});c(".app-discovery-suggestion-app").hover(function(){c(this).find("a").removeClass("active").removeClass("aui-dropdown2-active")});c(".app-discovery-cancel-button").click(function(){AJS.trigger("analytics",{name:"appswitcher.discovery.nothanks.button.click"});i(h,"true");o.remove()})};this.showError=function(){c(function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_DROPDOWN_DISPLAY_ERROR});m.getDropdown().html(navlinks.templates.appswitcher_old.error()).off(".appswitcher").on("click.appswitcher",".app-switcher-retry",c.proxy(m.retryLoading,m))})};this.retryLoading=function(n){this.getDropdown().html(navlinks.templates.appswitcher_old.loading());this.getLinks();n&&n.stopPropagation()};this.getLinks()};var h="key-no-thanks";var g=[{appName:"jira",appDesc:"Issue & Project Tracking Software",discoveryUrl:"https://www.atlassian.com/software/jira",billingSystemDiscoveryUrl:"/admin/billing/addapplication"},{appName:"confluence",appDesc:"Collaboration and content sharing",discoveryUrl:"https://www.atlassian.com/software/confluence",billingSystemDiscoveryUrl:"/admin/billing/addapplication?product=confluence.ondemand"},{appName:"bamboo",appDesc:"Continuous integration",discoveryUrl:"https://www.atlassian.com/software/bamboo",billingSystemDiscoveryUrl:"/admin/billing/addapplication?product=bamboo.ondemand"}];var i=function(j,k){c.ajax({url:AJS.contextPath()+"/rest/menu/latest/userdata/",type:"PUT",contentType:"application/json",data:JSON.stringify({key:j,value:k})})};c(function(){if(c(a).data("is-switcher")===true){new f.AppSwitcher({dropdownContents:a})}})}(jQuery,window.NL=(window.NL||{})));;
-;
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher_old.soy' */
-// This file was automatically generated from appswitcher_old.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace navlinks.templates.appswitcher_old.
- */
-
-if (typeof navlinks == 'undefined') { var navlinks = {}; }
-if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
-if (typeof navlinks.templates.appswitcher_old == 'undefined') { navlinks.templates.appswitcher_old = {}; }
-
-
-navlinks.templates.appswitcher_old.applications = function(opt_data, opt_ignored) {
-  return '' + navlinks.templates.appswitcher_old.applicationsSection({list: opt_data.apps, listClass: 'nav-links', showDescription: opt_data.showDescription}) + ((opt_data.custom) ? navlinks.templates.appswitcher_old.applicationsSection({list: opt_data.custom, showDescription: opt_data.showDescription}) : '') + ((opt_data.showAdminLink) ? navlinks.templates.appswitcher_old.adminSection(opt_data) : '');
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.applications.soyTemplateName = 'navlinks.templates.appswitcher_old.applications';
-}
-
-
-navlinks.templates.appswitcher_old.applicationsSection = function(opt_data, opt_ignored) {
-  var output = '';
-  if (opt_data.list.length > 0) {
-    var param19 = '<ul' + ((opt_data.listClass) ? ' class="' + soy.$$escapeHtml(opt_data.listClass) + '"' : '') + '>';
-    var linkList27 = opt_data.list;
-    var linkListLen27 = linkList27.length;
-    for (var linkIndex27 = 0; linkIndex27 < linkListLen27; linkIndex27++) {
-      var linkData27 = linkList27[linkIndex27];
-      param19 += navlinks.templates.appswitcher_old.applicationsItem(soy.$$augmentMap(linkData27, {showDescription: opt_data.showDescription}));
-    }
-    param19 += '</ul>';
-    output += aui.dropdown2.section({content: param19});
-  }
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.applicationsSection.soyTemplateName = 'navlinks.templates.appswitcher_old.applicationsSection';
-}
-
-
-navlinks.templates.appswitcher_old.applicationsItem = function(opt_data, opt_ignored) {
-  return '<li class="nav-link' + ((opt_data.self) ? ' nav-link-local' : '') + '"><a href="' + soy.$$escapeHtml(opt_data.link) + '" class="aui-dropdown2-radio ' + ((opt_data.self) ? 'aui-dropdown2-checked' : '') + '" title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span>' + ((opt_data.showDescription && opt_data.description) ? '<span class="nav-link-description">' + soy.$$escapeHtml(opt_data.description) + '</span>' : '') + '</a></li>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.applicationsItem.soyTemplateName = 'navlinks.templates.appswitcher_old.applicationsItem';
-}
-
-
-navlinks.templates.appswitcher_old.adminSection = function(opt_data, opt_ignored) {
-  return '' + aui.dropdown2.section({content: '<ul class="nav-links"><li><a class="nav-link-edit-wrapper" href="' + soy.$$escapeHtml(opt_data.adminLink) + '"><span class="nav-link-edit">' + soy.$$filterNoAutoescape('Configure\x26hellip;') + '</span></a></li></ul>'});
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.adminSection.soyTemplateName = 'navlinks.templates.appswitcher_old.adminSection';
-}
-
-
-navlinks.templates.appswitcher_old.error = function(opt_data, opt_ignored) {
-  return '<div class="app-switcher-error">' + soy.$$filterNoAutoescape('Something went wrong, please \x3cspan class\x3d\x22app-switcher-retry\x22\x3etry again\x3c/span\x3e.') + '</div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.error.soyTemplateName = 'navlinks.templates.appswitcher_old.error';
-}
-
-
-navlinks.templates.appswitcher_old.loading = function(opt_data, opt_ignored) {
-  return '<div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.loading.soyTemplateName = 'navlinks.templates.appswitcher_old.loading';
-}
-
-
-navlinks.templates.appswitcher_old.trigger = function(opt_data, opt_ignored) {
-  return '<span class="aui-icon aui-icon-small aui-iconfont-appswitcher">' + soy.$$escapeHtml('Linked Applications') + '</span>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.trigger.soyTemplateName = 'navlinks.templates.appswitcher_old.trigger';
-}
-
-
-navlinks.templates.appswitcher_old.switcher = function(opt_data, opt_ignored) {
-  var output = '';
-  if (true) {
-    var loadingContent__soy81 = '' + navlinks.templates.appswitcher_old.loading(null);
-    var triggerContent__soy83 = '' + navlinks.templates.appswitcher_old.trigger(null);
-    output += aui.dropdown2.dropdown2({menu: {id: 'app-switcher', content: loadingContent__soy81, extraClasses: 'aui-style-default', extraAttributes: {'data-environment': {}, 'data-is-switcher': 'true'}}, trigger: {showIcon: false, content: triggerContent__soy83, extraClasses: 'app-switcher-trigger', extraAttributes: {href: '#app-switcher'}}});
-  }
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.switcher.soyTemplateName = 'navlinks.templates.appswitcher_old.switcher';
-}
-
-
-navlinks.templates.appswitcher_old.suggestionApp = function(opt_data, opt_ignored) {
-  var output = '';
-  var href__soy89 = opt_data.isBillingSystemEnabled == true ? opt_data.suggestionApp.billingSystemDiscoveryUrl : opt_data.suggestionApp.discoveryUrl;
-  output += '<li class="app-discovery-suggestion-app"><a id="' + soy.$$escapeHtml(opt_data.suggestionApp.appName) + '" href="' + soy.$$escapeHtml(href__soy89) + '" class="app-discovery-link aui-icon-container app-discovery-' + soy.$$escapeHtml(opt_data.suggestionApp.appName) + '-product-icon" title="' + soy.$$escapeHtml(href__soy89) + '" target="_blank"/><div class="app-discovery-small">' + soy.$$escapeHtml(opt_data.suggestionApp.appDesc) + '</div></li>';
-  return output;
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.suggestionApp.soyTemplateName = 'navlinks.templates.appswitcher_old.suggestionApp';
-}
-
-
-navlinks.templates.appswitcher_old.suggestionApps = function(opt_data, opt_ignored) {
-  return '<ul class=\'nav-links suggestion-apps\'><li><span class=\'app-discovery-suggest-title nav-link-label\'><h6>' + soy.$$escapeHtml('Try other Atlassian apps') + '</h6></span></li></ul><div class=\'buttons-container app-discovery-suggest-apps-buttons\'><div class=\'buttons\'><button class=\'aui-button aui-button-link app-discovery-cancel-button\' name=\'cancel\' accesskey=\'c\' href=\'#\'>' + soy.$$escapeHtml('Don\x27t show this again') + '</button></div></div>';
-};
-if (goog.DEBUG) {
-  navlinks.templates.appswitcher_old.suggestionApps.soyTemplateName = 'navlinks.templates.appswitcher_old.suggestionApps';
-}
-;
-;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:time-zone-onboarding', location = '/static/bitbucket/internal/feature/timezone/onboarding/timezone-onboarding.js' */
-define("bitbucket/internal/feature/timezone/onboarding/timezone-onboarding","module exports aui jquery bitbucket/util/navbuilder bitbucket/internal/feature/alerts/alerts bitbucket/internal/model/page-state bitbucket/internal/util/ajax bitbucket/internal/util/client-storage bitbucket/internal/util/events bitbucket/internal/util/feature-enabled".split(" "),function(p,b,q,r,t,u,v,w,x,y,z){function c(a){A.default.trigger("bitbucket.internal.ui.time.zone.onboarding."+a)}function B(){c("changed");g()}function C(){var a=
-d.default.getItem("bitbucket_known_time_zone_offset");return a?String(a):null}function D(){var a=h.default.getCurrentUser();return a?k.default.rest({url:e.default.rest().users(a.getSlug()).addPathComponents("settings").build(),type:"GET",statusCode:{"*":!1}}).then(function(a){a=String(a.USER_BROWSER_TIME_ZONE_OFFSET);d.default.setItem("bitbucket_known_time_zone_offset",a);return void 0!==a&&null!==a?a:null}):l.default.Deferred().reject().promise()}function m(a){return a!==String((new Date).getTimezoneOffset())}
-function g(){var a={};a.USER_BROWSER_TIME_ZONE_OFFSET=String((new Date).getTimezoneOffset());return k.default.rest({url:e.default.rest().users(h.default.getCurrentUser().getSlug()).addPathComponents("settings").build(),type:"POST",data:a,statusCode:{"*":!1}}).done(function(){d.default.setItem("bitbucket_known_time_zone_offset",a.USER_BROWSER_TIME_ZONE_OFFSET)})}Object.defineProperty(b,"__esModule",{value:!0});var f=babelHelpers.interopRequireDefault(q),l=babelHelpers.interopRequireDefault(r),e=babelHelpers.interopRequireDefault(t),
-h=babelHelpers.interopRequireDefault(v),k=babelHelpers.interopRequireDefault(w),d=babelHelpers.interopRequireDefault(x),A=babelHelpers.interopRequireDefault(y),n;babelHelpers.interopRequireDefault(z).default.getFromProvider("user.time.zone.onboarding").done(function(a){n=a});b.default={onReady:function(){if(n&&Number((new Date).getTimezoneOffset())!==Number((0,l.default)("#content").attr("data-timezone"))&&m(C()))return D().done(function(a){m(a)&&(c("shown"),(0,u.add)({title:"Let\u0027s synchronize watches",
-description:"It looks like your Bitbucket and browser time zones don\u0027t match.",closeable:!0,closeCallback:function(){c("dismissed");g()},anchorText:"Change time zone",anchorLink:e.default.newBuilder("account").build(),anchorCallback:B,type:"info"}))})}};p.exports=b["default"]});;
-;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:time-zone-onboarding', location = '/static/bitbucket/internal/feature/timezone/onboarding/timezone-onboarding-init.js' */
-jQuery(function(){require("bitbucket/internal/feature/timezone/onboarding/timezone-onboarding").onReady()});;
-;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:integrity-check-alert', location = '/static/bitbucket/internal/feature/integrity/alert.js' */
-define("bitbucket/internal/feature/integrity/alert",["exports","aui","bitbucket/util/navbuilder","bitbucket/internal/feature/alerts/alerts","bitbucket/internal/util/ajax"],function(a,f,g,h,k){Object.defineProperty(a,"__esModule",{value:!0});a.init=function(a){if(a&&0!==a.length){var b=void 0,c=void 0;switch(a[0]){case "acknowledged":return;case "started":c=d.INFO;b=e.STARTED;break;case "inconsistency":if("started"===a[1])c=d.WARN,b=e.INCONSISTENT;else return;break;case "completed":"inconsistency"===
-a[1]?(c=d.WARN,b=e.INCONSISTENT_COMPLETED):(c=d.INFO,b=e.COMPLETED);break;default:console.warn("Could not identify integrity checks state.",a);return}a=babelHelpers.extends({type:c,closeCallback:function(){l.default.rest({url:m.default.newBuilder("admin").addPathComponents("integrity-check","acknowledge").build(),type:"POST"})}},b);(0,h.add)(a);return a}};a=babelHelpers.interopRequireDefault(f);var m=babelHelpers.interopRequireDefault(g),l=babelHelpers.interopRequireDefault(k),d={INFO:"info",WARN:"warning"},
-e={STARTED:{closeable:!1,title:"Integrity checks are running",description:"Check the application logs for further information."},INCONSISTENT:{closeable:!1,title:"Integrity checks are running and some inconsistencies were found",description:"Check the application logs for further information."},COMPLETED:{closeable:!0,title:"Integrity checks are complete",
-description:"Check the application logs for further information."},INCONSISTENT_COMPLETED:{closeable:!0,title:"Integrity checks are complete and some inconsistencies were found",description:"Check the application logs for information on any restore actions carried out."}}});;
-;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:integrity-check-alert', location = '/static/bitbucket/internal/feature/integrity/alert.soy' */
-// This file was automatically generated from alert.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace bitbucket.notification.alert.
+ * @fileoverview Templates in namespace bitbucket.internal.widget.
  */
 
 if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
-if (typeof bitbucket.notification == 'undefined') { bitbucket.notification = {}; }
-if (typeof bitbucket.notification.alert == 'undefined') { bitbucket.notification.alert = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.widget == 'undefined') { bitbucket.internal.widget = {}; }
 
 
-bitbucket.notification.alert.bitbucketIntegrityCheckRunning = function(opt_data, opt_ignored) {
-  opt_data = opt_data || {};
-  return '' + ((opt_data.integrityCheckState) ? '<script type="text/javascript">require(\'bitbucket/internal/feature/integrity/alert\').init(' + soy.$$filterNoAutoescape(JSON.stringify(opt_data.integrityCheckState).replace(/\//g, '\\/')) + ');<\/script>' : '');
+bitbucket.internal.widget.welcomeMat = function(opt_data, opt_ignored) {
+  return '<div class="welcome-mat welcome-mat-' + soy.$$escapeHtml(opt_data.size ? opt_data.size : 'large') + ' ' + soy.$$escapeHtml(opt_data.backgroundClass ? opt_data.backgroundClass : 'stash-logo') + aui.renderExtraClasses(opt_data) + '"><h3>' + ((opt_data.href) ? '<a href="' + soy.$$escapeHtml(opt_data.href) + '" ' + ((opt_data.tooltip) ? 'title="' + soy.$$escapeHtml(opt_data.tooltip) + '"' : '') + ' ' + ((opt_data.webItemKey) ? 'data-web-item-key="' + soy.$$escapeHtml(opt_data.webItemKey) + '"' : '') + '>' : '') + soy.$$escapeHtml(opt_data.title) + ((opt_data.href) ? '</a>' : '') + '</h3>' + soy.$$filterNoAutoescape(opt_data.content) + '</div>';
 };
 if (goog.DEBUG) {
-  bitbucket.notification.alert.bitbucketIntegrityCheckRunning.soyTemplateName = 'bitbucket.notification.alert.bitbucketIntegrityCheckRunning';
+  bitbucket.internal.widget.welcomeMat.soyTemplateName = 'bitbucket.internal.widget.welcomeMat';
 }
 ;
 ;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-page-data:page-data-loader', location = '/static/lib/page-data-loader.js' */
-var _PageDataPlugin=function(){function k(){e.each(f,function(a,d){e.each(d,function(b,c){c.reject(h[a]?Error("Provider "+a+" not included with context "+b):Error("Provider "+a+" not included on page."))})})}var l=Object.prototype.hasOwnProperty,e=jQuery,h={},f={};e(document).ready(k);return{load:function(a,d){for(var b in d)if(l.call(d,b)){var c=f[b]||(f[b]={}),c=c[a]||(c[a]=e.Deferred()),g=h[b]||(h[b]={});g[a]=d[b];if("pending"!==c.state())throw Error("Attempt to set context "+a+" for plugin key "+
-b+" multiple times.");c.resolve(g[a])}},data:h,ready:function(a,d){var b=Array.prototype.slice.call(arguments,2),c=f[a]||(f[a]={}),g=c[d]||(c[d]=e.Deferred());b.forEach(function(a){g.done(a)});return g},_domReady:k}}();;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:loaded-range', location = '/static/bitbucket/internal/widget/loaded-range.js' */
+define("bitbucket/internal/widget/loaded-range",["module","exports"],function(f,c){function b(a){this.nextPageStart=this.start=void 0;this._reachedCapacity=this._reachedEnd=this._reachedStart=!1;this._capacity=a||Infinity}Object.defineProperty(c,"__esModule",{value:!0});b.prototype.isEmpty=function(){return void 0===this.start};b.prototype.isBeforeStart=function(a){return a<this.start};b.prototype.isAfterNextPageStart=function(a){return a>this.nextPageStart};b.prototype.isLoaded=function(a){return!(this.isEmpty()||
+this.isBeforeStart(a)||this.isAfterNextPageStart(a))};b.prototype.getAttachmentMethod=function(a,b){return this.isEmpty()?"html":this.isBeforeStart(a)?"prepend":"append"};b.prototype.add=function(a,b,c,d){var e=this.isEmpty();d=d||a+b;if(e||this.isBeforeStart(a))this.start=a;if(e||this.isAfterNextPageStart(d))this.nextPageStart=d;this._reachedStart=this._reachedStart||0>=a;!(this._reachedEnd=this._reachedEnd||c)&&this.nextPageStart>=this._capacity&&(this._reachedCapacity=this._reachedEnd=!0);return this};
+b.prototype.reachedStart=function(){return this._reachedStart};b.prototype.reachedEnd=function(){return this._reachedEnd};b.prototype.reachedCapacity=function(){return this._reachedCapacity};b.prototype.pageBefore=function(a){if(this.reachedStart())return null;a=Math.max(0,this.start-a);return{start:a,limit:this.start-a}};b.prototype.pageAfter=function(a){return this.reachedEnd()?null:{start:this.nextPageStart,limit:a}};c.default=b;f.exports=c["default"]});;
 ;
-/* module-key = 'com.atlassian.support.stp:stp-license-status-resources', location = 'js/stp-licenseStatus.js' */
-(function(b){var a={destroyBanner:function(){AJS.$("#stp-licenseStatus-banner").slideUp(function(){AJS.$("#stp-licenseStatus-banner").remove();AJS.trigger("stp-licenseStatus-banner:destroyed")})},remindMeNever:function(c){c.preventDefault();AJS.$.ajax({type:"POST",async:true,headers:{"X-Atlassian-Token":"no-check"},url:AJS.contextPath()+"/rest/stp/1.0/license/remindMeNever"});a.destroyBanner()},remindMeLater:function(){AJS.$.ajax({type:"POST",async:true,headers:{"X-Atlassian-Token":"no-check"},url:AJS.contextPath()+"/rest/stp/1.0/license/remindMeLater"});a.destroyBanner()},createBanner:function(d,f){var c="\n<div id='stp-licenseStatus-banner' class='aui-message warning'>\n";var g="https://www.atlassian.com/purchase/renew?utm_source=STP&utm_medium=renewals_reminder&utm_campaign=renewals_reminder";if(d===0){c+=AJS.format("Your {0} maintenance expires today. For continued access to support and updates, {1}renew your maintenance{2}. {3}Remind me later{4} or {5}never remind me again{6}.",f,"<a id='stp-licenseStatus-renewNow' target='_blank' href=\""+g+'">',"</a>","<a id='stp-licenseStatus-remindMeLater' href='#'>","</a>","<a id='stp-licenseStatus-remindMeNever' href='#'>","</a>");c+="<span class ='aui-icon icon-warning'></span>\n</div>"}else{c+=AJS.format("Your {0} maintenance expires in {1} days. For continued access to support and updates, {2}renew your maintenance{3}. {4}Remind me later{5} or {6}never remind me again{7}.",f,d,"<a id='stp-licenseStatus-renewNow' target='_blank' href=\""+g+'">',"</a>","<a id='stp-licenseStatus-remindMeLater' href='#'>","</a>","<a id='stp-licenseStatus-remindMeNever' href='#'>","</a>");c+="<span class ='aui-icon icon-warning'></span>\n</div>"}var e=b("#stp-licenseStatus-banner-container");if(e.length===0){e=b(document.body)}e.prepend(c);AJS.$("#stp-licenseStatus-remindMeNever").click(a.remindMeNever);AJS.$("#stp-licenseStatus-remindMeLater").click(function(h){h.preventDefault();a.remindMeLater()});AJS.$("#stp-licenseStatus-renewNow").click(function(h){a.remindMeLater()});AJS.trigger("stp-licenseStatus-banner:created")}};AJS.$(document).ready(function(){var i=AJS.$("meta[name='stp-license-days-to-expiry']");var c=AJS.$("meta[name='stp-license-is-admin']");var f=AJS.$("meta[name='stp-license-should-keep-banner-hidden']");var h=AJS.$("meta[name='stp-license-product-name']");var g={};var k=b.Deferred();var d=i.length&&c.length&&f.length&&h.length;if(d){var l=i.attr("content")||-1;g.daysToExpiry=parseInt(l);g.shouldKeepBannerHidden=f.attr("content")==="true";g.isAdmin=c.attr("content")==="true";g.productName=h.attr("content");k.resolve(g)}else{b.ajax({type:"GET",dataType:"json",async:true,url:AJS.contextPath()+"/rest/stp/1.0/license/status",headers:{"X-Atlassian-Token":"no-check"},statusCode:{200:function(m){k.resolve(b.extend(m,{viaRest:true}))},204:function(){k.reject("204. No reason to display banner.")}},error:function(){k.reject("Error returned from call to license/status")}})}k.done(function j(n){var m=l<30&&l>=0;if(n.viaRest||(n.isAdmin&&m&&!n.shouldKeepBannerHidden)){b("#stp-licenseStatus-banner").length||a.createBanner(n.daysToExpiry,n.productName)}}).fail(function e(m){console.log("Not displaying license banner: "+m)})})})(AJS.$);;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:paged-scrollable', location = '/static/bitbucket/internal/widget/paged-scrollable.js' */
+define("bitbucket/internal/widget/paged-scrollable","module exports aui jquery lodash bitbucket/internal/util/events bitbucket/internal/util/function bitbucket/internal/util/navigator bitbucket/internal/widget/loaded-range".split(" "),function(q,g,h,r,t,u,v,w,x){function b(a,k){this.options=d.default.extend({},b.defaults,k);this.$scrollElement=(0,d.default)(a||window);if(d.default.isWindow(this.$scrollElement[0])){var c=window.document.documentElement;this.getPaneHeight=function(){return c.clientHeight};
+this.getContentHeight=function(){return c.scrollHeight}}this._eventHandlers=[]}function l(a,b,c){if(a.currentXHR)return d.default.Deferred().reject();a.currentXHR=a.requestData(b,c);return a.currentXHR.always(function(){a.currentXHR=null}).done(function(e){!a.loadedRange.isEmpty()&&a.options.paginationContext&&m.default.trigger("bitbucket.internal.ui.nav.pagination",null,{context:a.options.paginationContext,page:(e.start||b)/(e.limit||c)+1});a.onDataLoaded(b,c,e)}).fail(function(){a.suspend()})}Object.defineProperty(g,
+"__esModule",{value:!0});var y=babelHelpers.interopRequireDefault(h),d=babelHelpers.interopRequireDefault(r),f=babelHelpers.interopRequireDefault(t),m=babelHelpers.interopRequireDefault(u),n=babelHelpers.interopRequireDefault(v);h=babelHelpers.interopRequireDefault(w);var z=babelHelpers.interopRequireDefault(x),p=h.default.isIE();b.defaults={pageSize:50,scrollDelay:250,bufferPixels:0,precedingSpaceMaintained:!0,suspendOnFailure:!0,dataLoadedEvent:"bitbucket.internal.widget.pagedscrollable.dataLoaded",
+autoLoad:!0,preventOverscroll:!1,idForEntity:null,paginationContext:null};b.prototype.init=function(a){b.prototype.reset.call(this);a=a||{};this.loadedRange=a.loadedRange||new z.default;var k=this,c=this.options.pageSize,e=a.targetedItem?Math.floor(a.targetedItem/c)*c:0;a.suspended&&this.suspend();return this.loadedRange.isLoaded(e)?(this.loadIfRequired()||d.default.Deferred().resolve()).done(function(){k.onFirstDataLoaded()}):l(this,e,c).then(void 0,function(){return 0!==e?l(k,0,c):d.default.Deferred().rejectWith(this,
+arguments)}).fail(function(a,b,c,e){e&&e.errors&&e.errors.length&&k.handleErrors(e.errors)})};b.prototype.reset=function(){this.currentXHR&&this.cancelRequest();this.clearListeners();this._resizeHandler&&((0,d.default)(window).off("resize",this._resizeHandler),this._resizeHandler=null);this.options.idForEntity&&(this._ids={});this._suspended=!1};b.prototype.destroy=function(){this.reset();delete this.$scrollElement};b.prototype.suspend=function(){this._suspended=!0};b.prototype.resume=function(){this._suspended=
+!1;return this.loadIfRequired()};b.prototype.isSuspended=function(){return this._suspended};b.prototype.getScrollTop=function(){return this.$scrollElement.scrollTop()};b.prototype.setScrollTop=function(a){this.$scrollElement.scrollTop(a)};b.prototype.getPane=function(){return this.$scrollElement};b.prototype.getPaneHeight=function(){return this.$scrollElement[0].clientHeight};b.prototype.getContentHeight=function(){return this.$scrollElement[0].scrollHeight};b.prototype.getOption=function(a){if(Object.prototype.hasOwnProperty.call(this.options,
+a))return this.options[a]};b.prototype.setOptions=function(a){d.default.isPlainObject(a)&&(this.options=d.default.extend(this.options,a))};b.prototype.addScrollListener=function(a){a=this.scrollDelay?f.default.debounce(a,this.scrollDelay):a;this._eventHandlers.push(a);this.$scrollElement.on("scroll.paged-scrollable",a)};b.prototype._bindOverscrollPrevention=function(){function a(a,b){var e=this.scrollHeight-(0,d.default)(this).outerHeight()-1,f=0>b||isNaN(b),A=0<b||isNaN(b);(this.scrollTop>e&&f||
+1>this.scrollTop&&A)&&a.preventDefault()}this._eventHandlers.push(a);this.$scrollElement.on("mousewheel.paged-scrollable",a)};b.prototype.clearListeners=function(){var a=this;f.default.each(this._eventHandlers,function(b){a.$scrollElement.unbind(".paged-scrollable",b)});this._eventHandlers.length=0};b.prototype.loadIfRequired=function(){if(!(this.isSuspended()||this.loadedRange.reachedEnd()&&this.loadedRange.reachedStart())){var a=this.getScrollTop(),b=this.getPaneHeight(),c=this.getContentHeight(),
+b=b+a;if(d.default.isWindow(this.getPane()[0])||!this.getPane().is(":hidden")){if(f.default.any([!0,"previous"],n.default.eq(this.options.autoLoad))&&a<this.options.bufferPixels+this.loadedRange.start/this.loadedRange.nextPageStart*c&&(a=this.loadedRange.pageBefore(this.options.pageSize)))return this.load(a.start,a.limit);if(f.default.any([!0,"next"],n.default.eq(this.options.autoLoad))&&b+1>=c-this.options.bufferPixels&&(c=this.loadedRange.pageAfter(this.options.pageSize)))return this.load(c.start,
+c.limit)}}};b.prototype.load=function(a,b){var c=this;return l(this,a,b).fail(function(a,b,k,d){d&&d.errors&&c.handleErrors(d.errors)})};b.prototype.loadAfter=function(){var a=this.loadedRange.pageAfter(this.options.pageSize);return a&&this.load(a.start,a.limit)};b.prototype.loadBefore=function(){var a=this.loadedRange.pageBefore(this.options.pageSize);return a&&this.load(a.start,a.limit)};b.prototype.onDataLoaded=function(a,b,c){void 0!==c.start&&(a=c.start);var e=this.loadedRange.isEmpty(),d=this.loadedRange.getAttachmentMethod(a,
+c.size),f="prepend"===d;this.loadedRange.add(a,c.size,c.isLastPage,c.nextPageStart);var g,h;if(f||p)h=this.getScrollTop(),g=this.getContentHeight();c=this._addPage(c,d);if(f||p)d=f?this.getContentHeight()-g:0,this.setScrollTop(h+d);if(e)this.onFirstDataLoaded(a,b,c);m.default.trigger(this.options.dataLoadedEvent,this,a,b,c);this.loadIfRequired()};b.prototype._addPage=function(a,b){a=this._dedupe(a);this.attachNewContent(a,b);return a};b.prototype._dedupe=function(a){if(a&&a.values&&this.options.idForEntity){var b=
+this._ids,c=this.options.idForEntity;a=d.default.extend({},a,{values:f.default.filter(a.values,function(a){a=c(a);return f.default.has(b,a)?!1:b[a]=!0})})}return a};b.prototype.onFirstDataLoaded=function(){var a=this;this.addScrollListener(function(){a.loadIfRequired()});this.options.preventOverscroll&&this._bindOverscrollPrevention();(0,d.default)(window).on("resize",this._resizeHandler=function(){a.loadIfRequired()})};b.prototype.cancelRequest=function(){this.currentXHR&&(this.currentXHR.abort?
+this.currentXHR.abort():this.currentXHR.reject?this.currentXHR.reject():y.default.log("Couldn't cancel the current request."),this.currentXHR=null)};b.prototype.add=function(a,b){return a.length?(this._addPage({values:a,size:a.length},b||"prepend"),!0):!1};b.prototype.remove=function(a){return this.options.idForEntity&&(a=this.options.idForEntity(a),f.default.has(this._ids,a))?(delete this._ids[a],"number"===typeof this.loadedRange.nextPageStart&&(this.loadedRange.nextPageStart=Math.max(0,this.loadedRange.nextPageStart-
+1)),!0):!1};b.prototype.attachNewContent=function(a,b){throw Error("attachNewContent is abstract and must be implemented.");};b.prototype.requestData=function(a,b){throw Error("requestData is abstract and must be implemented.  It must return a promise. It is preferred to return a jqXHR.");};b.prototype.handleErrors=function(a){throw Error("handleErrors is abstract and must be implemented.");};g.default=b;q.exports=g["default"]});;
 ;
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-client-web-fragments:web-fragment-manager', location = '/static/bitbucket/internal/util/web-fragment-manager.js' */
-window.WebFragments=function(){function x(a){for(var b=Array.prototype.slice.call(arguments,1),c=void 0,f=b.length,c=0;c<f;c++){var g=b[c];if(g)for(var q=p(g),h=void 0,w=q.length,h=0;h<w;h++){var d=q[h];a[d]=g[d]}}return a}function t(a,b){return"function"===typeof a?a(x({},b)):a}function e(a){var b=l[a];return function(c,f){var g=b[c],q=[];if(g&&g.length)for(var h=void 0,w=g.length,h=0;h<w;h++){var d;d=g[h];var m=f,r=void 0,n=void 0,k=void 0,e=void 0,l={type:a.toUpperCase()};if(u.call(d,"serverCondition")&&
-!d.serverCondition)d=null;else if(m=x({},m,d.serverContext,d.params),u.call(d,"condition")&&!t(d.condition,m))d=null;else{d["context-provider"]&&"function"===typeof d["context-provider"]&&(m=t(d["context-provider"],m));r=p(d);k=0;for(e=r.length;k<e;k++)n=r[k],/con(dition|text-provider)|params/.test(n)||(l[n]=t(d[n],m));if(d.params)for(var v=l.params={},r=p(d.params),k=0,e=r.length;k<e;k++)n=r[k],v[n]=t(d.params[n],m);d=l}d&&q.push(d)}-1===c.indexOf("bitbucket.internal.")&&(new RegExp("[\\?\x26]web\\."+
-a+"s(\x3d|\x26|$)")).test(window.location.search)&&q.push(B[a](c,f));return q}}function v(a){var b=l[a];return function(a){if(!a)throw Error("No descriptor provided");if("string"!==typeof a.location)throw Error("No location provided, or location was not a string.");if("string"!==typeof a.completeModuleKey)throw Error("No completeModuleKey provided, or completeModuleKey was not a string.");y(a);b[a.location]||(b[a.location]=[]);b[a.location].push(a);b[a.location].sort(z)}}function z(a,b){return(0<=
-a.weight?a.weight:1E3)-(0<=b.weight?b.weight:1E3)}var u=Object.prototype.hasOwnProperty,l={item:{},section:{},panel:{}},p=function(a){var b=[],c;for(c in a)u.call(a,c)&&b.push(c);return b},y=void 0,y=window._PageDataPlugin&&_PageDataPlugin.ready?function(a){_PageDataPlugin.ready(a.completeModuleKey,a.location,function(b){u.call(b,"serverCondition")&&(a.serverCondition=b.serverCondition);u.call(b,"serverContext")&&(a.serverContext=b.serverContext)})}:function(a){return a},B={item:function(a,b){return{url:"#example-web-item-url",
-pluginKey:"org.example.plugins",moduleKey:"example-web-item",completeModuleKey:"org.example.plugins:example-web-item",linkText:"Client Web Item: "+a,hasTooltip:!0,tooltip:"Client Context Items: "+p(b).join(", "),hasIcon:!1,iconUrl:null,iconWidth:0,iconHeight:0,styleClass:"plugin-point",linkId:null,description:null,params:{},type:"ITEM",weight:1E3}},section:function(a,b){return{name:"example-web-section",key:"example-web-section",location:a,labelText:"Client Web Section: "+a,type:"SECTION",params:{},
-weight:1E3}},panel:function(a,b){return{view:'\x3cdiv class\x3d"plugin-point web-panel"\x3e\x3cstrong\x3eClient Web Panel\x3c/strong\x3e: '+a+"\x3cbr /\x3e\x3cstrong\x3eClient Context Items\x3c/strong\x3e: "+p(b).join(", ")+"\x3c/div\x3e",weight:1E3}}},A=e("panel");e("item");return{getWebItems:e("item"),getWebSections:e("section"),getWebPanels:function(a,b){for(var c=A(a,b),f=void 0,g=c.length,f=0;f<g;f++)c[f]=c[f].view;return c},getWebFragmentDescriptors:function(a,b){var c=l[b];return(c=c&&c[a])&&
-c.slice()},addWebItemDescriptor:v("item"),addWebSectionDescriptor:v("section"),addWebPanelDescriptor:v("panel"),getWebFragments:function(a,b,c){"string"!==typeof b&&(c=b,b=a);a=this.getWebItems(a,c);b=this.getWebSections(b,c);b=a.concat(b);b.sort(z);return b},_getValue:t,_formatI18n:function(a,b,c){var f=(a===b?c:a)||b||c||"";return function(a){var b=[],c=p(a);c.sort();for(var e=void 0,d=c.length,e=0;e<d;e++)b.push(a[c[e]]);return AJS.format(f,b)}},_getWebPanels:A}}();
-define("bitbucket/internal/util/web-fragment-manager",function(){return window.WebFragments});;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:paged-table', location = '/static/bitbucket/internal/widget/paged-table/paged-table.soy' */
+// This file was automatically generated from paged-table.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.widget.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.widget == 'undefined') { bitbucket.internal.widget = {}; }
+
+
+bitbucket.internal.widget.pagedTable = function(opt_data, opt_ignored) {
+  var output = '' + ((opt_data.filterable) ? bitbucket.internal.widget.pagedTableFilter({forId: opt_data.id, filter: opt_data.filter, filterPlaceholder: opt_data.filterPlaceholder}) : '');
+  var pageAttributes__soy9 = opt_data.page ? atl_soy.concat({start: opt_data.page.start, size: opt_data.page.size, lastpage: opt_data.page.isLastPage}, opt_data.page.nextPageRequest ? {nextpagestart: opt_data.page.nextPageRequest.start} : {}) : {};
+  output += widget.aui.table({id: opt_data.id, dataAttributes: atl_soy.concat(pageAttributes__soy9, opt_data.extraDataAttributes ? opt_data.extraDataAttributes : {}), extraClasses: 'paged-table' + ((opt_data.extraClasses) ? ' ' + soy.$$escapeHtml(opt_data.extraClasses) : '') + ((! opt_data.page || opt_data.page.size == 0) ? ' no-rows' : ''), theadContent: opt_data.theadContent, content: opt_data.content}) + ((opt_data.page && opt_data.page.size == 0) ? bitbucket.internal.widget.pagedTableMessage({content: opt_data.filterable && opt_data.filter ? (opt_data.noneMatchingMessageContent ? opt_data.noneMatchingMessageContent : '') : opt_data.noneFoundMessageContent ? opt_data.noneFoundMessageContent : ''}) : '');
+  return output;
+};
+if (goog.DEBUG) {
+  bitbucket.internal.widget.pagedTable.soyTemplateName = 'bitbucket.internal.widget.pagedTable';
+}
+
+
+bitbucket.internal.widget.pagedTableMessage = function(opt_data, opt_ignored) {
+  return '<div class="paged-table-message">' + soy.$$filterNoAutoescape(opt_data.content) + '</div>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.widget.pagedTableMessage.soyTemplateName = 'bitbucket.internal.widget.pagedTableMessage';
+}
+
+
+bitbucket.internal.widget.pagedTableFilter = function(opt_data, opt_ignored) {
+  return '' + aui.group.group({extraClasses: 'paged-table-filter', content: '' + aui.group.item({content: '' + bitbucket.internal.widget.pagedTableFilterField(opt_data)})});
+};
+if (goog.DEBUG) {
+  bitbucket.internal.widget.pagedTableFilter.soyTemplateName = 'bitbucket.internal.widget.pagedTableFilter';
+}
+
+
+bitbucket.internal.widget.pagedTableFilterField = function(opt_data, opt_ignored) {
+  return '<label class="assistive" for="paged-table-input-for-' + soy.$$escapeHtml(opt_data.forId) + '">' + soy.$$escapeHtml(opt_data.filterPlaceholder ? opt_data.filterPlaceholder : 'Find') + '</label><input type="text" id="paged-table-input-for-' + soy.$$escapeHtml(opt_data.forId) + '" class="paged-table-filter-input" data-for="' + soy.$$escapeHtml(opt_data.forId) + '" autocomplete="off" placeholder="' + soy.$$escapeHtml(opt_data.filterPlaceholder ? opt_data.filterPlaceholder : 'Find') + '" value="' + soy.$$escapeHtml(opt_data.filter ? opt_data.filter : '') + '">';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.widget.pagedTableFilterField.soyTemplateName = 'bitbucket.internal.widget.pagedTableFilterField';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:paged-table', location = '/static/bitbucket/internal/widget/paged-table/paged-table.js' */
+define("bitbucket/internal/widget/paged-table/paged-table","module exports aui jquery lodash bitbucket/internal/util/ajax bitbucket/internal/widget/error-dialog/error-dialog bitbucket/internal/widget/paged-scrollable".split(" "),function(l,g,m,n,p,q,r,t){function b(a){a=d.default.extend(!0,{},b.defaults,a);e.default.call(this,a.scrollPaneSelector,a);this.$table=(0,d.default)(a.target);if(a.filterable){this.$filter=a.filter?(0,d.default)(a.filter):this.$table.prev(".paged-table-filter").find(".paged-table-filter-input");
+this._currentFilterText=d.default.trim(this.$filter.val());var h=f.default.debounce(f.default.bind(this._onFilterChanged,this),a.filterDebounce);this.$filter.on("keyup.paged-table-filter",function(a){a.which===k.default.keyCode.ESCAPE?(0,d.default)(this).blur():h(a)}).on("paste.paged-table-filter",h)}this.$spinner=(0,d.default)("\x3cdiv class\x3d'spinner'/\x3e").hide().insertAfter(this.$table);this.spinnerShowing=!1;this.processedDomData=null==this.$table.attr("data-lastpage")}Object.defineProperty(g,
+"__esModule",{value:!0});var k=babelHelpers.interopRequireDefault(m),d=babelHelpers.interopRequireDefault(n),f=babelHelpers.interopRequireDefault(p),u=babelHelpers.interopRequireDefault(q),v=babelHelpers.interopRequireDefault(r),e=babelHelpers.interopRequireDefault(t);b.defaults={ajaxDataType:"json",spinnerSize:"large",filterable:!1,bufferPixels:150,filterDebounce:350,rowSelector:"\x3e tbody \x3e tr",focusOptions:{escToCancel:!1,focusedClass:"focused",rowSelector:"\x3e tbody \x3e tr",wrapAround:!1}};
+d.default.extend(b.prototype,e.default.prototype);b.prototype.init=function(){return e.default.prototype.init.apply(this,arguments).done(f.default.bind(function(){this.shortcutsInitialised&&this.focusInitialRow()},this))};b.prototype.getFilterText=function(){return this._currentFilterText};b.prototype._onFilterChanged=function(){var a=d.default.trim(this.$filter.val());this._currentFilterText!==a&&(this._currentFilterText=a,this.update())};b.prototype.requestData=function(a,b){if(!this.processedDomData)return d.default.Deferred().resolve(this.createDataFromJQuery(a,
+b,this.$table));var c=this;c.spinnerShowing=!0;c.$spinner.show().spin(c.options.spinnerSize,{zIndex:10});return c.performAjax(a,b).always(function(){c._hideSpinnerTimeout=setTimeout(function(){c.spinnerShowing&&c.$spinner.spinStop().hide();c.spinnerShowing=!1},0)})};b.prototype.performAjax=function(a,b){return u.default.ajax({url:this.buildUrl(a,b,this.getFilterText()),dataType:this.options.ajaxDataType,statusCode:this.options.statusCode})};b.prototype.cancelRequest=function(){e.default.prototype.cancelRequest.call(this);
+this._hideSpinnerTimeout&&clearTimeout(this._hideSpinnerTimeout)};b.prototype.reset=function(){e.default.prototype.reset.call(this);this.processedDomData&&this.$table.find(this.options.rowSelector).remove().end().next(".paged-table-message").remove().end();this.$table.addClass("no-rows")};b.prototype.update=function(a){this.reset();return this.init(a)};b.prototype.createDataFromJQuery=function(a,b,c){b=c.find(this.options.rowSelector);var d="true"===c.attr("data-lastpage");a=c.attr("data-nextpagestart");
+c={start:Number(c.attr("data-start")),size:Number(c.attr("data-size")),values:b,isLastPage:d};null!=a&&(c.nextPageStart=Number(a));return c};b.prototype.attachNewContent=function(a,b){if(a.size){if(this.processedDomData){if(a&&a.errors){this.handleErrors(a.errors);return}this.handleNewRows(a,b)}0<a.start&&a.isLastPage&&this.handleLastPage();this.$table.removeClass("no-rows")}else a.isLastPage&&this.handleNoData();this.updateTimestamp();this.processedDomData=!0};b.prototype.updateTimestamp=function(){this.$table.attr("data-last-updated",
+(new Date).getTime())};b.prototype.focusInitialRow=function(){this.$table.find(this.options.focusOptions.rowSelector).first().addClass(this.options.focusOptions.focusedClass)};b.prototype.initShortcuts=function(){this.shortcutsInitialised=!0;this.focusInitialRow();return{destroy:f.default.bind(this.resetShortcuts,this)}};b.prototype.resetShortcuts=function(){this.shortcutsInitialised=!1};b.prototype._new$Message=function(a){return(0,d.default)('\x3cdiv class\x3d"paged-table-message"/\x3e').addClass(this.options.tableMessageClass).html(a||
+"")};b.prototype.handleLastPage=function(){this.$table.after(this._new$Message(this.options.allFetchedMessageHtml))};b.prototype.handleNoData=function(){var a=this.getFilterText(),a=a&&a.length?this.options.noneMatchingMessageHtml:this.options.noneFoundMessageHtml;this.$table.addClass("no-rows").after(this._new$Message(a))};b.prototype.handleErrors=function(a){(new v.default({panelContent:"\x3cp\x3e"+k.default.escapeHtml(a[0].message)+"\x3c/p\x3e"})).show()};b.prototype.buildUrl=function(a,b,c){throw Error("buildUrl is abstract and must be implemented.");
+};b.prototype.handleNewRows=function(a,b){throw Error("handleNewRows is abstract and must be implemented.");};g.default=b;l.exports=g["default"]});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-public-lozenge', location = '/static/bitbucket/internal/feature/repository/public-lozenge/public-lozenge.soy' */
+// This file was automatically generated from public-lozenge.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.feature.repository.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.feature == 'undefined') { bitbucket.internal.feature = {}; }
+if (typeof bitbucket.internal.feature.repository == 'undefined') { bitbucket.internal.feature.repository = {}; }
+
+
+bitbucket.internal.feature.repository.publicLozenge = function(opt_data, opt_ignored) {
+  return '' + ((true && (opt_data.repository['public'] || opt_data.repository.project['public'])) ? '<div class="public-lozenge aui-lozenge aui-lozenge-subtle">' + soy.$$escapeHtml('Public') + '</div>' : '');
+};
+if (goog.DEBUG) {
+  bitbucket.internal.feature.repository.publicLozenge.soyTemplateName = 'bitbucket.internal.feature.repository.publicLozenge';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-table', location = '/static/bitbucket/internal/feature/repository/repository-table/repository-table.soy' */
+// This file was automatically generated from repository-table.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.feature.repository.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.feature == 'undefined') { bitbucket.internal.feature = {}; }
+if (typeof bitbucket.internal.feature.repository == 'undefined') { bitbucket.internal.feature.repository = {}; }
+
+
+bitbucket.internal.feature.repository.repositoryTable = function(opt_data, opt_ignored) {
+  var param12 = '';
+  if (opt_data.repositoryPage && opt_data.repositoryPage.size > 0) {
+    var repositoryList15 = opt_data.repositoryPage.values;
+    var repositoryListLen15 = repositoryList15.length;
+    for (var repositoryIndex15 = 0; repositoryIndex15 < repositoryListLen15; repositoryIndex15++) {
+      var repositoryData15 = repositoryList15[repositoryIndex15];
+      param12 += bitbucket.internal.feature.repository.repositoryRow({repository: repositoryData15, showProject: opt_data.showProject, showPublicStatus: opt_data.showPublicStatus});
+    }
+  }
+  var output = '' + bitbucket.internal.widget.pagedTable({id: opt_data.id, extraClasses: 'repository-table', page: opt_data.repositoryPage, theadContent: '' + ((! opt_data.repositoryPage || opt_data.repositoryPage.size > 0 || opt_data.repositoryPage.start > 0) ? '<tr><th scope="col">' + soy.$$escapeHtml('Name') + '</th></tr>' : ''), content: param12});
+  return output;
+};
+if (goog.DEBUG) {
+  bitbucket.internal.feature.repository.repositoryTable.soyTemplateName = 'bitbucket.internal.feature.repository.repositoryTable';
+}
+
+
+bitbucket.internal.feature.repository.repositoryRow = function(opt_data, opt_ignored) {
+  return '<tr><td>' + ((opt_data.showProject) ? '<span class="project-name">' + bitbucket.internal.feature.project.avatar({size: 'small', project: opt_data.repository.project}) + '<a href="' + soy.$$escapeHtml(require('bitbucket/util/navbuilder').project(opt_data.repository.project.key).build()) + '" title="' + soy.$$escapeHtml(opt_data.repository.project.name) + '" data-project-id="' + soy.$$escapeHtml(opt_data.repository.project.id) + '">' + soy.$$escapeHtml(opt_data.repository.project.name) + '</a></span>' : '') + '<span class="repository-name">' + ((! opt_data.showProject) ? aui.icons.icon({size: 'small', useIconFont: true, iconFontSet: 'devtools', icon: opt_data.repository.origin ? 'repository-forked' : 'repository', accessibilityText: opt_data.repository.origin ? 'Fork' : 'Repository', extraAttributes: opt_data.repository.origin ? {title: AJS.format('This repository is a fork of {0}/{1}',opt_data.repository.origin.project.name,opt_data.repository.origin.name)} : null}) : '') + '<a href="' + soy.$$escapeHtml(require('bitbucket/util/navbuilder').project(opt_data.repository.project.key).repo(opt_data.repository.slug).browse().build()) + '" data-repository-id="' + soy.$$escapeHtml(opt_data.repository.id) + '">' + soy.$$escapeHtml(opt_data.repository.name) + '</a></span>' + ((opt_data.showPublicStatus) ? bitbucket.internal.feature.repository.publicLozenge(opt_data) : '') + '</td></tr>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.feature.repository.repositoryRow.soyTemplateName = 'bitbucket.internal.feature.repository.repositoryRow';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-table', location = '/static/bitbucket/internal/feature/repository/repository-table/repository-table.js' */
+define("bitbucket/internal/feature/repository/repository-table/repository-table","module exports aui jquery lodash bitbucket/util/events bitbucket/util/navbuilder bitbucket/internal/model/page-state bitbucket/internal/widget/paged-table/paged-table".split(" "),function(l,d,m,n,p,q,r,t,u){function a(v,b){var a={target:v,ajaxDataType:"json",tableMessageClass:"repository-table-message",allFetchedMessageHtml:'\x3cp class\x3d"no-more-results"\x3e'+"No more repositories"+
+"\x3c/p\x3e",noneFoundMessageHtml:'\x3ch3 class\x3d"no-results entity-empty"\x3e'+"There are no repositories"+"\x3c/h3\x3e",statusCode:{401:function(){return c.default.Deferred().resolve({start:0,size:0,values:[],isLastPage:!0}).promise()}},paginationContext:"repository-table"};b=f.default.extend({},a,b);h.default.call(this,b);this._project=b.projectKey?{key:b.projectKey,"public":!1}:(a=e.default.getProject())&&a.toJSON();this._options=b;this.bindUIEvents()}Object.defineProperty(d,
+"__esModule",{value:!0});var g=babelHelpers.interopRequireDefault(m),c=babelHelpers.interopRequireDefault(n),f=babelHelpers.interopRequireDefault(p),k=babelHelpers.interopRequireDefault(q),w=babelHelpers.interopRequireDefault(r),e=babelHelpers.interopRequireDefault(t),h=babelHelpers.interopRequireDefault(u);f.default.extend(a.prototype,h.default.prototype);a.prototype.bindUIEvents=function(){(0,c.default)(".create-repository-link").on("click","a",k.default.trigger.bind(null,"bitbucket.internal.ui.repository-list.create.clicked"));
+(0,c.default)(this.options.target).on("click","a",function(){var a=(0,c.default)(this),b=e.default.getProject()?e.default.getProject().id:a.closest("td").find(".project-name a").attr("data-project-id");k.default.trigger("bitbucket.internal.ui.repository-list.item.clicked",null,{repositoryId:a.attr("data-repository-id"),projectId:b})})};a.prototype.buildUrl=function(a,b){return w.default.project(this._project.key).allRepos().withParams({start:a,limit:b}).build()};a.prototype.handleNewRows=function(a,
+b){var c=this._project,d=this._options,e=f.default.map(a.values,function(a){if(!a.project)if(c)a.project=c;else throw Error("No project was provided for repo id\x3d"+a.id+" slug\x3d"+a.slug+" but we are in a global context");return bitbucket.internal.feature.repository.repositoryRow({repository:a,showProject:d.showProject,showPublicStatus:d.showPublicStatus})});this.$table.show().children("tbody")["html"!==b?b:"append"](e.join(""))};a.prototype.handleErrors=function(a){};d.default=a;l.exports=d["default"]});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:project-overview-page', location = '/static/bitbucket/internal/page/project/overview/project-overview.js' */
+define("bitbucket/internal/page/project/overview/project-overview",["module","exports","jquery","bitbucket/internal/feature/repository/repository-table/repository-table","bitbucket/internal/util/notifications/notifications"],function(c,a,d,e,f){Object.defineProperty(a,"__esModule",{value:!0});var b=babelHelpers.interopRequireDefault(d),g=babelHelpers.interopRequireDefault(e),h=babelHelpers.interopRequireDefault(f);a.default={onReady:function(a){h.default.showFlashes();(0,b.default)(a).length&&(new g.default(a,
+{showPublicStatus:!0,bufferPixels:(0,b.default)("#footer").height(),pageSize:100})).init()}};c.exports=a["default"]});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:icon-soy-templates', location = '/static/bitbucket/internal/images/icons/icons.soy' */
+// This file was automatically generated from icons.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.images.icons.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.images == 'undefined') { bitbucket.internal.images = {}; }
+if (typeof bitbucket.internal.images.icons == 'undefined') { bitbucket.internal.images.icons = {}; }
+
+
+bitbucket.internal.images.icons.createRepo = function(opt_data, opt_ignored) {
+  return '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#B1B1B1" fill-rule="evenodd"><path d="M13.272 13.272h9.344a1.387 1.387 0 0 0-.01-2.772h-9.334V9.337 1.384a1.387 1.387 0 0 0-2.772.01V10.5H1.394C.617 10.5 0 11.12 0 11.886c0 .771.618 1.386 1.38 1.386h9.16l-.04 9.334c0 .777.62 1.394 1.386 1.394a1.38 1.38 0 0 0 1.386-1.38v-6.733-2.637z"/></g></svg>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.images.icons.createRepo.soyTemplateName = 'bitbucket.internal.images.icons.createRepo';
+}
+
+
+bitbucket.internal.images.icons.importRepo = function(opt_data, opt_ignored) {
+  return '<svg width="21" height="23" viewBox="0 0 21 23" xmlns="http://www.w3.org/2000/svg"><g fill="#B1B1B1" fill-rule="evenodd"><path d="M7 0h9.778c1.167 0 2.162.421 2.986 1.263.824.843 1.236 1.86 1.236 3.05v11.5a4.23 4.23 0 0 1-.837 2.566 4.24 4.24 0 0 1-2.138 1.566 4.192 4.192 0 0 1-1.504 2.201c-.74.57-1.58.854-2.521.854H4.2c-1.16 0-2.15-.421-2.97-1.263-.82-.843-1.23-1.86-1.23-3.05v-11.5C0 6.223.277 5.36.831 4.6a4.084 4.084 0 0 1 2.144-1.544A4.192 4.192 0 0 1 4.479.854 4.028 4.028 0 0 1 7 0zm12.578 15.813v-11.5c0-.787-.273-1.462-.82-2.028-.547-.565-1.207-.848-1.98-.848H7c-.518 0-.99.132-1.416.394-.427.262-.764.61-1.012 1.044H14c1.16 0 2.15.421 2.97 1.263.82.843 1.23 1.86 1.23 3.05v11.118a2.876 2.876 0 0 0 1.006-1.056c.248-.442.372-.92.372-1.438zm-2.756 2.897V7.21c0-.794-.275-1.471-.826-2.033A2.693 2.693 0 0 0 14 4.335H4.222c-.773 0-1.433.28-1.98.842a2.808 2.808 0 0 0-.82 2.033v11.5c0 .794.273 1.471.82 2.033a2.663 2.663 0 0 0 1.98.842H14c.78 0 1.446-.28 1.996-.842.55-.562.826-1.24.826-2.033z"/><path d="M9.873 17.853c-.356.424-.93.43-1.292 0l-3.734-4.426c-.357-.424-.193-.767.307-.767H8.222V6.652h1.95v6.008h3.063c.555 0 .722.337.36.767l-3.722 4.426z"/></g></svg>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.images.icons.importRepo.soyTemplateName = 'bitbucket.internal.images.icons.importRepo';
+}
+
+
+bitbucket.internal.images.icons.logo = function(opt_data, opt_ignored) {
+  return '<svg width="42" height="48" viewBox="0 0 42 48" xmlns="http://www.w3.org/2000/svg"><title>logo-BB</title><g fill="#205081" fill-rule="evenodd"><path d="M21 0C9.472 0 .002 3.063.002 6.942c0 1.02 2.47 15.517 3.5 21.233.411 2.654 7.205 6.33 17.498 6.33 10.293 0 16.88-3.676 17.498-6.33 1.03-5.716 3.5-20.212 3.5-21.233C41.792 3.062 32.528 0 21 0zm0 29.809c-3.706 0-6.588-2.859-6.588-6.534s2.882-6.533 6.588-6.533 6.588 2.858 6.588 6.533c0 3.471-2.882 6.534-6.588 6.534zm0-20.826c-7.411 0-13.381-1.225-13.381-2.858S13.589 3.267 21 3.267c7.411 0 13.381 1.225 13.381 2.858S28.411 8.983 21 8.983z"/><path d="M36.194 33.688c-.412 0-.618.204-.618.204s-5.147 4.083-14.41 4.083c-9.264 0-14.411-4.083-14.411-4.083s-.412-.204-.618-.204c-.411 0-.823.204-.823.817v.204c.823 4.287 1.441 7.35 1.441 7.758.618 3.063 6.794 5.513 14.205 5.513 7.41 0 13.587-2.45 14.204-5.513 0-.408.618-3.47 1.441-7.758v-.204c.206-.409 0-.817-.411-.817z"/><ellipse cx="21" cy="23.071" rx="3.294" ry="3.267"/></g></svg>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.images.icons.logo.soyTemplateName = 'bitbucket.internal.images.icons.logo';
+}
+
+
+bitbucket.internal.images.icons.allCommits = function(opt_data, opt_ignored) {
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="15" viewBox="0 0 12 14"><path    style="fill:#999" d="M13,11.91a2.47,2.47,0,0,0,.32-0.27A2.22,2.22,0,0,0,14,10V2.31A2.22,2.22,0,0,0,13.32.68,2.22,2.22,0,0,0,11.69,0H6.31A2.22,2.22,0,0,0,4.68.68,2.47,2.47,0,0,0,4.4,1H5.5A1.48,1.48,0,0,1,6.31.77h5.38a1.49,1.49,0,0,1,1.08.45,1.48,1.48,0,0,1,.45,1.09V10a1.47,1.47,0,0,1-.23.81v1.09Z" transform="translate(-2 0)"/><path    style="fill:#999" d="M4.31,2H9.69a2.22,2.22,0,0,1,1.63.68A2.22,2.22,0,0,1,12,4.31V12a2.31,2.31,0,0,1-2.31,2.31H4.31a2.22,2.22,0,0,1-1.63-.68A2.22,2.22,0,0,1,2,12V4.31a2.22,2.22,0,0,1,.68-1.63A2.22,2.22,0,0,1,4.31,2Zm6.92,10V4.31A1.54,1.54,0,0,0,9.69,2.77H4.31A1.54,1.54,0,0,0,2.77,4.31V12a1.54,1.54,0,0,0,1.54,1.54H9.69A1.54,1.54,0,0,0,11.23,12Z" transform="translate(-2 0)"/><polygon style="fill:#999" points="4.5 4 5.5 4 5.5 6.4 5.5 7 4.5 7 4.5 4" /><polygon style="fill:#999" points="4.5 9 5.5 9 5.5 11.4 5.5 12 4.5 12 4.5 9"/><path    style="fill:#999" d="M7,10A2,2,0,1,1,9,8,2,2,0,0,1,7,10ZM7,7A1,1,0,1,0,8,8,1,1,0,0,0,7,7Z" transform="translate(-2 0)"/></svg>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.images.icons.allCommits.soyTemplateName = 'bitbucket.internal.images.icons.allCommits';
+}
+
+
+bitbucket.internal.images.icons.commit = function(opt_data, opt_ignored) {
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="7" height="15" viewBox="0 0 7 15"><path style="fill:#999" d="M11.07,7.39a3.5,3.5,0,0,0-3-3.45V0h-1V3.94a3.48,3.48,0,0,0,0,6.9V15h1V10.84A3.5,3.5,0,0,0,11.07,7.39Zm-3.5,2.5a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,7.57,9.89Z" transform="translate(-4.07 0)"/></svg>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.images.icons.commit.soyTemplateName = 'bitbucket.internal.images.icons.commit';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-importer:server-side-templates', location = '/static/import-repository-server.soy' */
+// This file was automatically generated from import-repository-server.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.importer.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.importer == 'undefined') { bitbucket.internal.importer = {}; }
+
+
+bitbucket.internal.importer.importRepo = function(opt_data, opt_ignored) {
+  return '<html><head><meta name="decorator" content="bitbucket.focused.medium"><title>' + soy.$$escapeHtml('Import repository') + '</title>' + soy.$$escapeHtml(webResourceManager_requireResourcesForContext('bitbucket.page.importer.form')) + '</head><body><div class="repository-import-page">' + aui.page.pageHeader({content: '' + aui.page.pageHeaderMain({content: '<div id="import-form-body"></div>'})}) + '</div><script>require(\'bitbucket/internal/import-form\').onReady(' + soy.$$filterNoAutoescape(JSON.stringify(opt_data.project).replace(/\//g, '\\/')) + ', ' + soy.$$escapeHtml(opt_data.fetchTimeout) + ');<\/script></body></html>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.importer.importRepo.soyTemplateName = 'bitbucket.internal.importer.importRepo';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-importer:server-side-templates', location = '/static/start-buttons-server.soy' */
+// This file was automatically generated from start-buttons-server.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.internal.importer.start.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.internal == 'undefined') { bitbucket.internal = {}; }
+if (typeof bitbucket.internal.importer == 'undefined') { bitbucket.internal.importer = {}; }
+if (typeof bitbucket.internal.importer.start == 'undefined') { bitbucket.internal.importer.start = {}; }
+
+
+bitbucket.internal.importer.start.welcomeMat = function(opt_data, opt_ignored) {
+  return '<a href="' + soy.$$escapeHtml(opt_data.repositoryImportUrl) + '" class="import-repository-mat project-welcome-mat">' + bitbucket.internal.images.icons.importRepo(null) + '<h3>' + soy.$$escapeHtml('Import repositories') + '</h3><p>' + soy.$$escapeHtml('Import existing repositories, including the revision history, from another version control system.') + '</p></a>';
+};
+if (goog.DEBUG) {
+  bitbucket.internal.importer.start.welcomeMat.soyTemplateName = 'bitbucket.internal.importer.start.welcomeMat';
+}
+
+
+bitbucket.internal.importer.start.profileButton = function(opt_data, opt_ignored) {
+  return '' + bitbucket.internal.buttons.button({buttonText: 'Import repository', extraClasses: 'import-repository-profile', href: opt_data.repositoryImportUrl, title: 'Import a repository from an external VCMS'});
+};
+if (goog.DEBUG) {
+  bitbucket.internal.importer.start.profileButton.soyTemplateName = 'bitbucket.internal.importer.start.profileButton';
+}
+;

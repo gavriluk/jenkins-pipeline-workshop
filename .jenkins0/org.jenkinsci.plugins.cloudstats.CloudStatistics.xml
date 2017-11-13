@@ -1,91 +1,88 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <org.jenkinsci.plugins.cloudstats.CloudStatistics plugin="cloud-stats@0.13">
-  <active class="java.util.concurrent.CopyOnWriteArrayList">
-    <org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
-      <id>
-        <cloudName>docker0</cloudName>
-        <templateName>lavcraft/jnlp-slave-dind</templateName>
-        <fingerprint>986445601</fingerprint>
-      </id>
-      <name>docker0-d11f0fe397b4</name>
-      <progress class="linked-hash-map">
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>PROVISIONING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015430695</started>
-            <phase>PROVISIONING</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>LAUNCHING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015440435</started>
-            <phase>LAUNCHING</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>OPERATING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <null/>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>COMPLETED</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015717758</started>
-            <phase>COMPLETED</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-      </progress>
-    </org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
-    <org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
-      <id>
-        <cloudName>docker0</cloudName>
-        <templateName>lavcraft/jnlp-slave-dind</templateName>
-        <fingerprint>984501410</fingerprint>
-      </id>
-      <name>docker0-3fe42576319c</name>
-      <progress class="linked-hash-map">
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>PROVISIONING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015720445</started>
-            <phase>PROVISIONING</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>LAUNCHING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015730418</started>
-            <phase>LAUNCHING</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>OPERATING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1501015739378</started>
-            <phase>OPERATING</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-        <entry>
-          <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>COMPLETED</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
-          <org.jenkinsci.plugins.cloudstats.PhaseExecution>
-            <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
-            <started>1502304849538</started>
-            <phase>COMPLETED</phase>
-          </org.jenkinsci.plugins.cloudstats.PhaseExecution>
-        </entry>
-      </progress>
-    </org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
-  </active>
+  <active class="java.util.concurrent.CopyOnWriteArrayList"/>
   <log>
     <data>
-      <null/>
-      <null/>
+      <org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
+        <id>
+          <cloudName>docker0</cloudName>
+          <templateName>lavcraft/jnlp-slave-dind</templateName>
+          <fingerprint>986445601</fingerprint>
+        </id>
+        <name>docker0-d11f0fe397b4</name>
+        <progress class="linked-hash-map">
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>PROVISIONING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015430695</started>
+              <phase>PROVISIONING</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>LAUNCHING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015440435</started>
+              <phase>LAUNCHING</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>OPERATING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <null/>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>COMPLETED</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015717758</started>
+              <phase>COMPLETED</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+        </progress>
+      </org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
+      <org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
+        <id>
+          <cloudName>docker0</cloudName>
+          <templateName>lavcraft/jnlp-slave-dind</templateName>
+          <fingerprint>984501410</fingerprint>
+        </id>
+        <name>docker0-3fe42576319c</name>
+        <progress class="linked-hash-map">
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>PROVISIONING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015720445</started>
+              <phase>PROVISIONING</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>LAUNCHING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015730418</started>
+              <phase>LAUNCHING</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>OPERATING</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1501015739378</started>
+              <phase>OPERATING</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+          <entry>
+            <org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>COMPLETED</org.jenkinsci.plugins.cloudstats.ProvisioningActivity_-Phase>
+            <org.jenkinsci.plugins.cloudstats.PhaseExecution>
+              <attachments class="java.util.concurrent.CopyOnWriteArrayList"/>
+              <started>1502304849538</started>
+              <phase>COMPLETED</phase>
+            </org.jenkinsci.plugins.cloudstats.PhaseExecution>
+          </entry>
+        </progress>
+      </org.jenkinsci.plugins.cloudstats.ProvisioningActivity>
       <null/>
       <null/>
       <null/>
@@ -185,7 +182,7 @@
       <null/>
       <null/>
     </data>
-    <next>0</next>
-    <size>0</size>
+    <next>2</next>
+    <size>2</size>
   </log>
 </org.jenkinsci.plugins.cloudstats.CloudStatistics>

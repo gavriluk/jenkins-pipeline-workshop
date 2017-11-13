@@ -1,0 +1,11 @@
+commit 586606a354b14b4c90f191825318c01235afa475
+tree de84a447d3f0f8e80e5b4b4f363ddad48023df52
+parent b15ff532e5d97b93ec3e7f594678fe7999250121
+author admin <admin@xx.com> 2017-11-11 13:27:46 +0000
+committer admin <admin@xx.com> 2017-11-11 13:27:46 +0000
+
+    clean gitignore
+
+
+
+:100644 100644 b51918e88bdfad0053a731e68146937f1808ef9b 99a68f4d1ed5444bc1ebb5c7c9fd227e0e808b27 M	.gitignore

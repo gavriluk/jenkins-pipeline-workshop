@@ -6,11 +6,11 @@
   <usages>
     <entry>
       <string>demo/PR-Master</string>
-      <ranges>1-4</ranges>
+      <ranges>36</ranges>
     </entry>
     <entry>
       <string>demo/CH-Master</string>
-      <ranges>1-4</ranges>
+      <ranges>1-8</ranges>
     </entry>
   </usages>
   <facets/>

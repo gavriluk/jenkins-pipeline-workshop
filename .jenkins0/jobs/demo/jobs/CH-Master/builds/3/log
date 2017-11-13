@@ -1,72 +1,0 @@
-Started by user [8mha:////4Kcqq1X9AUwBNxiW4MMpZ42pTQFvQJP0oJUt/okNfiMJAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
-Building remotely on [8mha:////4Me9RAisFZuwZG3CGGs2SivHAt6UbmagD1Lhxe+qxxXyAAAAmh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgY+/eT83ILSktQi/eLUnDQA1rML9cMAAAA=[0mself (builder) in workspace /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master
-Cloning the remote Git repository
-Cloning repository ssh://git@localhost:7999/math/math.git
- > git init /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master # timeout=10
-Fetching upstream changes from ssh://git@localhost:7999/math/math.git
- > git --version # timeout=10
-using GIT_SSH to set credentials 
- > git fetch --tags --progress ssh://git@localhost:7999/math/math.git +refs/heads/*:refs/remotes/origin/*
- > git config remote.origin.url ssh://git@localhost:7999/math/math.git # timeout=10
- > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git config remote.origin.url ssh://git@localhost:7999/math/math.git # timeout=10
-Fetching upstream changes from ssh://git@localhost:7999/math/math.git
-using GIT_SSH to set credentials 
- > git fetch --tags --progress ssh://git@localhost:7999/math/math.git +refs/heads/*:refs/remotes/origin/*
- > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
- > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
-Checking out Revision 6488ad35ec333cef200563a6f017391fed086e8d (refs/remotes/origin/master)
-Commit message: "Initial commit"
- > git config core.sparsecheckout # timeout=10
- > git checkout -f 6488ad35ec333cef200563a6f017391fed086e8d
-First time build. Skipping changelog.
-[CH-Master] $ mvn test
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building math 1.0-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[8mha:////4FKUOBrLyleKAYEjGrDpqsMprXkJWam3vb6hmDTUxMbKAAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ math ---
-[8mha:////4AGRmRx7HFdmO5NXz1fFoDSVORtB4Br0yOEy6hQPuAEqAAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-[INFO] skip non existing resourceDirectory /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master/src/main/resources
-[INFO] 
-[8mha:////4FKUOBrLyleKAYEjGrDpqsMprXkJWam3vb6hmDTUxMbKAAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ math ---
-[INFO] Changes detected - recompiling the module!
-[8mha:////4AGRmRx7HFdmO5NXz1fFoDSVORtB4Br0yOEy6hQPuAEqAAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 2 source files to /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master/target/classes
-[INFO] 
-[8mha:////4FKUOBrLyleKAYEjGrDpqsMprXkJWam3vb6hmDTUxMbKAAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ math ---
-[8mha:////4AGRmRx7HFdmO5NXz1fFoDSVORtB4Br0yOEy6hQPuAEqAAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-[INFO] skip non existing resourceDirectory /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master/src/test/resources
-[INFO] 
-[8mha:////4FKUOBrLyleKAYEjGrDpqsMprXkJWam3vb6hmDTUxMbKAAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ math ---
-[INFO] Changes detected - recompiling the module!
-[8mha:////4AGRmRx7HFdmO5NXz1fFoDSVORtB4Br0yOEy6hQPuAEqAAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 1 source file to /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master/target/test-classes
-[INFO] 
-[8mha:////4FKUOBrLyleKAYEjGrDpqsMprXkJWam3vb6hmDTUxMbKAAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ math ---
-[INFO] Surefire report directory: /Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master/target/surefire-reports
-Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom
-3/3 KB   3/3 KB            Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.pom (3 KB at 3.3 KB/sec)
-Downloading: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar
-3/37 KB   5/37 KB   8/37 KB   11/37 KB   13/37 KB   16/37 KB   19/37 KB   21/37 KB   24/37 KB   27/37 KB   29/37 KB   32/37 KB   35/37 KB   37/37 KB              Downloaded: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/2.12.4/surefire-junit4-2.12.4.jar (37 KB at 143.7 KB/sec)
-
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Running ru.sbt.demo.math.enums.OperandTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 sec
-
-Results :
-
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.991 s
-[INFO] Finished at: 2017-10-26T11:38:42+03:00
-[INFO] Final Memory: 16M/209M
-[INFO] ------------------------------------------------------------------------
-Finished: SUCCESS

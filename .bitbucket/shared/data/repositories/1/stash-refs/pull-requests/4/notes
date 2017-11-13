@@ -1,0 +1,4 @@
+From: master
+To: feature/test
+Conflict: (content) Merge conflict in .gitignore
+	MODIFY|.gitignore

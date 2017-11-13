@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.plugins.git.GitStatus_-CommitHookCause plugin="git@3.4.1">
+            <sha1>14b44350280638495db6ff47bf9c4a34d62aeeff</sha1>
+          </hudson.plugins.git.GitStatus_-CommitHookCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.plugins.git.RevisionParameterAction plugin="git@3.4.1">
+      <commit>14b44350280638495db6ff47bf9c4a34d62aeeff</commit>
+      <combineCommits>false</combineCommits>
+      <repoURL plugin="git-client@2.4.6">
+        <scheme>ssh</scheme>
+        <path>/math/math.git</path>
+        <rawPath>/math/math.git</rawPath>
+        <user>git</user>
+        <port>7999</port>
+        <host>localhost</host>
+      </repoURL>
+    </hudson.plugins.git.RevisionParameterAction>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters>
+        <hudson.model.StringParameterValue>
+          <name>PULL_REQUEST_ID</name>
+          <value>7</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>PULL_REQUEST_TO_BRANCH</name>
+          <value>master</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>PULL_REQUEST_URL</name>
+          <value>http://localhost:7990/projects/MATH/repos/math/pull-requests/7</value>
+        </hudson.model.StringParameterValue>
+      </parameters>
+      <parameterDefinitionNames class="hudson.model.ParametersDefinitionProperty$1">
+        <outer-class>
+          <parameterDefinitions>
+            <hudson.model.StringParameterDefinition>
+              <name>PULL_REQUEST_ID</name>
+              <description></description>
+              <defaultValue>NULL</defaultValue>
+            </hudson.model.StringParameterDefinition>
+            <hudson.model.StringParameterDefinition>
+              <name>PULL_REQUEST_TO_BRANCH</name>
+              <description></description>
+              <defaultValue>NULL</defaultValue>
+            </hudson.model.StringParameterDefinition>
+          </parameterDefinitions>
+        </outer-class>
+      </parameterDefinitionNames>
+    </hudson.model.ParametersAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>9498</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FPR-Master/detail/PR-Master/36</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <hudson.plugins.git.util.MergeRecord plugin="git@3.4.1">
+      <branch>origin/master</branch>
+      <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+    </hudson.plugins.git.util.MergeRecord>
+    <hudson.plugins.git.util.BuildData plugin="git@3.4.1">
+      <buildsByBranchName>
+        <entry>
+          <string>origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>14b44350280638495db6ff47bf9c4a34d62aeeff</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>14b44350280638495db6ff47bf9c4a34d62aeeff</sha1>
+                  <name>origin/admin/gitignore-1510410884605</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>14b44350280638495db6ff47bf9c4a34d62aeeff</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/admin/gitignore-1510410884605</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>36</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/admin/gitignore-1510393699000</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>744984bb0dbc18e38675d4bc33c7bd0c0a1bec52</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>744984bb0dbc18e38675d4bc33c7bd0c0a1bec52</sha1>
+                  <name>origin/admin/gitignore-1510393699000</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>744984bb0dbc18e38675d4bc33c7bd0c0a1bec52</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/admin/gitignore-1510393699000</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>b15ff532e5d97b93ec3e7f594678fe7999250121</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>8</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/feature/jacoco</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>d8762492e9ab188f4d723ebda726938290351213</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>d8762492e9ab188f4d723ebda726938290351213</sha1>
+                  <name>origin/feature/jacoco</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>d8762492e9ab188f4d723ebda726938290351213</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/feature/jacoco</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>21</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/admin/gitignore-1510410884605</string>
+          <hudson.plugins.git.util.Build reference="../../entry/hudson.plugins.git.util.Build"/>
+        </entry>
+        <entry>
+          <string>origin/feature/test</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>23fc583db4f066fcb47410eb87b89f95e852fad7</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>23fc583db4f066fcb47410eb87b89f95e852fad7</sha1>
+                  <name>origin/feature/test</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1>23fc583db4f066fcb47410eb87b89f95e852fad7</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>origin/feature/test</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>b15ff532e5d97b93ec3e7f594678fe7999250121</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>20</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>ssh://git@localhost:7999/math/math.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.plugins.git.GitTagAction plugin="git@3.4.1">
+      <tags class="hudson.util.CopyOnWriteMap$Tree">
+        <entry>
+          <string>origin/admin/gitignore-1510410884605</string>
+          <list/>
+        </entry>
+        <entry>
+          <string>origin/master</string>
+          <list/>
+        </entry>
+      </tags>
+      <ws>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Master</ws>
+    </hudson.plugins.git.GitTagAction>
+    <hudson.scm.SCMRevisionState_-None/>
+  </actions>
+  <queueId>31</queueId>
+  <timestamp>1510566170375</timestamp>
+  <startTime>1510566170379</startTime>
+  <result>SUCCESS</result>
+  <duration>2484</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn>self</builtOn>
+  <workspace>/Users/bool/Downloads/jenkins_home/workspace/demo/PR-Master</workspace>
+  <hudsonVersion>2.60.2</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@3.4.1">
+    <authorOrCommitter>false</authorOrCommitter>
+  </scm>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

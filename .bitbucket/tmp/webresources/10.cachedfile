@@ -1,1146 +1,672 @@
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:avatar', location = '/static/bitbucket/internal/widget/avatar/avatar.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.key-avatar {
-  margin-right: 10px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/access-key-avatar.svg) no-repeat center;
-}
-.key-avatar.aui-avatar-small {
-  width: 24px;
-  height: 24px;
-  background-clip: padding-box;
-  border-radius: 3px;
-  background-size: 26px;
-}
-.key-avatar.aui-avatar-xsmall {
-  width: 16px;
-  height: 16px;
-  background-clip: padding-box;
-  border-radius: 2px;
-  background-size: 18px;
-}
-.group-avatar.aui-avatar-xxxlarge {
-  width: 128px;
-  height: 128px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/avatar/group-avatar-256.png) no-repeat 0 0;
-  background-size: 128px;
-}
-.group-avatar.aui-avatar-large {
-  width: 48px;
-  height: 48px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/avatar/group-avatar-96.png) no-repeat 0 0;
-  background-size: 48px;
-}
-.group-avatar.aui-avatar-medium {
-  width: 32px;
-  height: 32px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/avatar/group-avatar-64.png) no-repeat 0 0;
-  background-size: 32px;
-}
-.group-avatar.aui-avatar-small {
-  width: 24px;
-  height: 24px;
-  background-clip: padding-box;
-  border-radius: 3px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/avatar/group-avatar-48.png) no-repeat 0 0;
-  background-size: 24px;
-}
-.group-avatar.aui-avatar-xsmall {
-  width: 16px;
-  height: 16px;
-  background-clip: padding-box;
-  border-radius: 2px;
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/avatar/group-avatar-32.png) no-repeat 0 0;
-  background-size: 16px;
-}
-.aui-avatar-badged {
-  position: relative;
-  vertical-align: middle;
-}
-.aui-avatar-badged.avatar-dimmed > .aui-avatar-inner > img {
-  opacity: 0.5;
-  transition: opacity 0.3s ease-in-out;
-}
-.aui-avatar-badged .approved,
-.aui-avatar-badged .needs-work {
-  opacity: 1;
-  transition: all 0.2s cubic-bezier(0.14, 0.01, 0.65, 1.61);
-  transition-property: opacity, transform;
-  transform: scale(1);
-  width: 16px;
-  height: 16px;
-  color: #fff;
-  background-size: 16px;
-  position: absolute;
-  right: -8px;
-  top: -8px;
-  text-align: center;
-  display: block;
-  font-size: 9px;
-  line-height: 16px;
-  text-indent: -999em;
-}
-.aui-avatar-badged .approved {
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/icons/icon-approved.svg) no-repeat 0 0;
-}
-.aui-avatar-badged .needs-work {
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:avatar/icons/icon-needs-work.svg) no-repeat 0 0;
-}
-.aui-avatar-badged.badge-hidden.avatar-dimmed > .aui-avatar-inner > img {
-  opacity: 1;
-}
-.aui-avatar-badged.badge-hidden .badge {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-.avatar-with-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
-}
-.avatar-with-name .aui-avatar {
-  vertical-align: middle;
-}
-.avatar-with-name.deleted-user {
-  text-decoration: line-through;
-}
-.gravatar-notice {
-  margin-top: 5px;
-  font-size: 12px;
-  color: #707070;
-  text-align: center;
-  display: block;
-  width: 100%;
-}
-.bitbucket-theme .aui-avatar img {
-  -moz-force-broken-image-icon: 1;
-}
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/store-1.3.1.js' */
+(function(){var l={},h=window,k=h.document,c="localStorage",n="globalStorage",d="__storejs__",g;l.disabled=false;l.set=function(e,o){};l.get=function(e){};l.remove=function(e){};l.clear=function(){};l.transact=function(e,o){var p=l.get(e);if(typeof p=="undefined"){p={}}o(p);l.set(e,p)};l.serialize=function(e){return JSON.stringify(e)};l.deserialize=function(e){if(typeof e!="string"){return undefined}return JSON.parse(e)};function b(){try{return(c in h&&h[c])}catch(e){return false}}function m(){try{return(n in h&&h[n]&&h[n][h.location.hostname])}catch(e){return false}}if(b()){g=h[c];l.set=function(e,o){if(o===undefined){return l.remove(e)}g.setItem(e,l.serialize(o))};l.get=function(e){return l.deserialize(g.getItem(e))};l.remove=function(e){g.removeItem(e)};l.clear=function(){g.clear()}}else{if(m()){g=h[n][h.location.hostname];l.set=function(e,o){if(o===undefined){return l.remove(e)}g[e]=l.serialize(o)};l.get=function(e){return l.deserialize(g[e]&&g[e].value)};l.remove=function(e){delete g[e]};l.clear=function(){for(var e in g){delete g[e]}}}else{if(k.documentElement.addBehavior){var j,f;try{f=new ActiveXObject("htmlfile");f.open();f.write('<script>document.w=window<\/script><iframe src="/favicon.ico"></frame>');f.close();j=f.w.frames[0].document;g=j.createElement("div")}catch(i){g=k.createElement("div");j=k.body}function a(e){return function(){var p=Array.prototype.slice.call(arguments,0);p.unshift(g);j.appendChild(g);g.addBehavior("#default#userData");g.load(c);var o=e.apply(l,p);j.removeChild(g);return o}}l.set=a(function(p,e,o){if(o===undefined){return l.remove(e)}p.setAttribute(e,l.serialize(o));p.save(c)});l.get=a(function(o,e){return l.deserialize(o.getAttribute(e))});l.remove=a(function(o,e){o.removeAttribute(e);o.save(c)});l.clear=a(function(q){var o=q.XMLDocument.documentElement.attributes;q.load(c);for(var p=0,e;e=o[p];p++){q.removeAttribute(e.name)}q.save(c)})}}}try{l.set(d,d);if(l.get(d)!=d){l.disabled=true}l.remove(d)}catch(i){l.disabled=true}if(typeof module!="undefined"){module.exports=l}else{if(typeof define==="function"&&define.amd){define(l)}else{this.store=l}}})();;
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/page-visibility.js' */
+define("atlassian/analytics/page-visibility",function(){var a=(document.hidden!==undefined);var b={supported:a,isHidden:function(){return a?document.hidden:false}};return b});;
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/user-activity-xhr-header.js' */
+define("atlassian/analytics/user-activity-xhr-header",["atlassian/analytics/page-visibility"],function(c){var e="x-atlassian-mau-ignore";var d=XMLHttpRequest.prototype.send;var a=window.fetch;var b=false;return{install:function(){if(!b&&c.supported){XMLHttpRequest.prototype.send=function(){if(c.isHidden()){this.setRequestHeader(e,c.isHidden())}d.apply(this,arguments)};if(a){window.fetch=function(f,i){var g=i||{};var h=g.headers;if(c.isHidden()){g.headers=(h)?new Headers(h):new Headers();g.headers.append(e,c.isHidden())}return a.call(this,f,g)}}b=true}},uninstall:function(){if(b){XMLHttpRequest.prototype.send=d;if(a){window.fetch=a}}b=false}}});require("atlassian/analytics/user-activity-xhr-header").install();;
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:js-events', location = 'js/atlassian-analytics.js' */
+(function(d){var p=AJS.$.ajax;var k="atlassian-analytics";var i=typeof AJS.contextPath=="function"?AJS.contextPath():typeof AJS.Confluence!="undefined"?AJS.Confluence.getContextPath():window.contextPath!=null?window.contextPath:"";var o=null;var l=null;var f=null;var q="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(y){var x=Math.random()*16|0,w=y=="x"?x:(x&3|8);return w.toString(16)});var s=function(){var w="unknown";if(document.body.id=="jira"){w="jira"}else{if(document.body.id=="com-atlassian-confluence"){w="confluence"}}l=k+"."+w;f=l+".lock"};var e=function(){if(store.get(f)){return false}store.set(f,q);return(store.get(f)===q)};var t=function(){store.set(f,null)};var h=function(){var x=[],z,A,w,y;if(AJS.EventQueue.length==0){return}x=store.get(l)||x;for(w=0,y=AJS.EventQueue.length;w<y;++w){A=AJS.EventQueue[w];if(A.name){z={name:A.name,properties:A.properties,time:A.time||0};x.push(z)}}AJS.EventQueue.length=0;store.set(l,x)};var u=0;var a=function(w){return Math.min(5000*Math.pow(2,w),5*60*1000)};var g=function(){var z;function x(){setTimeout(g,a(u=0))}function w(){setTimeout(g,a(++u))}if(!e()){return x()}h();z=store.get(l);if(!z||!z.length){t();return x()}store.remove(l);t();if(!n(z)){return x()}var A=new Date().getTime();for(var y=0;y<z.length;y++){if(z[y].time>0){z[y].timeDelta=z[y].time-A}else{z[y].timeDelta=y-z.length}delete z[y].time}o=p({type:"POST",url:i+"/rest/analytics/1.0/publish/bulk",data:JSON.stringify(z),contentType:"application/json",dataType:"json"});o.fail(function(){AJS.EventQueue.concat(z);h();w()});o.done(function(){x()})};var n=function(y){for(var x=y.length-1;x>=0;x--){var A="";var z=y[x];var w=z.properties;if(typeof z.name==="undefined"){A="you must provide a name for the event."}else{if(typeof w!=="undefined"&&w!==null){if(w.constructor!==Object){A="properties must be an object with key value pairs."}else{b(w)}}}if(A!==""){AJS.log("WARN: Invalid analytics event detected and ignored, "+A+"\nEvent: "+JSON.stringify(z));y.splice(x,1)}}return y.length};var b=function(y){for(var x in y){if(y.hasOwnProperty(x)){var w=y[x];if(c(w)&&j(w)){}else{if(c(w)&&w.toString){y[x]=w.toString()}else{y[x]=""}}}}};function c(w){return typeof w!=="undefined"&&w!==null}function j(w){return typeof w==="number"||typeof w==="string"||typeof w==="boolean"}var m=function(){if(o&&!(o.state()==="resolved"||o.state()==="rejected")){o.abort()}};AJS.EventQueue=AJS.EventQueue||[];var r=Array.prototype.push;AJS.EventQueue.push=function(w){w.time=new Date().getTime();r.call(AJS.EventQueue,w)};AJS.toInit(function(){s();setTimeout(g,500);v()});d(window).unload(function(){m();h()});AJS.Analytics={triggerPrivacyPolicySafeEvent:function(w,x){AJS.log("WARN: 'triggerPrivacyPolicySafeEvent' has been deprecated");AJS.EventQueue.push({name:w,properties:x})}};AJS.bind("analytics",function(w,x){AJS.EventQueue.push({name:x.name,properties:x.data})});AJS.bind("analyticsEvent",function(w,x){AJS.EventQueue.push({name:x.name,properties:x.data})});var v=function(){if(window.location.pathname.indexOf("/secure/admin/ViewApplicationProperties")>-1){AJS.$("[data-property-id='analytics-enabled']").remove()}else{if(window.location.pathname.indexOf("/secure/admin/EditApplicationProperties")>-1){var x=AJS.$(":contains(Enable Atlassian analytics)");if(x.size()>0){var w=x[x.size()-2];if(w){w.remove()}}}}}}(AJS.$));;
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:policy-update-init', location = 'js/policy-update-init.js' */
+AJS.toInit(function(){var a=WRM.data.claim("com.atlassian.analytics.analytics-client:policy-update-init.policy-update-data-provider");if(a){WRM.require("wrc!com.atlassian.analytics.analytics-client:policy-update")}});;
+;
+/* module-key = 'com.atlassian.analytics.analytics-client:programmatic-analytics-init', location = 'js/programmatic-analytics-init.js' */
+(function(){var a=WRM.data.claim("com.atlassian.analytics.analytics-client:programmatic-analytics-init.programmatic-analytics-data-provider");if(a){WRM.require("wrc!com.atlassian.analytics.analytics-client:programmatic-analytics")}}());;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:application-header-administration-cog-resource', location = 'header/cog.js' */
+var NavLinks=(function(a){a.ApplicationHeader=function(b){b.Cog=(function(){var c=function(){var d=AJS.$("#system-admin-menu-content");if(d.length>0){return d}var e=AJS.$("#admin-menu-link-content");if(e.length>0){return e}return AJS.$("#bamboo\\.global\\.header-admin\\.menu")};return{getDropdown:c}}());return b}(a.ApplicationHeader||{});return a}(NavLinks||{}));;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:administration-shortcuts-resources', location = 'adminshortcuts/adminshortcuts.soy' */
+// This file was automatically generated from adminshortcuts.soy.
+// Please don't edit this file by hand.
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:bitbucket-theme', location = '/static/bitbucket/internal/layout/bitbucket-theme/bitbucket-theme.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-html {
-  height: 100%;
-}
-/* MIN WIDTH FOR BODY */
-.bitbucket-theme {
-  min-width: 1004px;
-  height: 100%;
-  /**
-    * DEFAULT THEME SPACING
-    */
-  /*  -- Dropdown 1 styles -- */
-  /*  -- Other styles -- */
-  /* 'No results' table row  */
-  /* User keyboard input (eg terminal commands) */
-  /* @aui-override */
-  /* Until AUI-2476 gets resolved. We want the line-height to be closer to 20.0 than AUI's built-in of 20.44 */
-  /* @aui-override */
-  /* Until warning banners are added to AUI. The import is needed for the icon-bar() mixin. */
-}
-.bitbucket-theme .aui-page-header-main.entity-item h1 {
-  display: inline-block;
-}
-.bitbucket-theme .aui-page-header-main.entity-item h1 + .aui-button {
-  margin-bottom: -1px;
-  margin-left: 10px;
-  vertical-align: text-bottom;
-}
-.bitbucket-theme #content > header {
-  box-sizing: border-box;
-}
-.bitbucket-theme #content > header .aui-group-split {
-  margin-top: 0;
-}
-.bitbucket-theme #content > header + .horizontal-tabs {
-  margin-top: 0;
-}
-.bitbucket-theme #content > .content-body .aui-page-header h1 {
-  display: block;
-}
-.bitbucket-theme #content table.aui > tbody > tr:hover {
-  background-color: #F5F5F5;
-}
-.bitbucket-theme #content table.aui td.empty-field {
-  color: #999;
-}
-.bitbucket-theme #content .tabs-pane header {
-  margin-top: 10px;
-  padding-bottom: 10px;
-}
-.bitbucket-theme #content .no-more-results {
-  text-align: center;
-  color: #707070;
-}
-.bitbucket-theme #content .aui-page-panel-inner {
-  min-height: 75vh;
-}
-.bitbucket-theme #content .aui-page-panel:focus,
-.bitbucket-theme #content:focus {
-  outline: none;
-}
-.bitbucket-theme.aui-page-focused #content .aui-page-panel-inner {
-  min-height: 0;
-}
-.bitbucket-theme > #page {
-  min-width: 100%;
-  min-height: 100%;
-}
-.bitbucket-theme #header {
-  z-index: 500;
-}
-.bitbucket-theme #footer .footer-body {
-  width: auto;
-}
-.bitbucket-theme .aui-dd-parent .aui-dropdown,
-.bitbucket-theme .aui-dropdown,
-.bitbucket-theme .aui-dd-parent .aui-shadow-parent {
-  border: 1px solid #CCC;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-}
-.bitbucket-theme .tabs-menu .aui-dropdown {
-  border-color: #ccc;
-  margin-left: -1px;
-  margin-top: 0;
-}
-.bitbucket-theme .aui-dropdown2 {
-  z-index: 10;
-}
-.bitbucket-theme .aui-dropdown2.select2-drop {
-  z-index: 9999;
-}
-.bitbucket-theme h3.entity-empty {
-  text-align: center;
-  color: #707070;
-  font-size: 24px;
-  padding: 10px 0;
-  font-weight: normal;
-}
-.bitbucket-theme table tr.no-results-row td {
-  color: #999;
-}
-.bitbucket-theme table tr.no-results-row:hover {
-  background-color: transparent;
-}
-.bitbucket-theme kbd {
-  background-clip: padding-box;
-  border-radius: 4px;
-  font-size: 11px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  padding: 2px 4px;
-}
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[disabled],
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[disabled]:hover,
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[disabled]:focus,
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[disabled]:active,
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[aria-disabled="true"],
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[aria-disabled="true"]:hover,
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[aria-disabled="true"]:focus,
-.bitbucket-theme .aui-dialog .dialog-button-panel button.button-panel-button[aria-disabled="true"]:active {
-  background: #f2f2f2;
-  background: -moz-linear-gradient(top, #FFF 0%, #f2f2f2 100%);
-  /* FF3.6+ */
-  background: -webkit-linear-gradient(top, #FFF 0%, #f2f2f2 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #FFF 0%, #f2f2f2 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #FFF 0%, #f2f2f2 100%);
-  /* IE10+ */
-  background: linear-gradient(top, #FFF 0%, #f2f2f2 100%);
-  /* W3C */
-  border-color: #ccc;
-  box-shadow: none;
-  color: #999;
-  cursor: default;
-  text-shadow: none;
-}
-.bitbucket-theme a.secondary-link {
-  color: #707070;
-}
-.bitbucket-theme .aui-tabs {
-  line-height: 1.42858;
-}
-.bitbucket-theme .aui-banner.aui-banner-warning {
-  background-color: #f6c342;
-  color: #333;
-  /* These two styles are copied from #aui.icon-glyph() to allow us to get the right colors */
-}
-.bitbucket-theme .aui-banner.aui-banner-warning:before {
-  background-color: #3572b0;
-  bottom: 0;
-  content: '';
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 40px;
-}
-.bitbucket-theme .aui-banner.aui-banner-warning:after {
-  color: #fff;
-  font-family: "FontAwesome";
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  /* Improves the rendering of icons */
-  font-style: normal;
-  font-weight: normal;
-  left: 12px;
-  line-height: 1;
-  margin-top: -8px;
-  position: absolute;
-  speak: none;
-  /* This prevents screen readers from pronouncing the pseudo element text content used to trigger the icon font */
-  top: 50%;
-}
-.bitbucket-theme .aui-banner.aui-banner-warning:after {
-  content: "\f15a";
-  color: #333;
-}
-.bitbucket-theme .aui-banner.aui-banner-warning:before {
-  background-color: #f6c342;
-}
-.bitbucket-theme .aui-banner.aui-banner-warning a,
-.bitbucket-theme .aui-banner.aui-banner-warning a:link,
-.bitbucket-theme .aui-banner.aui-banner-warning a:visited {
-  color: #333;
-  text-decoration: underline;
-}
-/* @aui-override */
-/* padding and truncation for dropdown2 menu items that aren't links */
-.aui-dropdown2.aui-style-default li > span {
-  padding: 5px 10px;
-}
-.aui-dropdown2 .aui-list-truncate > li > span {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
-  display: inline-block;
-  width: 100%;
-  position: relative;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:keyboard-shortcuts', location = '/static/bitbucket/internal/widget/keyboard-shortcuts/keyboard-shortcuts.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.keyboard-shortcut-context {
-  margin-bottom: 30px;
-}
-.keyboard-shortcut-context dl {
-  line-height: 20px;
-}
-.keyboard-shortcut-context dt,
-.keyboard-shortcut-context dd {
-  margin-bottom: 10px;
-  display: inline-block;
-  vertical-align: top;
-}
-.keyboard-shortcut-context dt {
-  width: 190px;
-  margin-right: 10px;
-}
-.keyboard-shortcut-context dd {
-  margin: 0;
-}
-.keyboard-shortcut-context dd.separator {
-  white-space: pre-wrap;
-}
-.keyboard-shortcut-context kbd {
-  min-height: 21px;
-  min-width: 21px;
-  margin: 0 2px;
-  padding: 0 5px;
-  text-transform: uppercase;
-  color: #333;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  background: #f9f9f9;
-  font-family: sans-serif;
-  font-size: 12px;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  box-sizing: border-box;
-  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
-  background-clip: padding-box;
-  border-radius: 3px;
-}
-#keyboard-shortcut-dialog .keyboard-shortcut-help {
-  outline: none;
-}
-#keyboard-shortcut-dialog .aui-group > .aui-item:first-child {
-  padding-right: 20px;
-}
-#keyboard-shortcut-dialog .dialog-panel-body h3 {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/baseLayout-dialogs.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* @aui-override AUI Dialog with Red headers for errors and confirmation of destructive actions */
-.aui-dialog h2.dialog-title.warning-header,
-.aui-dialog h2.dialog-title.error-header {
-  background-color: #d04437;
-  color: #fff;
-}
-.aui-dialog .dialog-button-panel.disabled .button-panel-link {
-  color: #D0D0D0;
-}
-.aui-dialog .dialog-button-panel.disabled .button-panel-link:hover {
-  text-decoration: none;
-  cursor: default;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/dropdown-typography-overrides.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* https://studio.atlassian.com/browse/AJS-794 */
-#header .primary .aui-dropdown > ol,
-#header .secondary .aui-dropdown > ol {
-  margin-top: 0;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/baseLayout.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.bitbucket-theme .aui-message p.scm-command,
-.bitbucket-theme .scm-command {
-  font-family: monospace;
-  margin-top: 16px;
-  word-wrap: break-word;
-}
-.bitbucket-theme.scrolling-forwarded #page {
-  position: fixed;
-  min-width: 1004px;
-}
-.bitbucket-theme.scrolling-forwarded .aui-page-panel-content {
-  padding-bottom: 0;
-}
-.aui-page-focused .aui-page-panel {
-  margin-top: 50px;
-}
-.aui-page-focused .aui-page-panel p:last-child {
-  margin-bottom: 20px;
-}
-.aui-page-hybrid #content > .aui-page-header {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/stash-fields.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Copied from form.css so that we can gain the input styles of ADG without the form.aui - AUI-1617 */
-.stash-text {
-  border: 1px solid #ccc;
-  border-radius: 3.01px;
-  box-shadow: inset 0 1px 3px #ccc;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #333;
-  font-size: inherit;
-  margin: 0;
-  max-width: 250px;
-  vertical-align: baseline;
-  width: 100%;
-  font-family: inherit;
-  font-size: 14px;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/dropdown-aui-tabs-overrides.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.bitbucket-theme .aui-tabs > ul.tabs-menu.tabs-web-section {
-  overflow: visible;
-}
-.bitbucket-theme .aui-tabs > ul.tabs-menu.tabs-web-section .menu-item {
-  cursor: pointer;
-}
-.bitbucket-theme .aui-tabs > ul.tabs-menu.tabs-web-section .menu-item:hover {
-  color: black;
-}
-.bitbucket-theme .aui-tabs > ul.tabs-menu.tabs-web-section:after {
-  clear: both;
-  content: ".";
-  display: block;
-  height: 0;
-  visibility: hidden;
-}
-.bitbucket-theme #content > .aui-tabs.horizontal-tabs > ul.tabs-menu.tabs-web-section > li.menu-item .aui-dropdown a {
-  background: #ffffff;
-  border-color: transparent;
-  padding: 2px 2em 2px 0.5em;
-  line-height: 1.5;
-  background-clip: padding-box;
-  border-radius: 0;
-}
-.bitbucket-theme #content > .aui-tabs.horizontal-tabs > ul.tabs-menu.tabs-web-section > li.menu-item .aui-dropdown li:hover a {
-  color: #15518F;
-  background-color: #E2EFFA;
-  cursor: pointer;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:base-layout', location = '/static/bitbucket/internal/layout/base/baseLayout-notifications.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* header notifications*/
-.bitbucket-theme #header > .notifications > div,
-.bitbucket-theme #footer > .notifications > div {
-  clear: both;
-}
-.bitbucket-theme #header > .notifications > div + div,
-.bitbucket-theme #footer > .notifications > div + div {
-  border-top: 0;
-}
-.bitbucket-theme #footer > .notifications > div {
-  margin-bottom: 4px;
-}
-
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:entity-layout', location = '/static/bitbucket/internal/layout/entity/entity.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-#content > .aui-tabs > ul.tabs-menu li.menu-item.active-tab strong {
-  cursor: inherit;
-  /* active tab is still clickable on entity pages */
-}
-.page-panel-content-header {
-  margin-top: 0;
-  padding-bottom: 10px;
-}
-.sidebar-settings-group .aui-nav-heading {
-  padding-top: 0;
-}
-.aui-sidebar .actions-trigger {
-  opacity: 0;
-  margin-top: -15px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-}
-.aui-sidebar .actions-trigger:hover,
-.aui-sidebar .actions-trigger.active {
-  outline: 0;
-}
-.aui-sidebar-submenu-dialog .actions-trigger,
-.aui-sidebar[aria-expanded="false"] .actions-trigger {
-  display: none;
-}
-.aui-sidebar[aria-expanded="true"] li:hover .actions-trigger,
-.aui-sidebar[aria-expanded="true"] li .actions-trigger:focus,
-.aui-sidebar[aria-expanded="true"] li .actions-trigger.active {
-  opacity: 1;
-}
-.aui-sidebar[aria-expanded="true"] li:hover .actions-trigger + .aui-nav-item,
-.aui-sidebar[aria-expanded="true"] li .actions-trigger:focus + .aui-nav-item,
-.aui-sidebar[aria-expanded="true"] li .actions-trigger.active + .aui-nav-item {
-  width: 100%;
-}
-li.has-actions:hover {
-  background-color: #e6e6e6;
-}
-.aui-sidebar[aria-expanded="false"] button.aui-nav-item.aui-button.aui-button-link,
-.aui-sidebar[aria-expanded="true"] button.aui-nav-item.aui-button.aui-button-link {
-  border-radius: 0;
-  height: auto;
-  margin: 0 0 0 -15px;
-  padding-right: 15px;
-}
-.aui-sidebar[aria-expanded="false"] button.aui-nav-item.aui-button.aui-button-link {
-  width: auto;
-}
-.aui-sidebar[aria-expanded="false"] .aui-nav-selected button.aui-nav-item.aui-button.aui-button-link {
-  background-color: #e6e6e6;
-}
-.aui-sidebar[aria-expanded="true"] button.aui-nav-item.aui-button.aui-button-link {
-  box-sizing: content-box;
-  border: none;
-  padding-left: 15px;
-  text-align: left;
-  width: 100%;
-}
-.aui-sidebar button.aui-nav-item.aui-button.aui-button-link:focus {
-  outline: 0;
-  text-decoration: none;
-}
-.aui-sidebar button.aui-nav-item.aui-button.aui-button-link:hover {
-  background-color: #e6e6e6;
-  text-decoration: none;
-}
-.aui-sidebar .aui-sidebar-footer .aui-sidebar-toggle {
-  width: 100%;
-  text-align: right;
-}
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group.section-overflow-items {
-  background: none;
-  box-sizing: border-box;
-}
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group.section-overflow-items:after {
-  content: none;
-}
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group.section-overflow-items:before {
-  color: #707070;
-  content: "\f17f";
-  font-family: "Atlassian Icons";
-  font-size: 16px;
-  margin-left: 20px;
-  position: relative;
-  top: -2px;
-}
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group.section-overflow-items:hover {
-  background-color: #e6e6e6;
-}
-.aui-message + .page-panel-content-header {
-  margin-top: 10px;
-}
-.page-header-flex .aui-page-header-inner {
-  display: flex;
-  align-items: flex-end;
-}
-.page-header-flex .aui-page-header-main,
-.page-header-flex .aui-page-header-actions {
-  display: block;
-  min-width: 0;
-  overflow: hidden;
-}
-.page-header-flex .aui-page-header-actions {
-  flex: 1 0 auto;
-  padding-bottom: 10px;
-  padding-left: 0;
-}
-
-/* module-key = 'com.atlassian.plugins.atlassian-chaperone:feature-discovery', location = '/feature-discovery/feature-discovery.less' */
-.multi-step-trigger{float:right;line-height:30px;color:#707070}.feature-discovery-dialog{width:300px}
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:sidebar', location = '/static/bitbucket/internal/widget/sidebar/sidebar.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.aui-sidebar .aui-page-header-main.entity-item .aui-nav-breadcrumbs li {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 100%;
-}
-.aui-sidebar .aui-page-header-main.entity-item h1 {
-  display: inline-block;
-  max-width: 100%;
-}
-.aui-sidebar .aui-page-header-main.entity-item h1 + .aui-button {
-  margin-left: 10px;
-  vertical-align: bottom;
-}
-.aui-sidebar .aui-sidebar-group-tier-one {
-  margin-top: 10px;
-}
-.aui-sidebar:focus {
-  outline: none;
-}
-.aui-sidebar .aui-nav > li > .aui-nav-item > .aui-icon,
-.aui-sidebar-submenu .aui-nav > li > .aui-nav-item > .aui-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 5px;
-}
-.aui-sidebar .aui-nav-heading,
-.aui-sidebar-submenu .aui-nav-heading {
-  padding-bottom: 5px;
-}
-.aui-sidebar .aui-navgroup-vertical .aui-nav > li > a.aui-nav-item,
-.aui-sidebar-submenu .aui-navgroup-vertical .aui-nav > li > a.aui-nav-item,
-.aui-sidebar .aui-navgroup-vertical .aui-nav > li > button.aui-nav-item,
-.aui-sidebar-submenu .aui-navgroup-vertical .aui-nav > li > button.aui-nav-item,
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group.section-overflow-items,
-.aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group.section-overflow-items {
-  line-height: 24px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.aui-sidebar .aui-sidebar-footer > .aui-sidebar-toggle > .aui-icon,
-.aui-sidebar-submenu .aui-sidebar-footer > .aui-sidebar-toggle > .aui-icon {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-toggle.svg');
-  background-size: 24px;
-}
-.aui-sidebar[aria-expanded="false"] .aui-sidebar-group-tier-one > .aui-nav > li > .aui-nav-item > .aui-icon,
-.aui-sidebar-submenu[aria-expanded="false"] .aui-sidebar-group-tier-one > .aui-nav > li > .aui-nav-item > .aui-icon {
-  margin-left: 15px;
-}
-.aui-sidebar .project-repository-link .aui-nav-item svg {
-  float: none;
-  margin-left: 20px;
-  margin-top: 4px;
-  width: 16px;
-  height: 16px;
-}
-.aui-sidebar .project-repository-link .aui-nav-item svg g {
-  fill: #707070;
-}
-[aria-expanded="true"].aui-sidebar .project-repository-link .aui-nav-item svg {
-  float: left;
-  margin-left: 0;
-  margin-right: 15px;
-  margin-top: 2px;
-}
-.icon-create-pull-request {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-create-pull-request.svg');
-}
-.icon-fork {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-fork.svg');
-}
-.icon-clone {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-clone.svg');
-}
-.icon-source {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-source.svg');
-}
-.icon-commits {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-commits.svg');
-}
-.icon-branches {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-branches.svg');
-}
-.icon-pull-requests {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-pull-requests.svg');
-}
-.icon-settings {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-settings.svg');
-}
-.icon-show-actions {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-show-actions.svg');
-}
-.icon-create-branch {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-create-branch.svg');
-}
-.icon-add {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-add.svg');
-}
-.icon-import {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-import.svg');
-}
-.icon-repository {
-  background-image: url('/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:sidebar/icons/icon-repository.svg');
-}
-.aui-sidebar-submenu-dialog {
-  max-height: 100vh;
-}
-.aui-sidebar-submenu-dialog .aui-inline-dialog-contents {
-  max-height: inherit;
-  overflow-y: auto;
-}
 /**
- * @aui-override for AUI-2468
+ * @fileoverview Templates in namespace navlinks.templates.adminshortcuts.
  */
-.aui-sidebar .aui-sidebar-group:first-child .aui-nav-heading:first-child,
-.aui-sidebar-submenu .aui-sidebar-group:first-child .aui-nav-heading:first-child {
-  border-top: none;
+
+if (typeof navlinks == 'undefined') { var navlinks = {}; }
+if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
+if (typeof navlinks.templates.adminshortcuts == 'undefined') { navlinks.templates.adminshortcuts = {}; }
+
+
+navlinks.templates.adminshortcuts.section = function(opt_data, opt_ignored) {
+  var param5 = '<ul class="aui-list-truncate">';
+  var linkList7 = opt_data.links;
+  var linkListLen7 = linkList7.length;
+  for (var linkIndex7 = 0; linkIndex7 < linkListLen7; linkIndex7++) {
+    var linkData7 = linkList7[linkIndex7];
+    param5 += '<li><a href="' + soy.$$escapeHtml(linkData7.link) + '">' + soy.$$escapeHtml(linkData7.label) + '</a></li>';
+  }
+  param5 += '</ul>';
+  var output = '' + aui.dropdown2.section({id: 'nl-remote-admin-section', label: 'Other applications', content: param5});
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.adminshortcuts.section.soyTemplateName = 'navlinks.templates.adminshortcuts.section';
 }
-.aui-sidebar-fly-out {
-  z-index: 10;
-}
-.aui-sidebar.aui-sidebar-fly-out ~ .aui-page-panel {
-  padding-left: 56px;
-}
-#content .aui-sidebar.aui-sidebar-fly-out + .aui-page-header {
-  padding-left: 76px;
-}
-.aui-sidebar[aria-expanded='false'] .aui-sidebar-body {
-  overflow-x: hidden;
-}
-.aui-sidebar .aui-nav > li > .aui-nav-item > .aui-icon.aui-icon-small:before {
-  font-size: 16px;
-  padding: 2px;
+;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:administration-shortcuts-resources', location = 'adminshortcuts/adminnavlinks.js' */
+var NavLinks=(function(a){a.AdminShortcuts=(function(){var c=function(){return AJS.$.ajax({url:AJS.contextPath()+"/rest/menu/latest/admin",cache:false,dataType:"json"})};var b=function(){AJS.$("#nl-remote-admin-section").on("click","a",function(){NL.trackEvent("remoteAdminItemSelected",NL.getCurrentApplication(),$(this).attr("href"))})};return{render:function(){c().done(function(e){e=_.reject(e,function(f){return f.local===true});if(e.length){var d=navlinks.templates.adminshortcuts.section({links:e});a.ApplicationHeader.Cog.getDropdown().append(d);b()}})}}}());return a}(NavLinks||{}));;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-projectshortcuts', location = 'projectshortcuts/projectshortcuts.soy' */
+// This file was automatically generated from projectshortcuts.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace navlinks.templates.projectshortcuts.
+ */
+
+if (typeof navlinks == 'undefined') { var navlinks = {}; }
+if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
+if (typeof navlinks.templates.projectshortcuts == 'undefined') { navlinks.templates.projectshortcuts = {}; }
+
+
+navlinks.templates.projectshortcuts.dialogContent = function(opt_data, opt_ignored) {
+  return '' + ((opt_data.localShortcuts && opt_data.localShortcuts.length > 0) ? navlinks.templates.projectshortcuts.dialogContentShortcuts({shortcuts: opt_data.localShortcuts, listClass: 'projectshortcut-links'}) : '') + ((opt_data.remoteShortcuts != null) ? (opt_data.remoteShortcuts.length > 0) ? '<h2 class="projectshortcuts-heading">Related Links</h2>' + navlinks.templates.projectshortcuts.dialogContentShortcuts(soy.$$augmentMap(opt_data.remoteShortcuts, {shortcuts: opt_data.remoteShortcuts, listClass: 'projectshortcut-links'})) : '' : navlinks.templates.projectshortcuts.dialogLoading(null));
+};
+if (goog.DEBUG) {
+  navlinks.templates.projectshortcuts.dialogContent.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContent';
 }
 
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-projectshortcuts', location = 'projectshortcuts/projectshortcuts.css' */
-.dialog-panel-body .projectshortcuts-heading{color:#707070;font-size:1em;font-weight:bold;margin:20px 0 0;text-transform:uppercase}.projectshortcut-links{color:#707070;list-style:none;margin:10px 0 0;padding:0}.projectshortcut-links>li{display:inline-block;margin-top:10px}.projectshortcut-links>li:after{content:"\2022";margin:0 10px}.projectshortcut-links>.last:after{content:normal;margin:0}.projectshortcuts-heading+.projectshortcut-links{margin-top:0}.projectshortcuts-loading{padding-bottom:48px;position:relative;text-align:center}.projectshortcuts-loading:after{bottom:0;content:url(data:image/gif;base64,R0lGODlhEAAQAMQAAP///+7u7t3d3bu7u6qqqpmZmYiIiHd3d2ZmZlVVVURERDMzMyIiIhEREQARAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAQACwAAAAAEAAQAAAFdyAkQgGJJOWoQgIjBM8jkKsoPEzgyMGsCjPDw7ADpkQBxRDmSCRetpRA6Rj4kFBkgLC4IlUGhbNQIwXOYYWCXDufzYPDMaoKGBoKb886OjAKdgZAAgQkfCwzAgsDBAUCgl8jAQkHEAVkAoA1AgczlyIDczUDA2UhACH5BAUHABAALAAAAAAPABAAAAVjICSO0IGIATkqIiMKDaGKC8Q49jPMYsE0hQdrlABCGgvT45FKiRKQhWA0mPKGPAgBcTjsspBCAoH4gl+FmXNEUEBVAYHToJAVZK/XWoQQDAgBZioHaX8igigFKYYQVlkCjiMhACH5BAUHABAALAAAAAAQAA8AAAVgICSOUGGQqIiIChMESyo6CdQGdRqUENESI8FAdFgAFwqDISYwPB4CVSMnEhSej+FogNhtHyfRQFmIol5owmEta/fcKITB6y4choMBmk7yGgSAEAJ8JAVDgQFmKUCCZnwhACH5BAUHABAALAAAAAAQABAAAAViICSOYkGe4hFAiSImAwotB+si6Co2QxvjAYHIgBAqDoWCK2Bq6A40iA4yYMggNZKwGFgVCAQZotFwwJIF4QnxaC9IsZNgLtAJDKbraJCGzPVSIgEDXVNXA0JdgH6ChoCKKCEAIfkEBQcAEAAsAAAAABAADgAABUkgJI7QcZComIjPw6bs2kINLB5uW9Bo0gyQx8LkKgVHiccKVdyRlqjFSAApOKOtR810StVeU9RAmLqOxi0qRG3LptikAVQEh4UAACH5BAUHABAALAAAAAAQABAAAAVxICSO0DCQKBQQonGIh5AGB2sYkMHIqYAIN0EDRxoQZIaC6bAoMRSiwMAwCIwCggRkwRMJWKSAomBVCc5lUiGRUBjO6FSBwWggwijBooDCdiFfIlBRAlYBZQ0PWRANaSkED1oQYHgjDA8nM3kPfCmejiEAIfkEBQcAEAAsAAAAABAAEAAABWAgJI6QIJCoOIhFwabsSbiFAotGMEMKgZoB3cBUQIgURpFgmEI0EqjACYXwiYJBGAGBgGIDWsVicbiNEgSsGbKCIMCwA4IBCRgXt8bDACkvYQF6U1OADg8mDlaACQtwJCEAIfkEBQcAEAAsAAABABAADwAABV4gJEKCOAwiMa4Q2qIDwq4wiriBmItCCREHUsIwCgh2q8MiyEKODK7ZbHCoqqSjWGKI1d2kRp+RAWGyHg+DQUEmKliGx4HBKECIMwG61AgssAQPKA19EAxRKz4QCVIhACH5BAUHABAALAAAAAAQABAAAAVjICSOUBCQqHhCgiAOKyqcLVvEZOC2geGiK5NpQBAZCilgAYFMogo/J0lgqEpHgoO2+GIMUL6p4vFojhQNg8rxWLgYBQJCASkwEKLC17hYFJtRIwwBfRAJDk4ObwsidEkrWkkhACH5BAUHABAALAAAAQAQAA8AAAVcICSOUGAGAqmKpjis6vmuqSrUxQyPhDEEtpUOgmgYETCCcrB4OBWwQsGHEhQatVFhB/mNAojFVsQgBhgKpSHRTRxEhGwhoRg0CCXYAkKHHPZCZRAKUERZMAYGMCEAIfkEBQcAEAAsAAABABAADwAABV0gJI4kFJToGAilwKLCST6PUcrB8A70844CXenwILRkIoYyBRk4BQlHo3FIOQmvAEGBMpYSop/IgPBCFpCqIuEsIESHgkgoJxwQAjSzwb1DClwwgQhgAVVMIgVyKCEAIfkECQcAEAAsAAAAABAAEAAABWQgJI5kSQ6NYK7Dw6xr8hCw+ELC85hCIAq3Am0U6JUKjkHJNzIsFAqDqShQHRhY6bKqgvgGCZOSFDhAUiWCYQwJSxGHKqGAE/5EqIHBjOgyRQELCBB7EAQHfySDhGYQdDWGQyUhADs=);left:50%;margin-left:-8px;position:absolute}.aui-dialog #projectShortcutsContent{padding-left:11px}.project-shortcut-dialog-trigger{cursor:pointer;float:left;position:relative}.project-shortcut-dialog-trigger:after{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAJFBMVEX///////9dXV3W1tZ6enplZWXLy8utra3g4OD09PSOjo6EhISIeIDmAAAAAXRSTlMAQObYZgAAAGJJREFUeNplT9sOQCEIMsjs8v//e45aW1u8aMACJTDxY8pBRTXS/pFv1VYCTTV07WWjq3vQfAXoHois6hqTKHUJzJdBDp8GSWVsBw/Bi7CbMLyfZixPbBbLlCj2VH+Pe87/AEwfAnbLq1BrAAAAAElFTkSuQmCC) no-repeat 0 0;content:"";display:none;top:0;left:0;height:16px;width:16px;position:absolute}.project-shortcut-dialog-trigger:hover:after{display:block}.project-shortcut-helptip h3{font-size:19px;line-height:1.2106;margin-top:0}.project-dialog-header-wrapper .project-header{border-bottom:1px solid #CCC;padding:10px 0 14px 15px;background-color:#f2f2f2;margin:0;height:48px}.project-dialog-header-wrapper .project-header img{height:48px;width:48px;-webkit-border-radius:50%;border-radius:50%}#project-shortcuts-dialog .dialog-panel-body{padding-left:0;padding-right:0;padding-top:0}.project-dialog-header-wrapper h2.dialog-title{border-bottom:0;display:inline-block;vertical-align:top;padding-top:5px;min-width:50%;padding-right:0;padding-left:0;margin-right:18px;margin-left:18px;line-height:48px}.poject-dialog-header-wrapper{padding:20px}.project-dialog-header-wrapper .project-right-column{padding-left:10px}.project-dialog-header-wrapper .project-content-wrapper{padding:20px 60px 20px 85px;color:#333}.project-dialog-header-wrapper .project-heading{background-color:#f2f2f2;padding-top:15px;padding-left:10px;padding-bottom:25px;padding-right:60px}.projectshortcuts-description{padding-top:20px;max-height:72px;overflow:hidden}
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher.css' */
-.nav-link-label,.nav-link-description{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nav-links .nav-link-description{color:#707070}.nav-links .nav-link-edit{color:#3b73af}.nav-links .active>.nav-link-label,.nav-links .active>.nav-link-description,.nav-links .active>.nav-link-edit{color:inherit}.nav-links .nav-link-edit-wrapper{padding-left:10px!important}#app-switcher{z-index:12000}.app-switcher-trigger.aui-dropdown2-trigger,.app-switcher-trigger.sidebar-trigger{background:transparent;border:0;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;color:inherit;cursor:pointer;float:left;height:40px;width:36px}.app-switcher-trigger.aui-dropdown2-trigger:after{content:normal!important}.app-switcher-trigger>.aui-icon{filter:alpha(opacity=80);opacity:.8}.app-switcher-trigger:hover>.aui-icon,.app-switcher-trigger:active>.aui-icon,.app-switcher-trigger:focus>.aui-icon,.app-switcher-trigger.active>.aui-icon{filter:alpha(opacity=100);opacity:1}.app-switcher-loading{background:no-repeat 10px 50%;background-image:url(data:image/gif;base64,R0lGODlhEAAQAPMPALu7u5mZmTMzM93d3REREQAAAHd3d1VVVWZmZqqqqoiIiO7u7kRERCIiIgARAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFBwAPACwAAAAAEAAQAEAEcPDJtyg6dUrFetDTIopMoSyFcxxD1krD8AwCkASDIlPaUDQLR6G1Cy0SgqIkE1IQGMrFAKCcGWSBzwPAnAwarcKQ15MpTMJYd1ZyUDXSDGelBY0qIoBh/ZoYGgELCjoxCRRvIQcGD1kzgSAgAACQDxEAIfkEBQcADwAsAAAAAA8AEAAABF3wyfkMkotOJpscRKJJwtI4Q1MAoxQ0RFBw0xEvhGAVRZZJh4JgMAEQW7TWI4EwGFjKR+CAQECjn8DoN0kwDtvBT8FILAKJgfoo1iAGAPNVY9DGJXNMIHN/HJVqIxEAIfkEBQcADwAsAAAAABAADwAABFrwyfmColgiydpaQiY5x9Ith7hURdIl0wBIhpCAjKIIxaAUPQ0hFQsAC7MJALFSFi4SgC4wyHyuCYNWxH3AuhSEotkNGAALAPqqkigG8MWAjAnM4A8594vPUyIAIfkEBQcADwAsAAAAABAAEAAABF3wySkDvdKsddg+APYIWrcg2DIRQAcU6DJICjIsjBEETLEEBYLqYSDdJoCGiHgZwG4LQCCRECEIBAdoF5hdEIWwgBJqDs7DgcKyRHZl3uUwuhm2AbNNW+LV7yd+FxEAIfkEBQcACAAsAAAAABAADgAABEYQyYmMoVgeWQrP3NYhBCgZBdAFRUkdBIAUguVVo1ZsWFcEGB5GMBkEjiCBL2a5ZAi+m2SAURExwKqPiuCafBkvBSCcmiYRACH5BAUHAA4ALAAAAAAQABAAAARs0MnpAKDYrbSWMp0xZIvBKYrXjNmADOhAKBiQDF5gGcICNAyJTwFYTBaDQ0HAkgwSmAUj0OkMrkZM4HBgKK7YTKDRICAo2clAEIheKc9CISjEVTuEQrJASGcSBQcSUFEUDQUXJBgDBW0Zj34RACH5BAUHAA8ALAAAAAAQABAAAARf8Mn5xqBYgrVC4EEmBcOSfAEjSopJMglmcQlgBYjE5NJgZwjCAbO4YBAJjpIjSiAQh5ayyRAIDKvJIbnIagoFRFdkQDQKC0RBsCIUFAWsT7RwG410R8HiiK0WBwJjFBEAIfkEBQcADgAsAQABAA8ADwAABFrQybEWADXJLUHHAMJxIDAgnrOo2+AOibEMh1LN62gIxphzitRoCDAYNcNN6FBLShao4WzwHDQKvVGhoFAwGgtFgQHENhoB7nCwHRAIC0EyUcC8Zw1ha3NIRgAAIfkEBQcADwAsAAAAABAAEAAABGDwyfnWoljaNYYFV+Zx3hCEGEcuypBtMJBISpClAWLfWODymIFiCJwMDMiZBNAAYFqUAaNQ2E0YBIXGURAMCo1AAsFYBBoIScBJEwgSVcmP0li4FwcHz+FpCCQMPCFINxEAIfkEBQcADgAsAAABABAADwAABFzQyemWXYNqaSXY2vVtw3UNmROM4JQowKKlFOsgRI6ASQ8IhSADFAjAMIMAgSYJtByxyQIhcEoaBcSiwegpDgvAwSBJ0AIHBoCQqIAEi/TCIAABGhLG8MbcKBQgEQAh+QQFBwAPACwAAAEAEAAPAAAEXfDJSd+qeK5RB8fDRRWFspyotAAfQBbfNLCVUSSdKDV89gDAwcFBIBgywMRnkWBgcJUDKSZRIKAPQcGwYByAAYTEEJAAJIGbATEQ+B4ExmK9CDhBd8ThdHw/AmUYEQAh+QQFBwAPACwAAAEADwAPAAAEXvBJQIa8+ILSspdHkXxS9wxF4Q3L2aTBeC0sFjhAtuyLIjAMhYc2GBgaSKGuyNoBDp7czFAgeBIKwC6kWCAMxUSAFjtNCAAFGGF5tCQLAaJnWCTqHoREvQuQJAkyGBEAOw==);line-height:16px;padding:5px 10px 5px 31px}.app-switcher-error{line-height:16px;padding:5px 10px;white-space:nowrap}.app-switcher-retry{color:#3b73af;cursor:pointer}.app-switcher-retry:hover{text-decoration:underline}.app-switcher-sidebar{display:none;position:fixed;top:0;bottom:0;left:0;background-color:#393939;width:205px;padding:10px 20px;-moz-box-shadow:2px 0 3px #111;-webkit-box-shadow:2px 0 3px #111;box-shadow:2px 0 3px #111}.app-switcher-sidebar .aui-nav-heading,.aui-theme-bamboo .app-switcher-sidebar .aui-nav-heading{font-size:12px;line-height:1.66;text-transform:uppercase;color:#ccc;margin-top:0}.app-switcher-sidebar ul,.app-switcher-sidebar li{list-style:none;margin:0;padding:0}.app-switcher-sidebar li a{display:block;line-height:20px;overflow:hidden;padding:5px 10px;text-overflow:ellipsis;white-space:nowrap;color:#3b73af}#app-switcher.app-switcher-sidebar .nav-link a .nav-link-label{color:#aaa}.app-switcher-sidebar li a:hover{text-decoration:none}.sidebar-customize-section.aui-dropdown2{z-index:12001}.app-switcher-sidebar .aui-dropdown2-trigger{display:inline-block;margin-top:7px;float:right}.sidebar-project-name{display:table-cell;vertical-align:middle;padding:0 10px;color:#ccc;-webkit-hyphens:auto;-moz-hyphens:auto;hyphens:auto;text-overflow:ellipsis;overflow:hidden;color:#e6e6e6}.app-switcher-sidebar a.aui-dropdown2-trigger{color:#ccc}.app-switcher-section{margin-top:10px}.app-switcher-title{margin-bottom:2px}.sidebar-trigger.sidebar-open{background-color:#296ca3;color:#fff}.aui-navgroup .app-switcher-applications .aui-nav-heading{border-top:0}.app-switcher-open .app-switcher-sidebar{display:block}.app-switcher-open .sidebar-trigger{background-color:#3872b1}.app-switcher-sidebar .app-switcher-error{color:#aaa;white-space:normal}
-/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcherdiscovery.css' */
-.app-discovery-suggestion-app .suggestion-apps{padding-left:20px;margin-top:10px}.app-discovery-suggestion-app .active{background-color:#fff}.app-discovery-suggestion-app:hover{background-color:#3b73af}.app-discovery-suggestion-app:hover .app-discovery-small{color:#fff}.app-discovery-apps{border-top:1px solid solid #ccc}.app-discovery-small{color:#707070;font-size:12px;line-height:1.33333333333333;padding-left:10px;margin-top:5px;padding-right:10px}.app-discovery-suggestion-app:hover .app-discovery-suggest-title small{color:#fff}.app-discovery-suggest-title{padding-right:20px;padding-left:10px;padding-top:3px}.app-discovery-suggest-apps-buttons{padding:10px}.app-discovery-link{padding-left:31px!important}.app-discovery-bamboo-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/bamboo.png);background-size:120px 40px;height:40px}.app-discovery-suggestion-app:hover .app-discovery-bamboo-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/bamboo_hover.png)}.app-discovery-jira-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/jira.png);background-size:80px 40px;height:40px}.app-discovery-suggestion-app:hover .app-discovery-jira-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/jira_hover.png)}.app-discovery-confluence-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/confluence.png);background-size:140px 40px;height:40px}.app-discovery-suggestion-app:hover .app-discovery-confluence-product-icon{background-image:url(/s/837600433/a8ec8e6/1/4.3.6/_/download/resources/com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu/images/confluence_hover.png)}.close-button-alignment{margin-top:20px;padding:4px 10px}.appswitcher-tooltips .tipsy-arrow{top:30%;border-width:5px}.appswitcher-tooltips .tipsy-inner{max-width:400px;width:220px}#arrow-app-switcher-tooltip.aui-inline-dialog-arrow.aui-css-arrow.aui-left-arrow:after,#arrow-app-switcher-tooltip.arrow.aui-css-arrow.aui-left-arrow:after,#arrow-app-switcher-tooltip.aui-inline-dialog-arrow.aui-css-arrow.aui-left-arrow:before,#arrow-app-switcher-tooltip.arrow.aui-css-arrow.aui-left-arrow:before{border-width:8px 8px 8px 0;border-color:transparent #ccc}#arrow-app-switcher-tooltip.aui-inline-dialog-arrow.aui-css-arrow.aui-left-arrow:after,#arrow-app-switcher-tooltip.arrow.aui-css-arrow.aui-left-arrow:after{border-color:transparent #fff transparent transparent;top:0;right:0}
-/* module-key = 'com.atlassian.support.stp:stp-license-status-resources', location = 'css/stp-licenseStatus.css' */
-#stp-licenseStatus-banner{margin:0!important}
-/* module-key = 'com.atlassian.bitbucket.search.bitbucket-search-query:quick-search-common-resources', location = '/bitbucket/internal/feature/search-common/search-common.less' */
-@keyframes fade{from{opacity:0}to{opacity:1}}.search-result-list{list-style-type:none;padding:0;margin:0}.search-result-list .result.focus{background-color:#3b73af;color:#fff}.search-result-list .result.focus a{color:#fff}.search-result-list .result .aui-avatar{margin-right:10px}.search-result-list .repository .separator,.search-result-list .repository .project-name{margin-right:3px}.search-result-list .repository a{padding:5px 10px;display:flex}.search-result-list .repository .aui-avatar,.search-result-list .repository .project-and-repository{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.search-result-list .repository .project-and-repository{display:flex;flex-wrap:wrap}.search-result-list .repository .project-name,.search-result-list .repository .separator,.search-result-list .repository .name{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;flex-shrink:50}.search-result-list .repository .aui-avatar,.search-result-list .repository .separator{flex-shrink:0}
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-bbui-components:avatars', location = '/static/bitbucket/internal/bbui/avatars/avatars.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.aui-avatar-badged {
-  position: relative;
-  vertical-align: middle;
-}
-.aui-avatar-badged.avatar-dimmed > .aui-avatar-inner > img {
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0.5;
-}
-.aui-avatar-badged .badge {
-  transition: all 0.3s ease-in-out;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  width: 16px;
-  height: 16px;
-  color: #fff;
-  display: block;
-  font-size: 9px;
-  line-height: 16px;
-  opacity: 1;
-  position: absolute;
-  right: -8px;
-  text-align: center;
-  text-indent: -999em;
-  top: -8px;
-}
-.aui-avatar-badged.badge-hidden.avatar-dimmed > .aui-avatar-inner > img {
-  opacity: 1;
-}
-.aui-avatar-badged.badge-hidden .badge {
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  opacity: 0;
-}
-.aui-avatar-badged .approved,
-.aui-avatar-badged .needs-work {
-  opacity: 1;
-  transition: all 0.2s cubic-bezier(0.14, 0.01, 0.65, 1.61);
-  transition-property: opacity, transform;
-  transform: scale(1);
-  width: 16px;
-  height: 16px;
-  color: #fff;
-  background-size: 16px;
-  position: absolute;
-  right: -8px;
-  top: -8px;
-  text-align: center;
-  display: block;
-  font-size: 9px;
-  line-height: 16px;
-  text-indent: -999em;
-}
-.aui-avatar-badged .approved {
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-bbui-components:avatars/images/icons/icon-approved.svg) no-repeat 0 0;
-}
-.aui-avatar-badged .needs-work {
-  background: transparent url(/s/837600433/a8ec8e6/1/1.0.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-bbui-components:avatars/images/icons/icon-needs-work.svg) no-repeat 0 0;
-}
-.avatar-with-name .aui-avatar {
-  margin-right: 10px;
-}
-.avatar-with-name .aui-avatar.aui-avatar-xsmall {
-  margin-right: 5px;
+
+navlinks.templates.projectshortcuts.headingWrapper = function(opt_data, opt_ignored) {
+  return '<div class="project-dialog-header-wrapper"><div class="project-header"><img class="project-img" src="' + soy.$$escapeHtml(opt_data.logoUrl) + '"><h2 class="dialog-title">' + soy.$$escapeHtml(opt_data.title) + '</h2></div><div class="project-content-wrapper">' + soy.$$filterNoAutoescape(opt_data.contentHtml) + '</div></div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.projectshortcuts.headingWrapper.soyTemplateName = 'navlinks.templates.projectshortcuts.headingWrapper';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-bbui-components:bb-panel', location = '/static/bitbucket/internal/bbui/bb-panel/bb-panel.less' */
-bb-panel {
-  left: 0;
-  position: absolute;
-  top: 0;
-}
-bb-panel:not([resolved]) {
-  display: none;
+
+navlinks.templates.projectshortcuts.dialogContentShortcuts = function(opt_data, opt_ignored) {
+  opt_data = opt_data || {};
+  var output = '<ul' + ((opt_data.listClass) ? ' class="' + soy.$$escapeHtml(opt_data.listClass) + '"' : '') + '>';
+  var shortcutList35 = opt_data.shortcuts;
+  var shortcutListLen35 = shortcutList35.length;
+  for (var shortcutIndex35 = 0; shortcutIndex35 < shortcutListLen35; shortcutIndex35++) {
+    var shortcutData35 = shortcutList35[shortcutIndex35];
+    output += '<li' + ((shortcutIndex35 == shortcutListLen35 - 1) ? ' class="last"' : '') + '>' + navlinks.templates.projectshortcuts.dialogContentShortcut(shortcutData35) + '</li>';
+  }
+  output += '</ul>';
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.projectshortcuts.dialogContentShortcuts.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContentShortcuts';
 }
 
-/* module-key = 'com.atlassian.bitbucket.search.bitbucket-search-query:quick-search-client-resources', location = '/bitbucket/internal/component/quick-search/quick-search-loader.less' */
-.repository-search-trigger{display:none !important}
-/* module-key = 'com.atlassian.bitbucket.search.bitbucket-search-query:quick-search-client-resources', location = '/bitbucket/internal/feature/quick-search/quick-search.less' */
-@keyframes fade{from{opacity:0}to{opacity:1}}.search-result-list{list-style-type:none;padding:0;margin:0}.search-result-list .result.focus{background-color:#3b73af;color:#fff}.search-result-list .result.focus a{color:#fff}.search-result-list .result .aui-avatar{margin-right:10px}.search-result-list .repository .separator,.search-result-list .repository .project-name{margin-right:3px}.search-result-list .repository a{padding:5px 10px;display:flex}.search-result-list .repository .aui-avatar,.search-result-list .repository .project-and-repository{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.search-result-list .repository .project-and-repository{display:flex;flex-wrap:wrap}.search-result-list .repository .project-name,.search-result-list .repository .separator,.search-result-list .repository .name{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;flex-shrink:50}.search-result-list .repository .aui-avatar,.search-result-list .repository .separator{flex-shrink:0}.quick-search-trigger #quick-search{width:320px}.quick-search-trigger #quick-search+.spinner{display:none;position:absolute;right:16px;top:20px;width:16px;color:#fff}.loading .quick-search-trigger #quick-search+.spinner{display:block}.aui-quicksearch.loading:after{content:''}#quick-search-dialog{background-color:#fff;border:1px solid #ccc;border-bottom-left-radius:3px;border-bottom-right-radius:3px;box-shadow:0 3px 6px rgba(0,0,0,0.2);position:absolute;width:320px}#quick-search-dialog .quick-search-results{padding-bottom:10px}#quick-search-dialog .quick-search-results .section-title{text-transform:uppercase;font-size:12px;color:#707070;font-weight:bold}#quick-search-dialog .quick-search-results .repository-heading{padding:10px;position:relative}#quick-search-dialog .quick-search-results .repository-heading aui-badge{position:absolute;top:10px;right:10px}#quick-search-dialog .quick-search-results .code{background-color:#f5f5f5;padding:10px;padding-left:25px}#quick-search-dialog .quick-search-results .code:after{clear:both;content:' ';display:block;visibility:hidden;width:0;height:0;line-height:0}#quick-search-dialog .quick-search-results .code a{color:#333;display:block;cursor:pointer}#quick-search-dialog .quick-search-results .code.focus{background-color:#3b73af}#quick-search-dialog .quick-search-results .code.focus a{color:#fff}#quick-search-dialog .quick-search-results .code .context{padding-bottom:10px;position:relative}#quick-search-dialog .quick-search-results .code .context .aui-avatar{margin-right:10px;vertical-align:middle}#quick-search-dialog .quick-search-results .code .context .aui-button{position:absolute;right:10px;top:14px}#quick-search-dialog .quick-search-results .code .aui-iconfont-search{color:#999;margin-right:5px;width:24px}#quick-search-dialog .quick-search-results .code .code-search-hint{display:flex}#quick-search-dialog .quick-search-results .code .code-search-hint>:not(.terms){flex:0 0 auto}#quick-search-dialog .quick-search-results .code .code-search-hint>.terms{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#quick-search-dialog .quick-search-results .code .context.hidden+.code-search-hint{padding-top:10px}#quick-search-dialog .quick-search-results .code .terms{font-weight:bold}#quick-search-dialog .quick-search-results .repository{padding-left:10px}#quick-search-dialog .quick-search-results .repository .project-name{max-width:320px - 40px - 24px - 10px - 5px - 10px}#quick-search-dialog .quick-search-error{display:none}#quick-search-dialog .quick-search-error .content{padding:20px;min-height:48px}#quick-search-dialog .quick-search-error .content .warning-icon{width:48px;height:48px;background:url(/s/837600433/a8ec8e6/1/4.0.3/_/download/resources/com.atlassian.bitbucket.search.bitbucket-search-query:quick-search-client-resources/images/search-warning.svg) center no-repeat;float:left}#quick-search-dialog .quick-search-error .content .warning-icon:after{clear:both}#quick-search-dialog .quick-search-error .content .error-text{margin-top:4px;padding-left:10px}#quick-search-dialog .quick-search-error .content .error-text .error-text-primary{font-weight:bold;color:#333}#quick-search-dialog .quick-search-error .content .error-text .error-text-secondary{color:#707070}#quick-search-dialog .quick-search-error .content .error-text .error-text-primary,#quick-search-dialog .quick-search-error .content .error-text .error-text-secondary{margin-left:48px}#quick-search-dialog .quick-search-error .footer{display:none;background-color:#f5f5f5;padding:10px;font-size:12px;color:#707070}
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:project-avatar', location = '/static/bitbucket/internal/feature/project/project-avatar/project-avatar.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* @aui-override  */
-.aui-avatar-project {
-  box-shadow: none;
-}
-.aui-avatar-project:before {
-  border: 0;
+
+navlinks.templates.projectshortcuts.dialogContentShortcut = function(opt_data, opt_ignored) {
+  return '<a href="' + soy.$$escapeHtml(opt_data.link) + '"' + ((opt_data.tooltip) ? ' title="' + soy.$$escapeHtml(opt_data.tooltip) + '"' : '') + '>' + soy.$$escapeHtml(opt_data.label) + '</a>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.projectshortcuts.dialogContentShortcut.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogContentShortcut';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-item', location = '/static/bitbucket/internal/feature/repository/repository-item/repository-item.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
+
+navlinks.templates.projectshortcuts.dialogLoading = function(opt_data, opt_ignored) {
+  opt_data = opt_data || {};
+  return '<div class="projectshortcuts-loading">' + ((opt_data.text) ? soy.$$escapeHtml(opt_data.text) : '') + '</div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.projectshortcuts.dialogLoading.soyTemplateName = 'navlinks.templates.projectshortcuts.dialogLoading';
+}
+;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-projectshortcuts', location = 'projectshortcuts/projectshortcuts.js' */
+(function(e,g){var i,k={},m="key",b="name",j="entity-type";function f(s){var n=e(this),o=n.data(m),q=n.data(b),p=n.data(j);if(typeof o==="undefined"){return}s.preventDefault();i=new AJS.Dialog({width:600,keypressListener:function(u){if(u.which==jQuery.ui.keyCode.ESCAPE){i.remove()}},id:"project-shortcuts-dialog"}).addCancel("Close",function(){i.remove()}).addPanel("",navlinks.templates.projectshortcuts.headingWrapper({title:q,logoUrl:h(),contentHtml:navlinks.templates.projectshortcuts.dialogLoading({text:"Retrieving links…"})})).show();c(i);if(!k[o]){k[o]={entity:{title:q},localShortcuts:null,remoteShortcuts:null};d(AJS.contextPath()+"/rest/project-shortcuts/1.0/local/"+o,{entityType:p}).done(t);d(AJS.contextPath()+"/rest/project-shortcuts/1.0/remote/"+o,{entityType:p}).done(r).fail(function(){var u=i.getCurrentPanel().body.find(".project-content-wrapper");u.find(".projectshortcuts-loading").remove();AJS.messages.error(u,{body:"Could not retrieve remote project shortcuts",closeable:false});c(i)})}else{l(k[o])}function t(u){k[o].localShortcuts=u.shortcuts;l(k[o])}function r(u){k[o].remoteShortcuts=u.shortcuts;l(k[o])}}function h(){return e(".project-shortcut-dialog-trigger img").attr("src")}function l(n){if(n.localShortcuts){i.getCurrentPanel().html(navlinks.templates.projectshortcuts.headingWrapper({title:n.entity.title,logoUrl:h(),contentHtml:navlinks.templates.projectshortcuts.dialogContent(n)}));c(i)}}function a(p){var o=210;if(!p||p.length<=o){return p}var n=o;while(n>0&&p.charAt(n)!=" "){n--}if(n==0){n=o}p=p.substring(0,n);if(p.length>=n){p=p+"..."}return p}function c(n){var q=n.popup.element,p=q.find(".dialog-panel-body"),o=q.find(".dialog-components");p.height("auto");q.height(o.outerHeight()-1);e(".aui-shadow").remove()}function d(n,o){return e.ajax({url:n,cache:false,data:o,dataType:"json"})}e(document).on("click",".project-shortcut-dialog-trigger",f)}(jQuery,window.NL=(window.NL||{})));;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:atlassian-ui-popup-display-controller', location = 'popups/DisplayController.js' */
+AJS.Popups=AJS.Popups||{};AJS.Popups.DisplayController=function(){var c=[];var a=false;var b=false;AJS.toInit(function(){setTimeout(function(){AJS.Popups.DisplayController.render()},0)});return{request:function(d){c.push(d);if(a&&b===false){this.render()}},render:function(){c.sort(function(e,d){return e.weight-d.weight});a=true;if(c.length!==0){b=true;c[0].show()}}}}();;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher.soy' */
+// This file was automatically generated from appswitcher.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace navlinks.templates.appswitcher.
+ */
+
+if (typeof navlinks == 'undefined') { var navlinks = {}; }
+if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
+if (typeof navlinks.templates.appswitcher == 'undefined') { navlinks.templates.appswitcher = {}; }
+
+
+navlinks.templates.appswitcher.linkSection = function(opt_data, opt_ignored) {
+  var output = '';
+  if (opt_data.list.length > 0) {
+    output += '<div class="aui-nav-heading sidebar-section-header">' + soy.$$escapeHtml(opt_data.title) + '</div><ul class="aui-nav nav-links">';
+    var linkList8 = opt_data.list;
+    var linkListLen8 = linkList8.length;
+    for (var linkIndex8 = 0; linkIndex8 < linkListLen8; linkIndex8++) {
+      var linkData8 = linkList8[linkIndex8];
+      output += navlinks.templates.appswitcher.applicationsItem(linkData8);
+    }
+    output += '</ul>';
   }
-  to {
-    opacity: 1;
-  }
-}
-.repository-item .aui-avatar {
-  margin-right: 5px;
-  vertical-align: middle;
-}
-.repository-item .aui-avatar,
-.repository-item .repository-separator {
-  flex: none;
-}
-.repository-item .project-name,
-.repository-item .name {
-  flex: 0 1 auto;
-  max-width: 150px;
-}
-.repository-item .project-name {
-  min-width: 20px;
-}
-.repository-item .project-name {
-  color: #707070;
-  margin-right: 5px;
-}
-.repository-item .separator {
-  color: #707070;
-  margin-right: 8px;
-  /** extra right padding to balance any space on left caused by ellipses */
-}
-.repository-item:hover .project-name,
-.repository-item:hover .separator {
-  color: #fff;
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.linkSection.soyTemplateName = 'navlinks.templates.appswitcher.linkSection';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:repository-menu-items', location = '/static/bitbucket/internal/feature/repository/menu-items/repository-menu-items.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.repository-menu-item {
-  /** for the loading and the error messages displayed in the menu */
-  /** -- Spacing and colouring -- */
-}
-.repository-menu-item > span {
-  padding: 7px 8px 6px;
-  display: block;
-}
-.repository-menu-item > a > span {
-  margin-right: 5px;
-  display: inline-block;
-  vertical-align: middle;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.repository-menu-item .active .project-name,
-.repository-menu-item .active .separator {
-  color: #fff;
-}
-.repository-menu-item mark {
-  background-color: inherit;
-  color: inherit;
-  font-weight: bold;
+
+navlinks.templates.appswitcher.applicationsItem = function(opt_data, opt_ignored) {
+  return '<li class="nav-link"><a href="' + soy.$$escapeHtml(opt_data.link) + '" ' + ((opt_data.self) ? 'class="checked"' : '') + ' title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span></a></li>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.applicationsItem.soyTemplateName = 'navlinks.templates.appswitcher.applicationsItem';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:recent-repositories-menu-resources', location = '/static/bitbucket/internal/layout/base/menu/repositories/recent.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.bitbucket-theme .recent-repositories-menu {
-  max-width: 421px;
-}
-.bitbucket-theme .recent-repositories-menu .repository-menu-item > a {
-  display: flex;
-  align-items: center;
+
+navlinks.templates.appswitcher.shortcutsItem = function(opt_data, opt_ignored) {
+  return '<li class="nav-link"><a href="' + soy.$$escapeHtml(opt_data.link) + '" ' + ((opt_data.self) ? 'class="checked"' : '') + ' title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span>' + ((opt_data.showDescription && opt_data.description) ? '<span class="nav-link-description">' + soy.$$escapeHtml(opt_data.description) + '</span>' : '') + '</a></li>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.shortcutsItem.soyTemplateName = 'navlinks.templates.appswitcher.shortcutsItem';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-bbui-components:utils', location = '/static/bitbucket/internal/bbui/utils/utils.less' */
-.soy-container {
-  display: inline-block;
+
+navlinks.templates.appswitcher.error = function(opt_data, opt_ignored) {
+  return '<div class="app-switcher-error">' + soy.$$filterNoAutoescape('Something went wrong, please \x3cspan class\x3d\x22app-switcher-retry\x22\x3etry again\x3c/span\x3e.') + '</div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.error.soyTemplateName = 'navlinks.templates.appswitcher.error';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:alerts-dialog', location = '/static/bitbucket/internal/feature/alerts/alerts.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-#alerts-trigger.alerts-menu.error {
-  background-color: #d04437;
-}
-#alerts-trigger.alerts-menu.warning {
-  background-color: #f6c342;
-}
-#alerts-trigger.alerts-menu .alerts-count {
-  margin-left: 5px;
-}
-.alerts-empty {
-  text-align: center;
-}
-.alerts-empty p {
-  color: #707070;
-}
-.alerts-empty .empty-img {
-  background-size: 250px 250px;
-  background: url(/s/837600433/a8ec8e6/1/1.0/_/download/resources/com.atlassian.bitbucket.server.bitbucket-web:alerts-dialog/images/empty-state.svg) no-repeat center;
-  height: 250px;
-  opacity: 0.5;
-}
-#inline-dialog-alerts-content .loading-resource-spinner {
-  padding: 20px 210px;
-}
-.bitbucket-alerts {
-  max-height: inherit;
-  overflow-y: auto;
-}
-.bitbucket-alerts .alerts-list {
-  margin-top: 10px;
-  padding-left: 0;
-  list-style: none;
-}
-.bitbucket-alerts .alerts-list .aui-message {
-  max-width: 340px;
-  border: 0;
-  margin: 0;
-  padding-top: 0;
-  padding-left: 40px;
-}
-.bitbucket-alerts .alerts-list .aui-message p {
-  margin: 0;
-}
-.bitbucket-alerts .alerts-list .aui-message.closeable .icon-close {
-  top: 0;
-}
-.bitbucket-alerts .alerts-list .aui-message:before {
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-}
-.bitbucket-alerts .alerts-list .aui-message:after {
-  margin-top: 0;
-  top: 7px;
-  left: 7px;
+
+navlinks.templates.appswitcher.sidebarContents = function(opt_data, opt_ignored) {
+  return '<div class="aui-page-panel-nav"><nav class="aui-navgroup aui-navgroup-vertical"><div class="app-switcher-section app-switcher-applications"><div class="aui-nav-heading">' + soy.$$escapeHtml('Application Links') + '</div><div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div></div><div class="app-switcher-section app-switcher-shortcuts"><div class="aui-nav-heading">' + soy.$$escapeHtml('Shortcuts') + '</div><div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div></div></nav></div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.sidebarContents.soyTemplateName = 'navlinks.templates.appswitcher.sidebarContents';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:inbox-dialog', location = '/static/bitbucket/internal/feature/inbox/inbox.less' */
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-#inbox-trigger {
-  position: relative;
-}
-#inbox-trigger .aui-badge {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  background-color: #d04437;
-  color: #fff;
-  padding: 3px 2px 2px 2px;
-  position: absolute;
-  right: 3px;
-  top: 4px;
-}
-#inbox-trigger .aui-badge.visible {
-  opacity: 1;
-}
-#inline-dialog-inbox-pull-requests-content .loading-resource-spinner {
-  padding: 120px;
-}
-#inline-dialog-inbox-pull-requests-content .inbox-spinner-padding {
-  display: none;
-}
-#inline-dialog-inbox-pull-requests-content .aui-inline-dialog-contents {
-  padding: 0;
-  min-height: 240px;
-}
-#inline-dialog-inbox-pull-requests-content .aui-inline-dialog-contents #inbox-wapper h2 {
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
-}
-#inline-dialog-inbox-pull-requests-content .spinner {
-  margin: auto;
-  top: 50%;
+
+navlinks.templates.appswitcher.trigger = function(opt_data, opt_ignored) {
+  return '<span class="aui-icon aui-icon-small aui-iconfont-appswitcher">' + soy.$$escapeHtml('Linked Applications') + '</span>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.trigger.soyTemplateName = 'navlinks.templates.appswitcher.trigger';
 }
 
-/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:commit-preview', location = '/static/bitbucket/internal/widget/commit-preview/commit-preview.less' */
-.commit-preview-tipsy .tipsy-inner {
-  white-space: pre-wrap;
-  text-align: left;
-  max-width: 80em;
-  font-family: monospace;
+
+navlinks.templates.appswitcher.projectHeaderSection = function(opt_data, opt_ignored) {
+  return '<div class="app-switcher-title">' + aui.avatar.avatar({size: 'large', avatarImageUrl: opt_data.avatarUrl, isProject: true, title: opt_data.name}) + '<div class="sidebar-project-name">' + soy.$$escapeHtml(opt_data.name) + '</div></div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.projectHeaderSection.soyTemplateName = 'navlinks.templates.appswitcher.projectHeaderSection';
 }
+
+
+navlinks.templates.appswitcher.cogDropdown = function(opt_data, opt_ignored) {
+  var output = '';
+  var dropdownList__soy74 = '' + navlinks.templates.appswitcher.dropdownList({list: opt_data.links});
+  output += aui.dropdown2.dropdown2({menu: {id: opt_data.id, content: dropdownList__soy74, extraClasses: 'aui-style-default sidebar-customize-section'}, trigger: {showIcon: false, content: '<span class="aui-icon aui-icon-small aui-iconfont-configure"></span>', container: '#app-switcher'}});
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.cogDropdown.soyTemplateName = 'navlinks.templates.appswitcher.cogDropdown';
+}
+
+
+navlinks.templates.appswitcher.dropdownList = function(opt_data, opt_ignored) {
+  var output = '<ul class="sidebar-admin-links">';
+  var linkList82 = opt_data.list;
+  var linkListLen82 = linkList82.length;
+  for (var linkIndex82 = 0; linkIndex82 < linkListLen82; linkIndex82++) {
+    var linkData82 = linkList82[linkIndex82];
+    output += '<li class="nav-link"><a href="' + soy.$$escapeHtml(linkData82.href) + '" title="' + soy.$$escapeHtml(linkData82.title) + '"><span class="nav-link-label">' + soy.$$escapeHtml(linkData82.label) + '</span></a></li>';
+  }
+  output += '</ul>';
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.dropdownList.soyTemplateName = 'navlinks.templates.appswitcher.dropdownList';
+}
+
+
+navlinks.templates.appswitcher.switcher = function(opt_data, opt_ignored) {
+  var output = '';
+  if (true) {
+    if (AJS.DarkFeatures.isEnabled('rotp.sidebar')) {
+      var sidebarContents__soy97 = '' + navlinks.templates.appswitcher.sidebarContents(null);
+      var triggerContent__soy99 = '' + navlinks.templates.appswitcher.trigger(null);
+      output += navlinks.templates.appswitcher.sidebar({sidebar: {id: 'app-switcher', content: sidebarContents__soy97}, trigger: {showIcon: false, content: triggerContent__soy99}});
+    } else {
+      output += navlinks.templates.appswitcher_old.switcher(null);
+    }
+  }
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.switcher.soyTemplateName = 'navlinks.templates.appswitcher.switcher';
+}
+
+
+navlinks.templates.appswitcher.sidebar = function(opt_data, opt_ignored) {
+  return '<a href="' + soy.$$escapeHtml(opt_data.sidebar.id) + '" class="sidebar-trigger app-switcher-trigger" aria-owns="' + soy.$$escapeHtml(opt_data.sidebar.id) + '" aria-haspopup="true" data-is-user-admin="' + soy.$$escapeHtml(false) + '" data-is-sidebar="true" >' + soy.$$filterNoAutoescape(opt_data.trigger.content) + '</a><div id=' + soy.$$escapeHtml(opt_data.sidebar.id) + ' class="app-switcher-sidebar aui-style-default sidebar-offscreen">' + soy.$$filterNoAutoescape(opt_data.sidebar.content) + '</div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher.sidebar.soyTemplateName = 'navlinks.templates.appswitcher.sidebar';
+}
+;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher.js' */
+(function(e,a){var d="is-user-admin";var c="#app-switcher";a.SideBar=function(f){var g=this;this.$sidebar=null;f=e.extend({sidebarContents:null},f);this.getLinks=function(){return e.ajax({url:AJS.contextPath()+"/rest/menu/latest/appswitcher",cache:false,dataType:"json"}).done(this.updateAppLinks).fail(this.showAppSwitcherError)};this.populateProjectHeader=function(i,h){g.getSidebar().find(".app-switcher-shortcuts .aui-nav-heading").after(navlinks.templates.appswitcher.projectHeaderSection({avatarUrl:h,name:i}))};this.getProjectData=function(){var h=e(".project-shortcut-dialog-trigger"),i=h.data("key"),j=h.data("entity-type");if(h.size()==0||!i||!j){e(".app-switcher-shortcuts").remove();return}var l,k;k=e.ajax({url:AJS.contextPath()+"/rest/project-shortcuts/1.0/local/"+i,cache:false,data:{entityType:j},dataType:"json"});l=e.ajax({url:AJS.contextPath()+"/rest/project-shortcuts/1.0/remote/"+i,cache:false,data:{entityType:j},dataType:"json"});e.when(k,l).then(function(n,m){g.updateProjectShortcuts(n,m,{key:i,entityType:j,name:h.data("name"),avatarUrl:h.find("img").prop("src")})},g.showProjectShortcutsError)};this.getSidebar=function(){if(!this.$sidebar){this.$sidebar=e(f.sidebarContents)}return this.$sidebar};this.addApplicationsCog=function(){e(".app-switcher-applications .aui-nav-heading").before(navlinks.templates.appswitcher.cogDropdown({id:"sidebar-applications-admin-dropdown",links:[{href:AJS.contextPath()+"/plugins/servlet/customize-application-navigator",label:"Customize navigator",title:"Add new entries, hide existing or restrict who sees what"},{href:AJS.contextPath()+"/plugins/servlet/applinks/listApplicationLinks",label:"Manage application links",title:"Link to more Atlassian applications"}]}))};this.addProjectShortcutsCog=function(h,j){var i=[{href:AJS.contextPath()+"/plugins/servlet/custom-content-links-admin?entityKey="+h,label:"Customize shortcuts",title:""}];if(g.entityMappings[j]){i.push({href:g.generateEntityLinksUrl(h,g.entityMappings[j]),label:"Manage product links",title:""})}g.getSidebar().find(".app-switcher-shortcuts .aui-nav-heading").before(navlinks.templates.appswitcher.cogDropdown({id:"sidebar-project-shortcuts-admin-dropdown",links:i}))};this.updateAppLinks=function(h){e(function(){g.getSidebar().find(".app-switcher-applications").html(navlinks.templates.appswitcher.linkSection({title:"Application Links",list:h}));if(g.getSidebar().data(d)){g.addApplicationsCog()}g.bindAnalyticsHandlers(g.getSidebar(),h)})};this.updateProjectShortcuts=function(k,i,j){var l=k[0].shortcuts,h=i[0].shortcuts;g.getSidebar().find(".app-switcher-shortcuts").html(navlinks.templates.appswitcher.linkSection({title:"Shortcuts",list:l.concat(h)}));if(g.getSidebar().data(d)){g.addProjectShortcutsCog(j.key,j.entityType)}g.populateProjectHeader(j.name,j.avatarUrl);g.bindAnalyticsHandlers(g.getSidebar(),data)};this.entityMappings={"confluence.space":"com.atlassian.applinks.api.application.confluence.ConfluenceSpaceEntityType","jira.project":"com.atlassian.applinks.api.application.jira.JiraProjectEntityType","bamboo.project":"com.atlassian.applinks.api.application.bamboo.BambooProjectEntityType","stash.project":"com.atlassian.applinks.api.application.stash.StashProjectEntityType"};this.generateEntityLinksUrl=function(h,i){if(i===g.entityMappings["confluence.space"]){return AJS.contextPath()+"/spaces/listentitylinks.action?typeId="+i+"&key="+h}else{return AJS.contextPath()+"/plugins/servlet/applinks/listEntityLinks/"+i+"/"+h}};this.showAppSwitcherError=function(){e(function(){var h=g.getSidebar();h.find(".app-switcher-applications .app-switcher-loading").replaceWith(navlinks.templates.appswitcher.error());h.off(".appswitcher").on("click.appswitcher",".app-switcher-retry",e.proxy(g.retryLoading,g))})};this.showProjectShortcutsError=function(){e(function(){var h=g.getSidebar();h.find(".app-switcher-shortcuts .app-switcher-loading").replaceWith(navlinks.templates.appswitcher.error());h.off(".appswitcher").on("click.appswitcher",".app-switcher-retry",e.proxy(g.retryLoading,g))})};this.retryLoading=function(h){this.getSidebar().html(navlinks.templates.appswitcher.sidebarContents());this.getLinks();this.getProjectData();h&&h.stopPropagation()};this.bindAnalyticsHandlers=function(h,i){};this.getLinks();e(this.getProjectData);this.toggleSidebar=function(j){var k=g.getSidebar(),i=e("body"),h=e(window.document);if(!i.hasClass("app-switcher-open")){var m=e("#header");k.css("left",-k.width());k.parent("body").length||k.appendTo("body");b({data:k});k.animate({left:0},300);function l(n){var p=n.target&&e(n.target),o=n.keyCode;if(n.originalEvent===j.originalEvent){return}if(p&&!o&&!(p.closest(k).length||p.closest(m).length)&&j.which==1&&!(n.shiftKey||n.ctrlKey||n.metaKey)){g.toggleSidebar()}else{if(o===27){g.toggleSidebar()}}}h.on("click.appSwitcher",l);h.on("keydown.appSwitcher",l);h.on("scroll.appSwitcher",k,b)}else{h.off(".appSwitcher")}i.toggleClass("app-switcher-open")};e("#header").on("click",".app-switcher-trigger",this.toggleSidebar)};function b(h){var f=e(document).scrollTop(),i=e("#header"),g=(i.height()+i.offset().top)-f;if(g>=0){h.data.css({top:g,position:"fixed"})}else{h.data.css({top:0,left:0,position:"fixed"})}}e(function(){if(e(c).data("is-sidebar")===true){new a.SideBar({sidebarContents:c})}})}(jQuery,window.NL=(window.NL||{})));;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher_old.js' */
+var APPSWITCHER_TRIGGER_CLICK="appswitcher.trigger.click";var APPSWITCHER_DROPDOWN_SHOW="appswitcher.dropdown.show";var APPSWITCHER_DROPDOWN_DISPLAY_ERROR="appswitcher.dropdown.display.error";var APPSWITCHER_APP_LINK_CLICK="appswitcher.app.link.click";var APPSWITCHER_CONFIGURE_LINK_CLICK="appswitcher.configure.link.click";(function(c,f){var b="isAppSuggestionAvailable";var d="isSiteAdminUser";var e="isUserAdmin";var a="#app-switcher";f.AppSwitcher=function(j){var l=AJS.contextPath()+"/plugins/servlet/customize-application-navigator";var k="unified.usermanagement";var m=this;this.$dropdown=null;j=c.extend({dropdownContents:null},j);this.getLinks=function(){return c.ajax({url:AJS.contextPath()+"/rest/menu/latest/appswitcher",cache:false,dataType:"json"}).done(this.updateDropdown).fail(this.showError)};this.getDropdown=function(){if(!this.$dropdown){this.$dropdown=c(j.dropdownContents);this.envData=this.$dropdown.data("environment")}return this.$dropdown};this.updateDropdown=function(n){c(function(){m.getDropdown().html(navlinks.templates.appswitcher_old.applications({apps:n,showAdminLink:m.envData[e],adminLink:l}));m.bindAnalyticsHandlers();if(m.envData[b]===true){m.handleSuggestionApps(n)}})};this.bindAnalyticsHandlers=function(){c(".app-switcher-trigger").on("click",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_TRIGGER_CLICK})});c("#app-switcher").on("aui-dropdown2-show",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_DROPDOWN_SHOW})});c("#app-switcher .nav-link").on("click",function(){var p="custom";var q=c(this).find("a");var o=q.attr("href");var n=window.location.hostname;if(o&&o.indexOf("bitbucket.org")>-1){p="bitbucket-cloud"}else{if(o.indexOf(n+"/wiki")>-1){p="confluence"}else{if(o.indexOf(n+"/build")>-1){p="bamboo"}else{if(o.indexOf(n)>-1){p="jira"}}}}AJS.trigger("analyticsEvent",{name:APPSWITCHER_APP_LINK_CLICK,data:{product:p}})});c(".nav-link-edit-wrapper").on("click",function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_CONFIGURE_LINK_CLICK})})};this.isBillingSystemEnabled=function(){return(this.envData[d]===true)&&AJS.DarkFeatures.isEnabled(k)};this.handleSuggestionApps=function(q){var r=_.map(q,function(s){return s.applicationType.toLowerCase()});var o=c("<div id='app-switcher-suggestion-apps' class='aui-dropdown2-section'/>");o.html(navlinks.templates.appswitcher_old.suggestionApps);var p=o.find(".suggestion-apps");var n=false;_.each(g,function(s){if(!_.contains(r,s.appName)){n=true;p.append(navlinks.templates.appswitcher_old.suggestionApp({suggestionApp:s,isBillingSystemEnabled:m.isBillingSystemEnabled()}))}});if(!n){return}c("#app-switcher").append(o);c(".app-discovery-suggestion-app").click(function(){var t=c(this).find("a");var s;if(m.envData[d]===true){s="appswitcher.discovery.siteadmin.select.inproduct."}else{s="appswitcher.discovery.user.select."}s=s+t.attr("id").toLowerCase();AJS.trigger("analytics",{name:s})});c(".app-discovery-suggestion-app").hover(function(){c(this).find("a").removeClass("active").removeClass("aui-dropdown2-active")});c(".app-discovery-cancel-button").click(function(){AJS.trigger("analytics",{name:"appswitcher.discovery.nothanks.button.click"});i(h,"true");o.remove()})};this.showError=function(){c(function(){AJS.trigger("analyticsEvent",{name:APPSWITCHER_DROPDOWN_DISPLAY_ERROR});m.getDropdown().html(navlinks.templates.appswitcher_old.error()).off(".appswitcher").on("click.appswitcher",".app-switcher-retry",c.proxy(m.retryLoading,m))})};this.retryLoading=function(n){this.getDropdown().html(navlinks.templates.appswitcher_old.loading());this.getLinks();n&&n.stopPropagation()};this.getLinks()};var h="key-no-thanks";var g=[{appName:"jira",appDesc:"Issue & Project Tracking Software",discoveryUrl:"https://www.atlassian.com/software/jira",billingSystemDiscoveryUrl:"/admin/billing/addapplication"},{appName:"confluence",appDesc:"Collaboration and content sharing",discoveryUrl:"https://www.atlassian.com/software/confluence",billingSystemDiscoveryUrl:"/admin/billing/addapplication?product=confluence.ondemand"},{appName:"bamboo",appDesc:"Continuous integration",discoveryUrl:"https://www.atlassian.com/software/bamboo",billingSystemDiscoveryUrl:"/admin/billing/addapplication?product=bamboo.ondemand"}];var i=function(j,k){c.ajax({url:AJS.contextPath()+"/rest/menu/latest/userdata/",type:"PUT",contentType:"application/json",data:JSON.stringify({key:j,value:k})})};c(function(){if(c(a).data("is-switcher")===true){new f.AppSwitcher({dropdownContents:a})}})}(jQuery,window.NL=(window.NL||{})));;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nav-links-plugin:rotp-menu', location = 'appswitcher/appswitcher_old.soy' */
+// This file was automatically generated from appswitcher_old.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace navlinks.templates.appswitcher_old.
+ */
+
+if (typeof navlinks == 'undefined') { var navlinks = {}; }
+if (typeof navlinks.templates == 'undefined') { navlinks.templates = {}; }
+if (typeof navlinks.templates.appswitcher_old == 'undefined') { navlinks.templates.appswitcher_old = {}; }
+
+
+navlinks.templates.appswitcher_old.applications = function(opt_data, opt_ignored) {
+  return '' + navlinks.templates.appswitcher_old.applicationsSection({list: opt_data.apps, listClass: 'nav-links', showDescription: opt_data.showDescription}) + ((opt_data.custom) ? navlinks.templates.appswitcher_old.applicationsSection({list: opt_data.custom, showDescription: opt_data.showDescription}) : '') + ((opt_data.showAdminLink) ? navlinks.templates.appswitcher_old.adminSection(opt_data) : '');
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.applications.soyTemplateName = 'navlinks.templates.appswitcher_old.applications';
+}
+
+
+navlinks.templates.appswitcher_old.applicationsSection = function(opt_data, opt_ignored) {
+  var output = '';
+  if (opt_data.list.length > 0) {
+    var param19 = '<ul' + ((opt_data.listClass) ? ' class="' + soy.$$escapeHtml(opt_data.listClass) + '"' : '') + '>';
+    var linkList27 = opt_data.list;
+    var linkListLen27 = linkList27.length;
+    for (var linkIndex27 = 0; linkIndex27 < linkListLen27; linkIndex27++) {
+      var linkData27 = linkList27[linkIndex27];
+      param19 += navlinks.templates.appswitcher_old.applicationsItem(soy.$$augmentMap(linkData27, {showDescription: opt_data.showDescription}));
+    }
+    param19 += '</ul>';
+    output += aui.dropdown2.section({content: param19});
+  }
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.applicationsSection.soyTemplateName = 'navlinks.templates.appswitcher_old.applicationsSection';
+}
+
+
+navlinks.templates.appswitcher_old.applicationsItem = function(opt_data, opt_ignored) {
+  return '<li class="nav-link' + ((opt_data.self) ? ' nav-link-local' : '') + '"><a href="' + soy.$$escapeHtml(opt_data.link) + '" class="aui-dropdown2-radio ' + ((opt_data.self) ? 'aui-dropdown2-checked' : '') + '" title="' + soy.$$escapeHtml(opt_data.link) + '"><span class="nav-link-label">' + soy.$$escapeHtml(opt_data.label) + '</span>' + ((opt_data.showDescription && opt_data.description) ? '<span class="nav-link-description">' + soy.$$escapeHtml(opt_data.description) + '</span>' : '') + '</a></li>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.applicationsItem.soyTemplateName = 'navlinks.templates.appswitcher_old.applicationsItem';
+}
+
+
+navlinks.templates.appswitcher_old.adminSection = function(opt_data, opt_ignored) {
+  return '' + aui.dropdown2.section({content: '<ul class="nav-links"><li><a class="nav-link-edit-wrapper" href="' + soy.$$escapeHtml(opt_data.adminLink) + '"><span class="nav-link-edit">' + soy.$$filterNoAutoescape('Configure\x26hellip;') + '</span></a></li></ul>'});
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.adminSection.soyTemplateName = 'navlinks.templates.appswitcher_old.adminSection';
+}
+
+
+navlinks.templates.appswitcher_old.error = function(opt_data, opt_ignored) {
+  return '<div class="app-switcher-error">' + soy.$$filterNoAutoescape('Something went wrong, please \x3cspan class\x3d\x22app-switcher-retry\x22\x3etry again\x3c/span\x3e.') + '</div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.error.soyTemplateName = 'navlinks.templates.appswitcher_old.error';
+}
+
+
+navlinks.templates.appswitcher_old.loading = function(opt_data, opt_ignored) {
+  return '<div class="app-switcher-loading">' + soy.$$filterNoAutoescape('Loading\x26hellip;') + '</div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.loading.soyTemplateName = 'navlinks.templates.appswitcher_old.loading';
+}
+
+
+navlinks.templates.appswitcher_old.trigger = function(opt_data, opt_ignored) {
+  return '<span class="aui-icon aui-icon-small aui-iconfont-appswitcher">' + soy.$$escapeHtml('Linked Applications') + '</span>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.trigger.soyTemplateName = 'navlinks.templates.appswitcher_old.trigger';
+}
+
+
+navlinks.templates.appswitcher_old.switcher = function(opt_data, opt_ignored) {
+  var output = '';
+  if (true) {
+    var loadingContent__soy81 = '' + navlinks.templates.appswitcher_old.loading(null);
+    var triggerContent__soy83 = '' + navlinks.templates.appswitcher_old.trigger(null);
+    output += aui.dropdown2.dropdown2({menu: {id: 'app-switcher', content: loadingContent__soy81, extraClasses: 'aui-style-default', extraAttributes: {'data-environment': {}, 'data-is-switcher': 'true'}}, trigger: {showIcon: false, content: triggerContent__soy83, extraClasses: 'app-switcher-trigger', extraAttributes: {href: '#app-switcher'}}});
+  }
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.switcher.soyTemplateName = 'navlinks.templates.appswitcher_old.switcher';
+}
+
+
+navlinks.templates.appswitcher_old.suggestionApp = function(opt_data, opt_ignored) {
+  var output = '';
+  var href__soy89 = opt_data.isBillingSystemEnabled == true ? opt_data.suggestionApp.billingSystemDiscoveryUrl : opt_data.suggestionApp.discoveryUrl;
+  output += '<li class="app-discovery-suggestion-app"><a id="' + soy.$$escapeHtml(opt_data.suggestionApp.appName) + '" href="' + soy.$$escapeHtml(href__soy89) + '" class="app-discovery-link aui-icon-container app-discovery-' + soy.$$escapeHtml(opt_data.suggestionApp.appName) + '-product-icon" title="' + soy.$$escapeHtml(href__soy89) + '" target="_blank"/><div class="app-discovery-small">' + soy.$$escapeHtml(opt_data.suggestionApp.appDesc) + '</div></li>';
+  return output;
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.suggestionApp.soyTemplateName = 'navlinks.templates.appswitcher_old.suggestionApp';
+}
+
+
+navlinks.templates.appswitcher_old.suggestionApps = function(opt_data, opt_ignored) {
+  return '<ul class=\'nav-links suggestion-apps\'><li><span class=\'app-discovery-suggest-title nav-link-label\'><h6>' + soy.$$escapeHtml('Try other Atlassian apps') + '</h6></span></li></ul><div class=\'buttons-container app-discovery-suggest-apps-buttons\'><div class=\'buttons\'><button class=\'aui-button aui-button-link app-discovery-cancel-button\' name=\'cancel\' accesskey=\'c\' href=\'#\'>' + soy.$$escapeHtml('Don\x27t show this again') + '</button></div></div>';
+};
+if (goog.DEBUG) {
+  navlinks.templates.appswitcher_old.suggestionApps.soyTemplateName = 'navlinks.templates.appswitcher_old.suggestionApps';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:integrity-check-alert', location = '/static/bitbucket/internal/feature/integrity/alert.js' */
+define("bitbucket/internal/feature/integrity/alert",["exports","aui","bitbucket/util/navbuilder","bitbucket/internal/feature/alerts/alerts","bitbucket/internal/util/ajax"],function(a,f,g,h,k){Object.defineProperty(a,"__esModule",{value:!0});a.init=function(a){if(a&&0!==a.length){var b=void 0,c=void 0;switch(a[0]){case "acknowledged":return;case "started":c=d.INFO;b=e.STARTED;break;case "inconsistency":if("started"===a[1])c=d.WARN,b=e.INCONSISTENT;else return;break;case "completed":"inconsistency"===
+a[1]?(c=d.WARN,b=e.INCONSISTENT_COMPLETED):(c=d.INFO,b=e.COMPLETED);break;default:console.warn("Could not identify integrity checks state.",a);return}a=babelHelpers.extends({type:c,closeCallback:function(){l.default.rest({url:m.default.newBuilder("admin").addPathComponents("integrity-check","acknowledge").build(),type:"POST"})}},b);(0,h.add)(a);return a}};a=babelHelpers.interopRequireDefault(f);var m=babelHelpers.interopRequireDefault(g),l=babelHelpers.interopRequireDefault(k),d={INFO:"info",WARN:"warning"},
+e={STARTED:{closeable:!1,title:"Integrity checks are running",description:"Check the application logs for further information."},INCONSISTENT:{closeable:!1,title:"Integrity checks are running and some inconsistencies were found",description:"Check the application logs for further information."},COMPLETED:{closeable:!0,title:"Integrity checks are complete",
+description:"Check the application logs for further information."},INCONSISTENT_COMPLETED:{closeable:!0,title:"Integrity checks are complete and some inconsistencies were found",description:"Check the application logs for information on any restore actions carried out."}}});;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-web:integrity-check-alert', location = '/static/bitbucket/internal/feature/integrity/alert.soy' */
+// This file was automatically generated from alert.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace bitbucket.notification.alert.
+ */
+
+if (typeof bitbucket == 'undefined') { var bitbucket = {}; }
+if (typeof bitbucket.notification == 'undefined') { bitbucket.notification = {}; }
+if (typeof bitbucket.notification.alert == 'undefined') { bitbucket.notification.alert = {}; }
+
+
+bitbucket.notification.alert.bitbucketIntegrityCheckRunning = function(opt_data, opt_ignored) {
+  opt_data = opt_data || {};
+  return '' + ((opt_data.integrityCheckState) ? '<script type="text/javascript">require(\'bitbucket/internal/feature/integrity/alert\').init(' + soy.$$filterNoAutoescape(JSON.stringify(opt_data.integrityCheckState).replace(/\//g, '\\/')) + ');<\/script>' : '');
+};
+if (goog.DEBUG) {
+  bitbucket.notification.alert.bitbucketIntegrityCheckRunning.soyTemplateName = 'bitbucket.notification.alert.bitbucketIntegrityCheckRunning';
+}
+;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-amd-shims', location = '/js/amd-shims/ajs.js' */
+define("atlassian-nps-plugin/js/amd-shims/ajs",function(){return AJS});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-amd-shims', location = '/js/amd-shims/templates.js' */
+define("atlassian-nps-plugin/js/amd-shims/templates",function(){return NPS.Templates});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-amd-shims', location = '/js/amd-shims/wrm.js' */
+define("atlassian-nps-plugin/js/amd-shims/wrm",function(){return WRM});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-util', location = '/js/nps/util.js' */
+define("atlassian-nps-plugin/js/nps/util",["atlassian-nps-plugin/js/nps/product","atlassian-nps-plugin/js/amd-shims/ajs"],function(b,a){var c={};c.kfyShuffle=function(g){for(var f=g.length-1;f>0;f--){var d=Math.floor(Math.random()*(f+1));var e=g[f];g[f]=g[d];g[d]=e}return g};c.sendAnalyticsEvent=function(d,e){e=e||{};e.product=b.getProductName().toLowerCase();e.page=window.location.pathname.replace(/\//g," ");var f={name:"nps."+d,data:e};a.trigger("analyticsEvent",f)};c.hasShowingDialog=function(){return a.$(".aui-dialog:visible, aui-dialog2:visible").length>0};return c});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-util', location = '/js/nps/submission.js' */
+define("atlassian-nps-plugin/js/nps/submission",["atlassian-nps-plugin/js/nps/util"],function(b){var a={};a.showNotification=function(c){b.sendAnalyticsEvent("notification.show",c)};a.startSurvey=function(){b.sendAnalyticsEvent("survey.start",{})};a.cancelSurvey=function(c){var d={};if(c){d.cancelContext=c}b.sendAnalyticsEvent("survey.cancel",d)};a.ignoreSurvey=function(){b.sendAnalyticsEvent("survey.ignore",{})};a.submitSurvey=function(c){b.sendAnalyticsEvent("survey.submit",c)};a.scheduleNextSurveyDate=function(c){b.sendAnalyticsEvent("survey.schedule",c)};a.showAcknowledgementFlag=function(c){b.sendAnalyticsEvent("server.acknowledge.show",c)};a.acceptAcknowledgementFlag=function(c){b.sendAnalyticsEvent("server.acknowledge.accept",c)};a.closeAcknowledgementFlag=function(c){b.sendAnalyticsEvent("server.acknowledge.close",c)};a.updateNpsStatus=function(c){b.sendAnalyticsEvent("server.status.changed",c)};return a});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = 'js/nps/server/btf-admin.js' */
+define("atlassian-nps-plugin/js/nps/server/btf-admin",["jquery","atlassian-nps-plugin/js/amd-shims/ajs","atlassian-nps-plugin/js/amd-shims/templates","atlassian-nps-plugin/js/nps/server/nps-status-manager","atlassian-nps-plugin/js/nps/survey-dialog","atlassian-nps-plugin/js/nps/product","atlassian-nps-plugin/js/nps/submission"],function(c,f,i,g,a,d,e){function h(j){g.getNpsStatus().then(function(k){var o=k;var n=j.find("input.radio");var q=j.find("#enable-analytics");var m=q.is(":checked");b(k,j,m);var l=j.find("#enable-nps");n.change(function(){l.prop("disabled",!q.is(":checked"));l.prop("checked",false)});var p=c("#nps-preview");if(f.DarkFeatures&&f.DarkFeatures.isEnabled("nps.survey.inline.dialog")){require(["atlassian-nps-plugin/js/nps/survey-inline-dialog"],function(r){p.on("click",r.preview)})}else{p.on("click",a.previewDialog)}c(document).ajaxSuccess(function(t,r,u){if(u.url===f.contextPath()+"/rest/analytics/1.0/config/enable"){var s=j.find("input[name=enable-nps]:checked").val()==="on";if(o!==s){g.updateNpsStatus(s,{useErrorFlags:true}).then(function(){e.updateNpsStatus({enabled:s});o=s})}}})})}function b(m,k,l){var j=i.btfAdmin({status:m,isDisabled:!l,previewLink:i.previewLink(),productName:d.getProductName()});var n=k.find("fieldset");n.after(j)}return{init:h}});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = 'js/nps/server/nps-status-manager.js' */
+define("atlassian-nps-plugin/js/nps/server/nps-status-manager",["atlassian-nps-plugin/js/amd-shims/ajs","jquery","aui/flag"],function(b,d,a){function c(){return d.ajax({url:b.contextPath()+"/rest/nps/1.0/status/enable",cache:false,contentType:"application/json",error:function(){a({type:"error",body:"NPS configuration could not be retrieved, check your connection with the server",close:"manual"}).setAttribute("id","status-retrieval-failed")}})}function e(g,f){f=f||{};return d.ajax({url:b.contextPath()+"/rest/nps/1.0/status/enable",type:"PUT",contentType:"application/json",data:JSON.stringify({npsEnabled:g}),error:function(){if(f.useErrorFlags){a({type:"error",body:"NPS configuration could not be saved, check your connection with the server",close:"manual"}).setAttribute("id","status-update-failed")}else{b.error("NPS configuration could not be saved, check your connection with the server")}}})}return{getNpsStatus:c,updateNpsStatus:e}});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = 'js/nps/server/bootstrap.js' */
+require(["jquery","atlassian-nps-plugin/js/amd-shims/ajs","atlassian-nps-plugin/js/nps/server/btf-admin"],function(c,a,b){var d="plugins/servlet/analytics/configuration";if(document.URL.indexOf(d)>-1){a.toInit(function(){var e=c("#analytics-enable-form");b.init(e)})}});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = '/js/nps/product/bitbucket.js' */
+define("atlassian-nps-plugin/js/nps/product",["atlassian-nps-plugin/js/amd-shims/ajs"],function(a){return{getProductName:function(){return"Bitbucket"},setBindings:function(){return false},getUserKey:function(){return a.$(".user-dropdown #current-user").data("username")},isServerMode:function(){return true},allowDisplayNotification:function(){return !this.isOnboardingFlow()},getSurveyTrigger:function(){return".user-dropdown-trigger"},enableABTesting:function(){if(a.DarkFeatures&&a.DarkFeatures.isEnabled("nps.experiment.enabled.by.sen")!==undefined){return a.DarkFeatures.isEnabled("nps.experiment.enabled.by.sen")}return true},allowDisplayAcknowledgementFlag:function(){return !this.isOnboardingFlow()},isOnboardingFlow:function(){var b=window.location;return/\/(getting-started|upgrade-onboarding)$/.test(b.href)}}});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = '/js/nps/survey-dialog.js' */
+define("atlassian-nps-plugin/js/nps/survey-dialog",["atlassian-nps-plugin/js/nps/util","atlassian-nps-plugin/js/nps/product","atlassian-nps-plugin/js/amd-shims/ajs","atlassian-nps-plugin/js/amd-shims/templates","jquery"],function(j,f,i,k,d){var a={};var c={};a.previewDialog=function(){var m=g();i.dialog2(m).show();m.on("click","#nps-rank-buttons > button",function(o){var n=d(o.target);m.find("#nps-rank-buttons > button").removeClass("nps-rank-selected");n.addClass("nps-rank-selected");n.blur()});var l=m.find("#nps-cancel-button");l.on("click",function(){i.dialog2("#nps-survey-dialog").remove()})};a.showDialog=function(){var m=g();i.dialog2(m).show();d(".aui-button").blur();m.on("click","#nps-rank-buttons > button",function(q){var p=d(q.target);m.find("#nps-rank-buttons > button").removeClass("nps-rank-selected");p.addClass("nps-rank-selected");p.blur();a.rankSelected=parseInt(p.text(),10);h()});var n=m.find("#nps-role");n.on("change",function(){a.roleSelected=this.value;h()});var o=m.find("#nps-send-button");o.on("click",function(){c.rank=a.rankSelected;c.role=a.roleSelected;var p=d("#nps-comment").val();if(p){c.comment=p}if(f.isServerMode()){i.dialog2("#nps-survey-dialog").hide();i.trigger("/nps/surveyCompleted",c)}else{e()}});var l=m.find("#nps-cancel-button");l.on("click",function(){i.dialog2("#nps-survey-dialog").hide();i.trigger("/nps/cancelSurvey","click")})};function g(){return d(k.survey({productName:f.getProductName(),roles:b()}))}function b(){var m=[{value:"",text:"Choose role",disabled:true,selected:true}];var l=[{value:"software-engineer",text:"Software Engineering"},{value:"product-manager",text:"Product Management"},{value:"qa",text:"Quality Assurance"},{value:"design",text:"Design"},{value:"management",text:"Management"},{value:"sys-admin",text:"Systems Administration"}];var n=[{value:"other",text:"Other"}];return m.concat(j.kfyShuffle(l)).concat(n)}function e(){i.dialog2("#nps-survey-dialog").hide();var l=d(k.contact({productName:f.getProductName()}));i.dialog2(l).show();d("#nps-done-button").on("click",function(){var n=d("#nps-contact-name").val();if(n){c.name=n.trim()}var m=d("#nps-contact-email").val();if(m){c.email=m.trim()}if(typeof f.getApplicationKey==="function"){c.applicationKey=f.getApplicationKey()}i.dialog2("#nps-contact-dialog").hide();i.trigger("/nps/surveyCompleted",c)});d("#nps-contact-name").focus()}function h(){var m=!!a.roleSelected&&!isNaN(a.rankSelected);var l=d("#nps-send-button");l.attr("aria-disabled",m?"false":"true");if(m){l.removeAttr("disabled")}else{l.attr("disabled","")}}return a});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = '/js/nps/survey-inline-dialog.js' */
+define("atlassian-nps-plugin/js/nps/survey-inline-dialog",["atlassian-nps-plugin/js/nps/util","atlassian-nps-plugin/js/nps/product","atlassian-nps-plugin/js/amd-shims/ajs","atlassian-nps-plugin/js/amd-shims/templates","jquery","skate","aui/inline-dialog2"],function(e,l,g,d,c,q){var t="nps-survey-inline-dialog";var k={};k.eventAttrs={};function j(){if(typeof l.getInlineDialogAlignment==="function"){return l.getInlineDialogAlignment()}else{return"bottom right"}}k.show=function(w){var v=n({id:t,trigger:l.getSurveyTrigger(),productName:l.getProductName(),roles:u(),showOptOutOption:w,isServerMode:l.isServerMode(),alignment:j()});setTimeout(function(){r(v,false);f(v);b(v);p(v);if(typeof l.hasAdg3NavigationSidebar==="function"&&l.hasAdg3NavigationSidebar()){v.addClass("adg3-nps-survey-dialog")}},0)};k.preview=function(){var v=n({id:t,trigger:"#nps-preview",productName:l.getProductName(),roles:u(),showOptOutOption:false,isServerMode:l.isServerMode()});setTimeout(function(){r(v,true);f(v);v.find("#nps-send-button").prop("disabled",true);b(v);p(v)},0)};function n(x){var v=c(x.trigger);v.attr({"aria-controls":t});var w=c(d.surveyInlineDialog({data:x}));w.appendTo("body");q.init(w[0]);return w}function r(y,w){y.find(".nps-close-icon").on("click",function(){y.trigger("aui-layer-hide")});y.on("aui-layer-hide",function(){if(w===false){i()}});var v=y.find("#nps-rank-buttons > .rank-button");v.click(function(B){v.removeClass("nps-rank-selected");var A=c(B.target);A.addClass("nps-rank-selected");A.blur();if(w===false){k.eventAttrs.rank=parseInt(A.text(),10);window.onbeforeunload=i}y.find(".comment-session").show()});if(w===false){var z=y.find("#nps-send-button");z.on("click",m);var x=y.find("#nps-done-button");x.on("click",s);y.find(".nps-dismiss-forever").on("click",a)}}function u(){var w=[{value:"",text:"Choose role",disabled:true,selected:true}];var v=[{value:"software-engineer",text:"Software Engineering"},{value:"product-manager",text:"Product Management"},{value:"qa",text:"Quality Assurance"},{value:"design",text:"Design"},{value:"management",text:"Management"},{value:"sys-admin",text:"Systems Administration"}];var x=[{value:"other",text:"Other"}];return w.concat(e.kfyShuffle(v)).concat(x)}function i(){var v=!c.isEmptyObject(k.eventAttrs);if(v){if(typeof l.getApplicationKey==="function"){k.eventAttrs.applicationKey=l.getApplicationKey()}h(k.eventAttrs);g.trigger("/nps/surveyCompleted",k.eventAttrs);delete k.eventAttrs}else{g.trigger("/nps/cancelSurvey","notification")}c("#nps-survey-inline-dialog").remove()}function h(w){if(typeof l.getAdg3Flags==="function"){var v=l.getAdg3Flags();w.simplifiedNavigationEnabled=v.simplifiedNavigationEnabled;w.adg3GraduatedStylesEnabled=v.adg3GraduatedStylesEnabled;w.userAdg3Enabled=v.userAdg3Enabled}}function f(v){g.dialog2.on("show",function(){v.hide()});g.dialog2.on("hide",function(){v.show()});g.bind("show.dialog",function(){v.hide()});g.bind("hide.dialog",function(){v.show()});g.bind("remove.dialog",function(){v.show()})}function m(v){v.preventDefault();c(this).prop("disabled",true);var x=c.trim(c("#nps-comment").val());if(x){k.eventAttrs.comment=x}var w=c.trim(c("#nps-role").val());if(w){k.eventAttrs.role=w}if(l.isServerMode()){i();c("#nps-survey-inline-dialog").remove()}else{c(".survey-screen").hide();c(".survey-screen.screen-2").show()}}function s(w){w.preventDefault();var v=c("#nps-allow-contact").is(":checked");if(v){k.eventAttrs.allowContact=v}i();c("#nps-survey-inline-dialog").remove()}function b(v){setTimeout(function(){v.find(".aui-button").blur()},50)}function a(){g.trigger("/nps/dismissSurvey","dismiss");c("#nps-survey-inline-dialog").remove()}function o(v){if(v[0].hide){v[0].hide()}else{v[0].removeAttribute("open")}}function p(v){if(v[0].show){v[0].show()}else{v[0].open=true}}return k});;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = 'soy/server/btf-admin.soy' */
+// This file was automatically generated from btf-admin.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace NPS.Templates.
+ */
+
+if (typeof NPS == 'undefined') { var NPS = {}; }
+if (typeof NPS.Templates == 'undefined') { NPS.Templates = {}; }
+
+
+NPS.Templates.btfAdmin = function(opt_data, opt_ignored) {
+  return '' + aui.form.checkboxField({id: 'nps-btf-admin', legendContent: 'Feedback', fields: [{id: 'enable-nps', labelText: 'Allow user feedback', isChecked: opt_data.status, isDisabled: opt_data.isDisabled, descriptionContent: AJS.format('We\x27\x27ll occasionally ask logged in users if they\x27\x27d like to answer a few questions to help us improve {0}.',opt_data.productName) + ' ' + opt_data.previewLink}]});
+};
+if (goog.DEBUG) {
+  NPS.Templates.btfAdmin.soyTemplateName = 'NPS.Templates.btfAdmin';
+}
+
+
+NPS.Templates.previewLink = function(opt_data, opt_ignored) {
+  return '<a href=\'#\' id=\'nps-preview\'>' + soy.$$escapeHtml('View a sample') + '</a>';
+};
+if (goog.DEBUG) {
+  NPS.Templates.previewLink.soyTemplateName = 'NPS.Templates.previewLink';
+}
+;
+;
+/* module-key = 'com.atlassian.plugins.atlassian-nps-plugin:nps-btf-admin-resources', location = 'soy/survey.soy' */
+// This file was automatically generated from survey.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace NPS.Templates.
+ */
+
+if (typeof NPS == 'undefined') { var NPS = {}; }
+if (typeof NPS.Templates == 'undefined') { NPS.Templates = {}; }
+
+
+NPS.Templates.survey = function(opt_data, opt_ignored) {
+  var param10 = aui.form.label({content: AJS.format('1. How likely would you be to recommend {0} to a friend or colleague?',opt_data.productName)}) + '<div id="nps-rating-bar"><div id="nps-low-rank-cell"><div id="nps-low-rank-text" class="nps-low-emphasis">' + soy.$$escapeHtml('Not likely') + '</div></div><div id="nps-rank-cell">';
+  var param17 = '';
+  for (var x18 = 0; x18 < 11; x18++) {
+    param17 += aui.buttons.button({id: 'nps-rank-' + soy.$$escapeHtml(x18), text: x18, extraAttributes: {type: 'button'}});
+  }
+  param10 += aui.buttons.buttons({id: 'nps-rank-buttons', content: param17});
+  param10 += '</div><div id="nps-high-rank-cell"><div id="nps-high-rank-text" class="nps-low-emphasis">' + soy.$$escapeHtml('Extremely likely') + '</div></div></div>';
+  var param9 = '' + aui.form.fieldGroup({content: param10});
+  param9 += '<br>' + aui.form.fieldGroup({content: '' + aui.form.label({content: '2. Which of these best describes your role at your company?', forField: 'nps-role'}) + aui.form.select({id: 'nps-role', options: opt_data.roles})}) + '<br>' + aui.form.fieldGroup({content: '' + aui.form.label({content: '3. Is there any other feedback you\x27d like to give us? (Optional)', forField: 'nps-comment'}) + aui.form.textarea({id: 'nps-comment'})});
+  var param7 = '' + aui.form.form({isTopLabels: true, content: param9});
+  var output = '' + aui.dialog.dialog2({modal: true, size: 'large', id: 'nps-survey-dialog', titleText: AJS.format('Help us improve {0}',opt_data.productName), content: param7, footerActionContent: '' + aui.buttons.button({type: 'primary', id: 'nps-send-button', text: 'Send', isDisabled: true}) + aui.buttons.button({type: 'link', id: 'nps-cancel-button', text: 'Cancel'})});
+  return output;
+};
+if (goog.DEBUG) {
+  NPS.Templates.survey.soyTemplateName = 'NPS.Templates.survey';
+}
+
+
+NPS.Templates.surveyInlineDialog = function(opt_data, opt_ignored) {
+  var param64 = '<h3>' + soy.$$escapeHtml('Tell us what you think') + '</h3>' + aui.icons.icon({icon: 'close-dialog', useIconFont: true, size: 'small', extraClasses: 'nps-close-icon'}) + ((opt_data.data.showOptOutOption == true) ? aui.buttons.button({extraClasses: 'nps-dismiss-forever', type: 'link', text: 'Dismiss forever'}) : '');
+  var param82 = aui.form.label({content: AJS.format('How likely are you to recommend {0} to a friend or colleague?',opt_data.data.productName)}) + '<div id="nps-rating-bar"><div id="nps-low-rank-cell"><div id="nps-low-rank-text" class="nps-low-emphasis">' + soy.$$escapeHtml('Not likely') + '</div></div><div id="nps-rank-cell">';
+  var param89 = '';
+  for (var x90 = 0; x90 < 11; x90++) {
+    param89 += aui.buttons.button({id: 'nps-rank-' + soy.$$escapeHtml(x90), text: x90, extraClasses: 'rank-button', extraAttributes: {type: 'button'}});
+  }
+  param82 += aui.buttons.buttons({id: 'nps-rank-buttons', content: param89});
+  param82 += '</div><div id="nps-high-rank-cell"><div id="nps-high-rank-text" class="nps-low-emphasis">' + soy.$$escapeHtml('Extremely likely') + '</div></div></div>';
+  var param81 = '' + aui.form.fieldGroup({content: param82});
+  param81 += aui.form.fieldGroup({extraClasses: 'comment-session', content: '' + aui.form.fieldGroup({content: '' + aui.form.textarea({id: 'nps-comment', placeholderText: 'What\x27s the main reason for your score?'})}) + ((opt_data.data.isServerMode == true) ? aui.form.fieldGroup({content: '' + aui.form.label({content: 'Which of these best describes your role at your company? (Optional)', forField: 'nps-role'}) + aui.form.select({id: 'nps-role', options: opt_data.data.roles})}) : '') + aui.form.buttons({alignment: 'left', content: '' + aui.buttons.button({id: 'nps-send-button', text: 'Send'})})});
+  param64 += aui.form.form({isTopLabels: true, extraClasses: 'survey-screen screen-1', content: param81});
+  param64 += aui.form.form({isTopLabels: true, extraClasses: 'survey-screen screen-2', content: '<div class="role-field"><p>' + soy.$$escapeHtml(AJS.format('Thanks for your response! To help us improve {0}, we\x27\x27d love to discuss your feedback in more detail. If you\x27\x27re not keen to discuss it, uncheck the box below.',opt_data.data.productName)) + '</p></div>' + ((opt_data.data.isServerMode == false) ? aui.form.fieldGroup({content: '' + aui.form.label({content: 'Which of these best describes your role at your company? (Optional)', forField: 'nps-role'}) + aui.form.select({id: 'nps-role', options: opt_data.data.roles})}) : '') + aui.form.fieldGroup({content: '<div class="checkbox">' + aui.form.input({id: 'nps-allow-contact', type: 'checkbox', isChecked: true}) + aui.form.label({content: 'It\x27s okay to contact me about my feedback.', extraAttributes: 'for="nps-allow-contact"'}) + '</div>'}) + aui.form.buttons({alignment: 'left', content: '' + aui.buttons.button({id: 'nps-done-button', text: 'Done'})})});
+  var output = '' + aui.inlineDialog2.inlineDialog2({id: opt_data.data.id, alignment: opt_data.data.alignment, extraAttributes: 'persistent', extraClasses: 'nps-survey-inline-dialog', content: param64});
+  return output;
+};
+if (goog.DEBUG) {
+  NPS.Templates.surveyInlineDialog.soyTemplateName = 'NPS.Templates.surveyInlineDialog';
+}
+;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-page-data:page-data-loader', location = '/static/lib/page-data-loader.js' */
+var _PageDataPlugin=function(){function k(){e.each(f,function(a,d){e.each(d,function(b,c){c.reject(h[a]?Error("Provider "+a+" not included with context "+b):Error("Provider "+a+" not included on page."))})})}var l=Object.prototype.hasOwnProperty,e=jQuery,h={},f={};e(document).ready(k);return{load:function(a,d){for(var b in d)if(l.call(d,b)){var c=f[b]||(f[b]={}),c=c[a]||(c[a]=e.Deferred()),g=h[b]||(h[b]={});g[a]=d[b];if("pending"!==c.state())throw Error("Attempt to set context "+a+" for plugin key "+
+b+" multiple times.");c.resolve(g[a])}},data:h,ready:function(a,d){var b=Array.prototype.slice.call(arguments,2),c=f[a]||(f[a]={}),g=c[d]||(c[d]=e.Deferred());b.forEach(function(a){g.done(a)});return g},_domReady:k}}();;
+;
+/* module-key = 'com.atlassian.support.stp:stp-license-status-resources', location = 'js/stp-licenseStatus.js' */
+(function(b){var a={destroyBanner:function(){AJS.$("#stp-licenseStatus-banner").slideUp(function(){AJS.$("#stp-licenseStatus-banner").remove();AJS.trigger("stp-licenseStatus-banner:destroyed")})},remindMeNever:function(c){c.preventDefault();AJS.$.ajax({type:"POST",async:true,headers:{"X-Atlassian-Token":"no-check"},url:AJS.contextPath()+"/rest/stp/1.0/license/remindMeNever"});a.destroyBanner()},remindMeLater:function(){AJS.$.ajax({type:"POST",async:true,headers:{"X-Atlassian-Token":"no-check"},url:AJS.contextPath()+"/rest/stp/1.0/license/remindMeLater"});a.destroyBanner()},createBanner:function(d,f){var c="\n<div id='stp-licenseStatus-banner' class='aui-message warning'>\n";var g="https://www.atlassian.com/purchase/renew?utm_source=STP&utm_medium=renewals_reminder&utm_campaign=renewals_reminder";if(d===0){c+=AJS.format("Your {0} maintenance expires today. For continued access to support and updates, {1}renew your maintenance{2}. {3}Remind me later{4} or {5}never remind me again{6}.",f,"<a id='stp-licenseStatus-renewNow' target='_blank' href=\""+g+'">',"</a>","<a id='stp-licenseStatus-remindMeLater' href='#'>","</a>","<a id='stp-licenseStatus-remindMeNever' href='#'>","</a>");c+="<span class ='aui-icon icon-warning'></span>\n</div>"}else{c+=AJS.format("Your {0} maintenance expires in {1} days. For continued access to support and updates, {2}renew your maintenance{3}. {4}Remind me later{5} or {6}never remind me again{7}.",f,d,"<a id='stp-licenseStatus-renewNow' target='_blank' href=\""+g+'">',"</a>","<a id='stp-licenseStatus-remindMeLater' href='#'>","</a>","<a id='stp-licenseStatus-remindMeNever' href='#'>","</a>");c+="<span class ='aui-icon icon-warning'></span>\n</div>"}var e=b("#stp-licenseStatus-banner-container");if(e.length===0){e=b(document.body)}e.prepend(c);AJS.$("#stp-licenseStatus-remindMeNever").click(a.remindMeNever);AJS.$("#stp-licenseStatus-remindMeLater").click(function(h){h.preventDefault();a.remindMeLater()});AJS.$("#stp-licenseStatus-renewNow").click(function(h){a.remindMeLater()});AJS.trigger("stp-licenseStatus-banner:created")}};AJS.$(document).ready(function(){var i=AJS.$("meta[name='stp-license-days-to-expiry']");var c=AJS.$("meta[name='stp-license-is-admin']");var f=AJS.$("meta[name='stp-license-should-keep-banner-hidden']");var h=AJS.$("meta[name='stp-license-product-name']");var g={};var k=b.Deferred();var d=i.length&&c.length&&f.length&&h.length;if(d){var l=i.attr("content")||-1;g.daysToExpiry=parseInt(l);g.shouldKeepBannerHidden=f.attr("content")==="true";g.isAdmin=c.attr("content")==="true";g.productName=h.attr("content");k.resolve(g)}else{b.ajax({type:"GET",dataType:"json",async:true,url:AJS.contextPath()+"/rest/stp/1.0/license/status",headers:{"X-Atlassian-Token":"no-check"},statusCode:{200:function(m){k.resolve(b.extend(m,{viaRest:true}))},204:function(){k.reject("204. No reason to display banner.")}},error:function(){k.reject("Error returned from call to license/status")}})}k.done(function j(n){var m=l<30&&l>=0;if(n.viaRest||(n.isAdmin&&m&&!n.shouldKeepBannerHidden)){b("#stp-licenseStatus-banner").length||a.createBanner(n.daysToExpiry,n.productName)}}).fail(function e(m){console.log("Not displaying license banner: "+m)})})})(AJS.$);;
+;
+/* module-key = 'com.atlassian.bitbucket.server.bitbucket-client-web-fragments:web-fragment-manager', location = '/static/bitbucket/internal/util/web-fragment-manager.js' */
+window.WebFragments=function(){function x(a){for(var b=Array.prototype.slice.call(arguments,1),c=void 0,f=b.length,c=0;c<f;c++){var g=b[c];if(g)for(var q=p(g),h=void 0,w=q.length,h=0;h<w;h++){var d=q[h];a[d]=g[d]}}return a}function t(a,b){return"function"===typeof a?a(x({},b)):a}function e(a){var b=l[a];return function(c,f){var g=b[c],q=[];if(g&&g.length)for(var h=void 0,w=g.length,h=0;h<w;h++){var d;d=g[h];var m=f,r=void 0,n=void 0,k=void 0,e=void 0,l={type:a.toUpperCase()};if(u.call(d,"serverCondition")&&
+!d.serverCondition)d=null;else if(m=x({},m,d.serverContext,d.params),u.call(d,"condition")&&!t(d.condition,m))d=null;else{d["context-provider"]&&"function"===typeof d["context-provider"]&&(m=t(d["context-provider"],m));r=p(d);k=0;for(e=r.length;k<e;k++)n=r[k],/con(dition|text-provider)|params/.test(n)||(l[n]=t(d[n],m));if(d.params)for(var v=l.params={},r=p(d.params),k=0,e=r.length;k<e;k++)n=r[k],v[n]=t(d.params[n],m);d=l}d&&q.push(d)}-1===c.indexOf("bitbucket.internal.")&&(new RegExp("[\\?\x26]web\\."+
+a+"s(\x3d|\x26|$)")).test(window.location.search)&&q.push(B[a](c,f));return q}}function v(a){var b=l[a];return function(a){if(!a)throw Error("No descriptor provided");if("string"!==typeof a.location)throw Error("No location provided, or location was not a string.");if("string"!==typeof a.completeModuleKey)throw Error("No completeModuleKey provided, or completeModuleKey was not a string.");y(a);b[a.location]||(b[a.location]=[]);b[a.location].push(a);b[a.location].sort(z)}}function z(a,b){return(0<=
+a.weight?a.weight:1E3)-(0<=b.weight?b.weight:1E3)}var u=Object.prototype.hasOwnProperty,l={item:{},section:{},panel:{}},p=function(a){var b=[],c;for(c in a)u.call(a,c)&&b.push(c);return b},y=void 0,y=window._PageDataPlugin&&_PageDataPlugin.ready?function(a){_PageDataPlugin.ready(a.completeModuleKey,a.location,function(b){u.call(b,"serverCondition")&&(a.serverCondition=b.serverCondition);u.call(b,"serverContext")&&(a.serverContext=b.serverContext)})}:function(a){return a},B={item:function(a,b){return{url:"#example-web-item-url",
+pluginKey:"org.example.plugins",moduleKey:"example-web-item",completeModuleKey:"org.example.plugins:example-web-item",linkText:"Client Web Item: "+a,hasTooltip:!0,tooltip:"Client Context Items: "+p(b).join(", "),hasIcon:!1,iconUrl:null,iconWidth:0,iconHeight:0,styleClass:"plugin-point",linkId:null,description:null,params:{},type:"ITEM",weight:1E3}},section:function(a,b){return{name:"example-web-section",key:"example-web-section",location:a,labelText:"Client Web Section: "+a,type:"SECTION",params:{},
+weight:1E3}},panel:function(a,b){return{view:'\x3cdiv class\x3d"plugin-point web-panel"\x3e\x3cstrong\x3eClient Web Panel\x3c/strong\x3e: '+a+"\x3cbr /\x3e\x3cstrong\x3eClient Context Items\x3c/strong\x3e: "+p(b).join(", ")+"\x3c/div\x3e",weight:1E3}}},A=e("panel");e("item");return{getWebItems:e("item"),getWebSections:e("section"),getWebPanels:function(a,b){for(var c=A(a,b),f=void 0,g=c.length,f=0;f<g;f++)c[f]=c[f].view;return c},getWebFragmentDescriptors:function(a,b){var c=l[b];return(c=c&&c[a])&&
+c.slice()},addWebItemDescriptor:v("item"),addWebSectionDescriptor:v("section"),addWebPanelDescriptor:v("panel"),getWebFragments:function(a,b,c){"string"!==typeof b&&(c=b,b=a);a=this.getWebItems(a,c);b=this.getWebSections(b,c);b=a.concat(b);b.sort(z);return b},_getValue:t,_formatI18n:function(a,b,c){var f=(a===b?c:a)||b||c||"";return function(a){var b=[],c=p(a);c.sort();for(var e=void 0,d=c.length,e=0;e<d;e++)b.push(a[c[e]]);return AJS.format(f,b)}},_getWebPanels:A}}();
+define("bitbucket/internal/util/web-fragment-manager",function(){return window.WebFragments});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin-api:ajs-amd', location = 'lib/amd/ajs-amd.js' */
+define("ajs",function(){return AJS});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin-api:wrm-amd', location = 'lib/amd/wrm-amd.js' */
+define("wrm/context-path",function(){return AJS.contextPath});define("wrm/data",function(){var a=function(){};if(WRM){if(typeof WRM.data==="function"){a=WRM.data}else{if(WRM.data&&typeof WRM.data.claim==="function"){a=WRM.data.claim}}}return{claim:a}});define("wrm",function(){if(WRM.data instanceof Function){WRM.data.claim=WRM.data}return WRM});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin-api:backbone-amd', location = 'lib/amd/backbone-amd.js' */
+define("backbone",function(){return Backbone});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin-api:jquery-amd', location = 'lib/amd/jquery-amd.js' */
+define("jquery",function(){return AJS.$});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin-api:underscore-amd', location = 'lib/amd/underscore-amd.js' */
+define("underscore",function(){return _});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin:configure-integration-data', location = 'admin/configure-integration-data.js' */
+define("hipchat/admin/configure-integration-data",["jquery"],function(f){var e="com.atlassian.plugins.base-hipchat-integration-plugin";var d="configure-integration-data";var c="configure-integration";var a=WRM.data instanceof Function?WRM.data:WRM.data.claim;var b=a(e+":"+d+"."+c);return b});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin:resources', location = 'admin/configure-hipchat.js' */
+require(["hipchat/admin/configure-integration-data"],function(a){AJS.toInit(function(g){var d=g("#hipchat-integration-configuration").val();var k=window.localStorage;if(d){var j={self:g("#hipchat-route-config").val(),serverPing:g("#hipchat-route-check-server-connectivity").val(),clientPing:g("#hipchat-route-check-client-connectivity").val(),beginInstall:g("#hipchat-route-begin-install").val(),completeInstall:g("#hipchat-route-complete-install").val(),installableUrl:g("#hipchat-route-installable-url").val(),uninstall:g("#hipchat-route-uninstall").val(),redirectUrl:g("#hipchat-route-redirectUrl").val()};var e={screenshotResource:g("#hipchat-server-resource-screenshot").val(),screenshotResource2x:g("#hipchat-server-resource-screenshot-2x").val(),uninstalling:g("#hipchat-server-resource-uninstalling").val()};var l=HipChat.Templates.Configuration;var b=g("#hipchat-configuration-panel");if(a.linkId){var i=a.linkId}var h=(function(){var m;return{installing:function(){g("#hipchat-installing .hipchat-install-message").spin("large")},error:function(n){b.html(l.error({msg:n}))},uninstallError:function(n){if(n.status==401){b.html(l.uninstallPermissionError())}else{b.html(l.uninstallConnectionError())}},confirmUninstall:function(){var n=g.Deferred();if(!m){m=new AJS.Dialog(600,300,"hipchat-remove-link-dialog");m.addHeader("Remove integration","remove-warning");m.addPanel("Message Panel",l.removeLinkMessage());m.addButton("Remove integration",function(){m.hide();h.uninstall();n.resolve()});m.addCancel("Cancel",function(){m.hide();n.reject()})}m.show();return n.promise()},uninstall:function(){b.html(l.uninstalling({uninstallingImage:e.uninstalling}));g("#hipchat-uninstalling .hipchat-install-message").spin("large")},reinstallationSucceeded:function(){try{var n=require("aui/flag");n({type:"success",title:"HipChat Integration updated",persistent:false,body:"Your HipChat Integration has been successfully updated to the latest version, enjoy the new features."})}catch(o){}}}})();var f={serverPing:function(){return g.ajax(j.serverPing,{type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({serverUrl:""})})},serverPingToUrl:function(m){return g.ajax(j.serverPing,{type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({serverUrl:m})})},beginInstall:function(n,m){return g.ajax(j.beginInstall,{type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({installableUrl:n,reinstall:m})})},completeInstall:function(m){return g.ajax(j.completeInstall,{type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({installableUrl:m})})},remove:function(m){return g.ajax({url:j.uninstall+"/"+m,type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({})})},reinstall:function(m){return g.ajax({url:j.uninstall+"/"+m,type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({reinstall:true})})},removeDefault:function(){return g.ajax(j.uninstall,{type:"POST",dataType:"json",contentType:"application/json",data:JSON.stringify({})})}};var c={initialize:function(m){switch(m){case"installing":c.installing();break;case"installed":c.installed(i);break;case"uninstalling":c.uninstalling();break;case"reinstall":c.reinstalling();break;case"configure":default:c.configure()}},redirect:function(m){window.location.replace(m)},navigate:function(m){window.location.assign(m)},configure:function(){f.serverPing().done(function(){g("#hipchat-install").removeAttr("disabled")}).fail(function(){g("#hipchat-server-failure").removeClass("hidden")}).always(function(){g("#hipchat-loading").hide()});g("#hipchat-install").click(function(n){n.preventDefault();if(g(this).attr("aria-disabled")){return}g(this).attr("aria-disabled","true");AJS.trigger("analyticsEvent",{name:"notifications.hipchat.server.registration.started",data:{}});f.beginInstall(undefined,false).done(c.navigate)});g("#enable-btf-install").click(function(n){n.preventDefault();window.onbeforeunload=null;m()});AJS.trigger("analyticsEvent",{name:"notifications.hipchat.server.discovered",data:{}});function m(){g(".hipchat-install-form").toggleClass("hipchat-btf");g("#btf-url").focus();g("#btf-install").click(function(o){g("#btf-error").hide();o.preventDefault();var n=g("#btf-url").val();var p=/^https?:\/\//i;if(!p.test(n)){n="https://"+n}f.serverPingToUrl(n).done(function(){f.beginInstall(n,false).done(c.navigate)}).fail(function(){g("#btf-error").show()})})}g("#btf-install-cancel").click(function(n){n.preventDefault();g(".hipchat-install-form").toggleClass("hipchat-btf")})},installing:function(){h.installing();f.completeInstall(j.installableUrl).done(function(m){c.redirect(j.self)}).error(h.error)},installed:function(){g("#hipchat-uninstall").click(function(m){m.preventDefault();if(g(this).attr("aria-disabled")){return}h.confirmUninstall().done(function(){f.remove(i).done(c.redirect).error(h.uninstallError)})});g(".hipchat-reinstall").click(function(){if(g(this).attr("aria-disabled")){return}var m=g(this);m.attr("aria-disabled",true);m.find(".aui-icon-wait").css("display","inline-block");f.reinstall(i).done(c.redirect).error(h.uninstallError)});if(k.getItem("hipchat-reinstalling")){h.reinstallationSucceeded();k.removeItem("hipchat-reinstalling")}},uninstalling:function(){f.removeDefault().done(function(){c.redirect(j.redirectUrl)}).error(h.uninstallError)},reinstalling:function(){function o(r){var u=window.location.search.substring(1);var t=u.split("&");for(var s=0;s<t.length;s++){var v=t[s].split("=");if(v[0]==r){if(v.length>1){return v[1]}else{return null}}}}var q=o("installable_url");if(q===undefined){console.log("ERROR: the 'installable_url' parameter was missing from the request URL:'"+window.location.search+"'")}else{var n=decodeURIComponent(q);var m=document.createElement("a");m.href=n;var p=m.protocol+"//"+m.host;f.serverPingToUrl(p).done(function(){k.setItem("hipchat-reinstalling",true);f.beginInstall(p,true).done(c.navigate)}).fail(function(){g("#btf-error").show()})}}};c.initialize(d)}})});;
+;
+/* module-key = 'com.atlassian.plugins.base-hipchat-integration-plugin:resources', location = 'admin/configure-hipchat.soy' */
+// This file was automatically generated from configure-hipchat.soy.
+// Please don't edit this file by hand.
+
+/**
+ * @fileoverview Templates in namespace HipChat.Templates.Configuration.
+ */
+
+if (typeof HipChat == 'undefined') { var HipChat = {}; }
+if (typeof HipChat.Templates == 'undefined') { HipChat.Templates = {}; }
+if (typeof HipChat.Templates.Configuration == 'undefined') { HipChat.Templates.Configuration = {}; }
+
+
+HipChat.Templates.Configuration.installing = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.connected({id: 'hipchat-installing', installHeading: 'Integrating with HipChat', installImage: opt_data.installingImage, showRemove: false});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.installing.soyTemplateName = 'HipChat.Templates.Configuration.installing';
+}
+
+
+HipChat.Templates.Configuration.uninstalling = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.connected({id: 'hipchat-uninstalling', installHeading: 'Removing HipChat Integration', installImage: opt_data.uninstallingImage, showRemove: false});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.uninstalling.soyTemplateName = 'HipChat.Templates.Configuration.uninstalling';
+}
+
+
+HipChat.Templates.Configuration.connected = function(opt_data, opt_ignored) {
+  return '<div id="' + soy.$$escapeHtml(opt_data.id) + '">' + ((opt_data.showRemove) ? HipChat.Templates.Configuration.uninstallButton(null) : '') + ((opt_data.installImage) ? '<img src="' + soy.$$escapeHtml(opt_data.installImage) + '" />' : '') + ((opt_data.installHeading) ? '<h5>' + soy.$$escapeHtml(opt_data.installHeading) + '</h5>' : '') + '<hr/><div class="hipchat-install-message">' + ((opt_data.installMessageHtml) ? '<p>' + soy.$$filterNoAutoescape(opt_data.installMessageHtml) + '</p>' : '') + '</div></div>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.connected.soyTemplateName = 'HipChat.Templates.Configuration.connected';
+}
+
+
+HipChat.Templates.Configuration.error = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.message({type: 'error', title: 'Error encountered creating your hipchat link', content: soy.$$escapeHtml("Something went wrong integrating Bitbucket and HipChat. We probably had trouble connecting to the HipChat server. Check that the connection between your server and HipChat is working correctly and try again.") + '<p>' + soy.$$escapeHtml('Try uninstalling the existing integration from HipChat before trying again.') + '</p>'});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.error.soyTemplateName = 'HipChat.Templates.Configuration.error';
+}
+
+
+HipChat.Templates.Configuration.uninstallConnectionError = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.message({type: 'error', title: 'Error encountered removing your hipchat link', content: '' + soy.$$escapeHtml("Something went wrong removing the integration in HipChat. We probably had trouble connecting to the HipChat server. You may need to remove the integration from HipChat\'s admin page. The link has been removed from Bitbucket.")});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.uninstallConnectionError.soyTemplateName = 'HipChat.Templates.Configuration.uninstallConnectionError';
+}
+
+
+HipChat.Templates.Configuration.uninstallPermissionError = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.message({type: 'error', title: 'Error encountered removing your hipchat link', content: '' + soy.$$escapeHtml('You do not have permission to remove this integration, please contact your site admin if you wish to remove the HipChat integration.')});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.uninstallPermissionError.soyTemplateName = 'HipChat.Templates.Configuration.uninstallPermissionError';
+}
+
+
+HipChat.Templates.Configuration.refreshToken = function(opt_data, opt_ignored) {
+  return '' + HipChat.Templates.Configuration.message({type: 'error', title: 'Setting up your HipChat link', content: '' + soy.$$escapeHtml('Error encountered creating your hipchat link')});
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.refreshToken.soyTemplateName = 'HipChat.Templates.Configuration.refreshToken';
+}
+
+
+HipChat.Templates.Configuration.message = function(opt_data, opt_ignored) {
+  return '<div class="aui-message ' + soy.$$escapeHtml(opt_data.type) + ' ' + ((opt_data.altClass) ? soy.$$escapeHtml(opt_data.altClass) : '') + '"><p class="title"><span class="aui-icon icon-' + soy.$$escapeHtml(opt_data.type) + '"></span><strong>' + soy.$$escapeHtml(opt_data.title) + '</strong></p>' + ((opt_data.content) ? '<p>' + soy.$$filterNoAutoescape(opt_data.content) + '</p>' : '') + '</div>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.message.soyTemplateName = 'HipChat.Templates.Configuration.message';
+}
+
+
+HipChat.Templates.Configuration.removeLinkMessage = function(opt_data, opt_ignored) {
+  return '<div class=\'remove-link-message\'>' + soy.$$filterNoAutoescape("\u003cp>Are you sure you want to completely remove your HipChat integration?\u003c\/p>\u003cp>The Bitbucket plugin will not be removed from HipChat.\u003c\/p>") + '</div>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.removeLinkMessage.soyTemplateName = 'HipChat.Templates.Configuration.removeLinkMessage';
+}
+
+
+HipChat.Templates.Configuration.installButton = function(opt_data, opt_ignored) {
+  return '<div class="hipchat-install-form"><button class="aui-button aui-button-primary" type="submit" id="hipchat-install" disabled="disabled">' + soy.$$escapeHtml('Connect HipChat') + '</button><div id="hipchat-loading"><span class="aui-icon aui-icon-wait"></span> ' + soy.$$escapeHtml('Checking your server can see HipChat') + '</div><div id="hipchat-server-failure" class="hidden"><p><span class="aui-icon aui-icon-small aui-iconfont-warning hipchat-failure-marker"></span> ' + soy.$$escapeHtml('Unable to reach HipChat') + '</p><p class="details">' + soy.$$escapeHtml("If Bitbucket does not have access to the internet you won\'t be able to integrate with HipChat.") + '</p></div><div><button class="cancel aui-link aui-button aui-button-link" id="enable-btf-install">' + soy.$$escapeHtml('Or, if you\x27re using HipChat Server, click here.') + '</button>' + HipChat.Templates.Configuration.btfInstall(null) + '</div></div>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.installButton.soyTemplateName = 'HipChat.Templates.Configuration.installButton';
+}
+
+
+HipChat.Templates.Configuration.btfInstall = function(opt_data, opt_ignored) {
+  return '<form class="aui top-label" id="hipchat-btf-install"><fieldset class="top-label"><div class="field-group top-label"><label for="hipchat-btf-url" style="text-align:center">' + soy.$$escapeHtml('First things first, let us know where we can find your HipChat Server:') + '</label><input class="text long-field" type="text" id="btf-url" name="btf-url" data-aui-notification-field="" placeholder="http://www.hipchat.com"></input><div class="error" id="btf-error">' + soy.$$escapeHtml('We couldn\x27t reach your server') + '</div></div></fieldset><div class="buttons-container"><button class="aui-button aui-button-primary" type="submit" id="btf-install">' + soy.$$escapeHtml('Connect HipChat') + '</button><a class="cancel" href="#" id="btf-install-cancel">Cancel</a></div></form>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.btfInstall.soyTemplateName = 'HipChat.Templates.Configuration.btfInstall';
+}
+
+
+HipChat.Templates.Configuration.uninstallButton = function(opt_data, opt_ignored) {
+  return '<button class="aui-button aui-button-subtle" id="hipchat-uninstall"><span class="aui-icon aui-icon-small aui-iconfont-delete">Configure</span> ' + soy.$$escapeHtml('Remove integration') + '</button>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.uninstallButton.soyTemplateName = 'HipChat.Templates.Configuration.uninstallButton';
+}
+
+
+HipChat.Templates.Configuration.inviteButton = function(opt_data, opt_ignored) {
+  return '<input type="hidden" id="inviteButtonWaitingForMapping" value="' + soy.$$escapeHtml(opt_data.inviteButtonWaitingForMapping) + '"/><a class="aui-button aui-button-subtle hidden" id="hipchat-invite-button" href="' + soy.$$escapeHtml(opt_data.adminInviteUrl) + '"><span class="aui-icon aui-icon-small aui-iconfont-space-personal">Invite</span> ' + soy.$$escapeHtml('Invite users to HipChat') + '</a>';
+};
+if (goog.DEBUG) {
+  HipChat.Templates.Configuration.inviteButton.soyTemplateName = 'HipChat.Templates.Configuration.inviteButton';
+}
+;
