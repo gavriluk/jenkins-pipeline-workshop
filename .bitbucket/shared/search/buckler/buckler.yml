@@ -1,5 +1,5 @@
 ---
 auth.basic.http.enabled: "true"
-auth.basic.password: "299cdca69d68f1ad07faeb1ca4ed29f7d265dbdc"
+auth.basic.password: "7d2f61efa8ffdce87c439b27b373906b49ff01e6"
 auth.basic.tcp.enabled: "true"
 auth.basic.username: "bitbucket"

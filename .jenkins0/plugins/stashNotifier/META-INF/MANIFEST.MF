@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Pavel
+Build-Jdk: 1.8.0_65
+Extension-Name: stashNotifier
+Specification-Title: Jenkins plugin to notify Atlassian Stash (Bitbuck
+ et) git repository servers of
+         build results through the Stash build API.
+Implementation-Title: stashNotifier
+Implementation-Version: 1.11.6
+Group-Id: org.jenkins-ci.plugins
+Short-Name: stashNotifier
+Long-Name: Stash Notifier
+Url: https://wiki.jenkins-ci.org/display/JENKINS/Bitbucket+(Stash)+Not
+ ifier+Plugin
+Compatible-Since-Version: 1.9
+Plugin-Version: 1.11.6
+Hudson-Version: 1.625.3
+Jenkins-Version: 1.625.3
+Plugin-Dependencies: git:2.0,credentials:1.22,plain-credentials:1.1,to
+ ken-macro:1.11
+Plugin-Developers: Georg Gruetter:gruetter:,Pavel Batanov:scaytrase:
+

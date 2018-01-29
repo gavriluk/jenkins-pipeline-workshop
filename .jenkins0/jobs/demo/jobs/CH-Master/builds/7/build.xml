@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.plugins.git.GitStatus_-CommitHookCause plugin="git@3.4.1">
+            <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+          </hudson.plugins.git.GitStatus_-CommitHookCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.plugins.git.RevisionParameterAction plugin="git@3.4.1">
+      <commit>586606a354b14b4c90f191825318c01235afa475</commit>
+      <combineCommits>false</combineCommits>
+      <repoURL plugin="git-client@2.4.6">
+        <scheme>ssh</scheme>
+        <path>/math/math.git</path>
+        <rawPath>/math/math.git</rawPath>
+        <user>git</user>
+        <port>7999</port>
+        <host>localhost</host>
+      </repoURL>
+    </hudson.plugins.git.RevisionParameterAction>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters/>
+      <parameterDefinitionNames class="empty-list"/>
+    </hudson.model.ParametersAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@3.1.2.10">
+      <queuingDurationMillis>6697</queuingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.1.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/demo%2FCH-Master/detail/CH-Master/7</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <hudson.plugins.git.util.BuildData plugin="git@3.4.1">
+      <buildsByBranchName>
+        <entry>
+          <string>origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>586606a354b14b4c90f191825318c01235afa475</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision reference="../marked"/>
+            <hudsonBuildNumber>7</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>origin/admin/gitignore-1510393699000</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>b15ff532e5d97b93ec3e7f594678fe7999250121</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1>744984bb0dbc18e38675d4bc33c7bd0c0a1bec52</sha1>
+                  <name>origin/admin/gitignore-1510393699000</name>
+                </hudson.plugins.git.Branch>
+                <hudson.plugins.git.Branch>
+                  <sha1>b15ff532e5d97b93ec3e7f594678fe7999250121</sha1>
+                  <name>origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch[2]"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>6</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+        <entry>
+          <string>refs/remotes/origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@2.4.6">
+              <sha1>6488ad35ec333cef200563a6f017391fed086e8d</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>refs/remotes/origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision plugin="git-client@2.4.6">
+              <sha1 reference="../../marked/sha1"/>
+              <branches class="list">
+                <hudson.plugins.git.Branch reference="../../../marked/branches/hudson.plugins.git.Branch"/>
+              </branches>
+            </revision>
+            <hudsonBuildNumber>5</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <remoteUrls>
+        <string>ssh://git@localhost:7999/math/math.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.plugins.git.GitTagAction plugin="git@3.4.1">
+      <tags class="hudson.util.CopyOnWriteMap$Tree">
+        <entry>
+          <string>origin/master</string>
+          <list/>
+        </entry>
+      </tags>
+      <ws>/Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master</ws>
+    </hudson.plugins.git.GitTagAction>
+    <hudson.scm.SCMRevisionState_-None/>
+  </actions>
+  <queueId>53</queueId>
+  <timestamp>1510406873857</timestamp>
+  <startTime>1510406873865</startTime>
+  <result>SUCCESS</result>
+  <duration>2479</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn>self</builtOn>
+  <workspace>/Users/bool/Downloads/jenkins_home/workspace/demo/CH-Master</workspace>
+  <hudsonVersion>2.60.2</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@3.4.1">
+    <authorOrCommitter>false</authorOrCommitter>
+  </scm>
+  <culprits class="com.google.common.collect.RegularImmutableSortedSet">
+    <string>admin</string>
+  </culprits>
+</build>

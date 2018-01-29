@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2017-10-26 08:27:22.449 UTC</timestamp>
+  <md5sum>c4587e0b9d914ae71b0bd6b702574697</md5sum>
+  <fileName>Credential id=jenkins name=jenkins</fileName>
+  <usages>
+    <entry>
+      <string>demo/PR-Master</string>
+      <ranges>36</ranges>
+    </entry>
+    <entry>
+      <string>demo/CH-Master</string>
+      <ranges>1-8</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

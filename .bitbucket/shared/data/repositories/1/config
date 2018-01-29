@@ -1,0 +1,14 @@
+[include]
+	# Include the "system" gitconfig, which is used to apply common settings
+	# to all repositories in the system. Basic settings should be applied in
+	# the "system" gitconfig, not here, to avoid expensive upgrade tasks for
+	# applying changes to all existing repositories.
+	path = ../../../config/git/system-config
+	# Include a special repository-config which includes details about the
+	# Java Repository associated with this on-disk repository.
+	path = repository-config
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+	ignorecase = true

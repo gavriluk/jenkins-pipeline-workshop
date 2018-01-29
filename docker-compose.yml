@@ -3,9 +3,12 @@ version: '2'
 services:
   jenkins0:
     image: jenkins:2.60.2
+    environment:
+      - JAVA_OPTS="-Dhudson.plugins.git.GitStatus.allowNotifyCommitParameters=true"
     ports:
       - 8080:8080
       - 50000:50000
+      - 5005:5005
     links:
       - socatdockersock
     privileged: true

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>PULL_REQUEST_ID</name>
+          <description></description>
+          <defaultValue>NULL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PULL_REQUEST_TO_BRANCH</name>
+          <description></description>
+          <defaultValue>NULL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.4.1">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>ssh://git@localhost:7999/math/math.git</url>
+        <credentialsId>jenkins</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>origin/pull-requests/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.PreBuildMerge>
+        <options>
+          <mergeRemote>origin</mergeRemote>
+          <mergeTarget>master</mergeTarget>
+          <mergeStrategy>default</mergeStrategy>
+          <fastForwardMode>FF</fastForwardMode>
+        </options>
+      </hudson.plugins.git.extensions.impl.PreBuildMerge>
+      <hudson.plugins.git.extensions.impl.UserIdentity>
+        <name>devops</name>
+        <email>devops@devops.org</email>
+      </hudson.plugins.git.extensions.impl.UserIdentity>
+    </extensions>
+  </scm>
+  <assignedNode>builder</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec></spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;test: $pr2branch or ${PULL_REQUEST_ID}&quot;</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Maven>
+      <targets>test</targets>
+      <mavenName>3.5.0</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+      <injectBuildVariables>false</injectBuildVariables>
+    </hudson.tasks.Maven>
+  </builders>
+  <publishers>
+    <org.jenkinsci.plugins.stashNotifier.StashNotifier plugin="stashNotifier@1.11.6">
+      <stashServerBaseUrl></stashServerBaseUrl>
+      <credentialsId></credentialsId>
+      <ignoreUnverifiedSSLPeer>false</ignoreUnverifiedSSLPeer>
+      <commitSha1></commitSha1>
+      <includeBuildNumberInKey>false</includeBuildNumberInKey>
+      <projectKey></projectKey>
+      <prependParentProjectKey>false</prependParentProjectKey>
+      <disableInprogressNotification>false</disableInprogressNotification>
+      <globalConfig>
+        <adminAddress>address not configured yet &lt;nobody@nowhere&gt;</adminAddress>
+        <jenkinsUrl>http://jenkins0:8080/</jenkinsUrl>
+      </globalConfig>
+    </org.jenkinsci.plugins.stashNotifier.StashNotifier>
+  </publishers>
+  <buildWrappers/>
+</project>
